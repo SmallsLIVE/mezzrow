@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Mezzrow</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/mezzrow.css" %}" rel="stylesheet">
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4 no-scale">
+          <div class="navbar navbar-static-top" role="navigation">
+            <div class="navbar-inner">
+              <img src="{% static "img/head.png" %}" />
+              <ul class="nav navbar-nav">
+                <li class="active back"><a href="#">Schedule</a></li>
+                <li><a href="about.html">Who Are We</a></li>
+                <li><a href="contact.html">Info/Contact</a></li>
+            <!--     <li><a href="reservations.html">Reservations</a></li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-4">
+        </div>
+      </div>
+    </div>
+    <ul class="navbar-right social">
+      <li><a href="" class="fb" rel="nofollow" target="_blank"></a></li>
+      <li><a href="" class="twt" rel="nofollow" target="_blank"></a></li>
+      <li><a href="" class="tmblr" rel="me author" target="_blank"></a></li>
+      <li><a href="" class="inst" rel="nofollow" target="_blank"></a></li>
+    </ul>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-4">
+        </div>
+        <div class="col-xs-4 frame no-scale">
+          <div class="frame-inner">
+            <hr class="frame-head-border-sm"></hr>
+            <hr class="frame-head-border"></hr>
+            <h2 class="frame-head">Performing this week</h2>
+            <hr class="frame-head-border bottom"></hr>
+            <hr class="frame-head-border-sm bottom"></hr>
+            <dl id="calendar"> <!-- Calendar events go here. -->
+              <dt class="purple">September 9th</dt>
+                <dd class="orange">6:00 PM to 9:00 PM</dd>
+                <dd class="event" data-date="September 9th" data-time="6:30 PM to 9:00 PM" data-price="$40" data-img="ehud.png">Happy Hour with Ehud Asherie Solo Piano</dd>
+                <dd class="orange">9:30 PM to 12:00 AM</dd>
+                <dd class="event" data-date="September 9th" data-time="9:30 PM to 12:00 AM" data-price="$60" data-img="hm.png">Harold Mabern, Piano, duet with John Webber, Bass</dd>
+              <dt class="purple">September 10th</dt>
+                <dd class="orange">6:00 PM to 9:00 PM</dd>
+                <dd class="event" data-date="September 10th" data-time="6:30 PM to 9:00 PM" data-price="$40" data-img="ehud.png">Happy Hour with Ehud Asherie Solo Piano</dd>
+                <dd class="orange">9:30 PM to 12:00 AM</dd>
+                <dd class="event" data-date="September 10th" data-time="9:30 PM to 12:00 AM" data-price="$60" data-img="hm.png">Harold Mabern, Piano, duet with John Webber, Bass</dd>
+              <dt class="purple">September 11th</dt>
+                <dd class="orange">6:00 PM to 9:00 PM</dd>
+                <dd class="event" data-date="September 11th" data-time="6:30 PM to 9:00 PM" data-price="$40" data-img="ehud.png">Happy Hour with Ehud Asherie Solo Piano</dd>
+                <dd class="orange">9:30 PM to 12:00 AM</dd>
+                <dd class="event" data-date="September 11th" data-time="9:30 PM to 12:00 AM" data-price="$60" data-img="hm.png">Harold Mabern, Piano, duet with John Webber, Bass</dd>
+              <dt class="purple">September 12th</dt>
+                <dd class="orange">6:00 PM to 9:00 PM</dd>
+                <dd class="event" data-date="September 12th" data-time="6:30 PM to 9:00 PM" data-price="$40" data-img="ehud.png">Happy Hour with Ehud Asherie Solo Piano</dd>
+                <dd class="orange">9:30 PM to 12:00 AM</dd>
+                <dd class="event" data-date="September 12th" data-time="9:30 PM to 12:00 AM" data-price="$60" data-img="hm.png">Harold Mabern, Piano, duet with John Webber, Bass</dd>
+              <dt class="purple">September 13th</dt>
+                <dd class="orange">6:00 PM to 9:00 PM</dd>
+                <dd class="event" data-date="September 13th" data-time="6:30 PM to 9:00 PM" data-price="$40" data-img="ehud.png">Happy Hour with Ehud Asherie Solo Piano</dd>
+                <dd class="orange">9:30 PM to 12:00 AM</dd>
+                <dd class="event" data-date="September 13th" data-time="9:30 PM to 12:00 AM" data-price="$60" data-img="hm.png">Harold Mabern, Piano, duet with John Webber, Bass</dd>
+              <dt class="purple">September 14th</dt>
+               <dd class="orange">6:00 PM to 9:00 PM</dd>
+                <dd class="event" data-date="September 14th" data-time="6:30 PM to 9:00 PM" data-price="$40" data-img="ehud.png">Happy Hour with Ehud Asherie Solo Piano</dd>
+                <dd class="orange">9:30 PM to 12:00 AM</dd>
+                <dd class="event" data-date="September 14th" data-time="9:30 PM to 12:00 AM" data-price="$60" data-img="hm.png">Harold Mabern, Piano, duet with John Webber, Bass</dd>
+              <dt class="purple">September 15th</dt>
+                <dd class="orange">6:00 PM to 9:00 PM</dd>
+                <dd class="event" data-date="September 15th" data-time="6:30 PM to 9:00 PM" data-price="$40" data-img="ehud.png">Happy Hour with Ehud Asherie Solo Piano</dd>
+                <dd class="orange">9:30 PM to 12:00 AM</dd>
+                <dd class="event" data-date="September 15th" data-time="9:30 PM to 12:00 AM" data-price="$60" data-img="hm.png">Harold Mabern, Piano, duet with John Webber, Bass</dd>
+              <dt class="purple">September 16th</dt>
+                <dd class="orange">6:00 PM to 9:00 PM</dd>
+                <dd class="event" data-date="September 16th" data-time="6:30 PM to 9:00 PM" data-price="$40" data-img="ehud.png">Happy Hour with Ehud Asherie Solo Piano</dd>
+                <dd class="orange">9:30 PM to 12:00 AM</dd>
+                <dd class="event" data-date="September 16th" data-time="9:30 PM to 12:00 AM" data-price="$60" data-img="hm.png">Harold Mabern, Piano, duet with John Webber, Bass</dd>
+            </dl>
+
+            <div class="event-details" data-event="">
+              <img class="event-img img-thumbnail" src="" />
+              <ul class="text-left">
+                <li class="event-date"></li>
+                <li class="event-time"></li>
+                <li class="event-price"></li>
+              </ul>
+              <button type="button" class="btn btn-default btn-sm back"><div class="arrow-left"></div>View Full Schedule</button>
+              <button type="button" class="btn btn-default btn-sm"><a href="reservations.html">Make Reservations</a><div class="arrow-right"></button>
+            </div>
+
+       </div>
+        <div class="col-xs-4">
+        </div>
+      </div>
+      <footer>
+      </footer>
+    </div> <!-- /container -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/mezzrow.js"></script>
+  </body>
+</html>
