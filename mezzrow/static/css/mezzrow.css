@@ -1,280 +1,322 @@
 @font-face {
-font-family: 'Bebas Neue';
-font-style: normal;
-font-weight: normal;
-src: local('../fonts/Bebas Neue'), url('../fonts/BebasNeue.woff') format('woff');
+    font-family: 'Bebas Neue';
+    font-style: normal;
+    font-weight: normal;
+    src: local('../fonts/Bebas Neue'), url('../fonts/BebasNeue.woff') format('woff');
 }
+
 @font-face {
-  font-family: 'Nevis-Bold';
-    src:  url('../fonts/Nevis-Bold.ttf.woff') format('woff'),
+    font-family: 'Nevis-Bold';
+    src: url('../fonts/Nevis-Bold.ttf.woff') format('woff'),
     url('../fonts/Nevis-Bold.ttf.svg#Nevis-Bold') format('svg'),
     url('../fonts/Nevis-Bold.ttf.eot'),
-    url('../fonts/Nevis-Bold.eot?#iefix') format('embedded-opentype'); 
+    url('../fonts/Nevis-Bold.eot?#iefix') format('embedded-opentype');
     font-weight: normal;
     font-style: normal;
 }
-html { 
-  	background: url(../img/bg_lght.png) no-repeat top center fixed; 
-  	-webkit-background-size: cover;
-  	-moz-background-size: cover;
-  	-o-background-size: cover;
-  	background-size: cover;
+
+html {
+    background: url(../img/bg_lght.png) no-repeat top center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 
 }
+
 body {
-	background:rgba(255,255,255,0);
-	font-family: "Trebuchet MS", Trebuchet, sans-serif;
-	padding: 0 0 1em 0;
-	line-height: 1.5;
-	height: 100%
+    background: rgba(255, 255, 255, 0);
+    font-family: "Trebuchet MS", Trebuchet, sans-serif;
+    padding: 0 0 1em 0;
+    line-height: 1.5;
+    height: 100%
 }
+
 a {
-	color: #F16722;
-	opacity: .8;
+    color: #F16722;
+    opacity: .8;
 }
+
 a:active, a:focus, a:hover {
-	color: #F16722;
-	opacity: 1;
-	text-decoration: none;
+    color: #F16722;
+    opacity: 1;
+    text-decoration: none;
 }
-p{
-	color: #000;
+
+p {
+    color: #000;
 }
+
 li {
-	color: #000;
+    color: #000;
 }
+
 address {
-	font-size: 75%;
+    font-size: 75%;
 }
+
 .event {
-	cursor: pointer;
+    cursor: pointer;
 }
-.event-details {
-	display: none;
-}
+
 button {
-	/*font-family: "Bebas Neue";*/
-	text-transform: uppercase;
+    /*font-family: "Bebas Neue";*/
+    text-transform: uppercase;
 }
-button, .btn, .btn-default a, .btn-default a:active,.btn-default a:focus,.btn-default a:hover, .btn-default:active,.btn-default:focus,.btn-default:hover{
-	color: #000;
-	font-weight: 900;
-	border-color: #DCB505;
-	opacity: 1;
+
+button, .btn, .btn-default a, .btn-default a:active, .btn-default a:focus, .btn-default a:hover, .btn-default:active, .btn-default:focus, .btn-default:hover {
+    color: #000;
+    font-weight: 900;
+    border-color: #DCB505;
+    opacity: 1;
 
 }
+
 button.back {
-	display: none;
+    display: none;
 }
+
 .img-thumbnail {
-	border: 1px solid #DCB505;
-	border-radius:0px;
+    border: 1px solid #DCB505;
+    border-radius: 0;
 }
-.head{
-	background:transparent url(../img/head.png) top left no-repeat;
+
+.head {
+    background: transparent url(../img/head.png) top left no-repeat;
 }
+
 .navbar .nav,
 .navbar .nav > li {
-
-	font-family: "Bebas Neue";
-	text-transform: uppercase;
-  	float:none;
-  	display:inline-block;
-  	*display:inline;
-  	*zoom:1;
-  	vertical-align: top;
+    font-family: "Bebas Neue";
+    text-transform: uppercase;
+    float: none;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: top;
 }
+
 .navbar-inner {
-  text-align:center;
-}
-.navbar .nav > li {
-	
-}
-.nav>li>a {
-/* font-weight: 900; */
-border: 1px solid rgba(241,103,34,.8);
-font-size: 1.4em;
-color: #F16722;
-line-height: .4em;
-height: .125em;
-padding: 14px 5px 14px 5px;
-margin: .1em;
-opacity: .8;
+    text-align: center;
 }
 
-.nav>li>a:hover, .nav>li>a:focus, .nav>li.active a {
-	border: 1px solid rgba(241,103,34,1);
-	color: #F16722;
-	opacity: 1;
-	background-color: transparent;
+.navbar .nav > li {
+
 }
+
+.nav > li > a {
+    /* font-weight: 900; */
+    border: 1px solid rgba(241, 103, 34, .8);
+    font-size: 1.4em;
+    color: #F16722;
+    line-height: .4em;
+    height: .125em;
+    padding: 14px 5px 14px 5px;
+    margin: .1em;
+    opacity: .8;
+}
+
+.nav > li > a:hover, .nav > li > a:focus, .nav > li.active a {
+    border: 1px solid rgba(241, 103, 34, 1);
+    color: #F16722;
+    opacity: 1;
+    background-color: transparent;
+}
+
 .no-scale {
-	min-width: 380px;
+    min-width: 380px;
 }
+
 .cite {
-	margin:.5em 4em 2em 0;
-	display: block;
+    margin: .5em 4em 2em 0;
+    display: block;
 }
+
 .contact {
-	text-align: left;
-	padding-bottom:	1em;
+    text-align: left;
+    padding-bottom: 1em;
 }
+
 .contact h5 {
-	display: inline;
+    display: inline;
 }
+
 .event-details ul {
-	font-size: 85%;
-	margin: 1em 0 1em 0;
+    font-size: 85%;
+    margin: 1em 0 1em 0;
 }
+
 .frame {
-	padding: 0;
-	border:30px solid transparent;
-	border-image:url(../img/border.png) 30 30 round;
+    padding: 0;
+    border: 30px solid transparent;
+    border-image: url(../img/border.png) 30 30 round;
 }
+
 .frame-inner {
-	background-color: rgba(255,255,255,.5);
-	text-align: center;
-	height: 100%;
+    background-color: rgba(255, 255, 255, .5);
+    text-align: center;
+    height: 100%;
 }
+
 .frame-inner ul {
-	list-style-type: none;
-	margin-left: 0px;
-	padding-left: 0px;
+    list-style-type: none;
+    margin-left: 0px;
+    padding-left: 0px;
 }
+
 .frame-inner dl {
-	font-size: 85%;
-	margin-top: 1em;
+    font-size: 85%;
+    margin-top: 1em;
 }
+
 .frame-inner dt {
-	font-size: 100%;
-	margin: 2em 0 1em 0;
+    font-size: 100%;
+    margin: 2em 0 1em 0;
 }
+
 .frame-inner dd {
-	font-size: 85%;
-	margin-bottom: 1em;
+    font-size: 85%;
+    margin-bottom: 1em;
 }
+
 .frame-inner dd.orange {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
-.frame-inner p{
-	font-size: 75%;
-	margin-top: 1em;
+
+.frame-inner p {
+    font-size: 75%;
+    margin-top: 1em;
 }
-.frame-head	{
-	font-family: 'Nevis-Bold';
-	font-size: 11pt;
-	margin: 0px;
-	line-height: 1;
-	text-transform: uppercase;
-	vertical-align: baseline;
-	color: #000;
+
+.frame-head {
+    font-family: 'Nevis-Bold';
+    font-size: 11pt;
+    margin: 0px;
+    line-height: 1;
+    text-transform: uppercase;
+    vertical-align: baseline;
+    color: #000;
 }
+
 .frame-head-border {
-	background-color: transparent;
-	border-bottom: 1px solid #DCB505;
-	margin:0 0 10px 0;
+    background-color: transparent;
+    border-bottom: 1px solid #DCB505;
+    margin: 0 0 10px 0;
 }
+
 .frame-head-border-sm {
-	background-color: transparent;
-	border-top: none;
-	border-bottom: 1px solid #DCB505;
-	margin:0px 70px 4px 70px;
-	padding-top:20px;
+    background-color: transparent;
+    border-top: none;
+    border-bottom: 1px solid #DCB505;
+    margin: 0px 70px 4px 70px;
+    padding-top: 20px;
 }
+
 .frame-head-border.bottom {
-	background-color: transparent;
-	border-bottom: none;
-	border-top: 1px solid #DCB505;
-	margin:10px 0 0 0;
-	padding-top: 0;
+    background-color: transparent;
+    border-bottom: none;
+    border-top: 1px solid #DCB505;
+    margin: 10px 0 0 0;
+    padding-top: 0;
 }
+
 .frame-head-border-sm.bottom {
-	background-color: transparent;
-	border-bottom: none;
-	border-top: 1px solid #DCB505;
-	margin:4px 70px 0px 70px;
-	padding-top: 0;
-	padding-bottom: 8px;
+    background-color: transparent;
+    border-bottom: none;
+    border-top: 1px solid #DCB505;
+    margin: 4px 70px 0px 70px;
+    padding-top: 0;
+    padding-bottom: 8px;
 }
+
 .purple {
-	font-weight: 900;
-	color: rgb(94,47,128);
+    font-weight: 900;
+    color: rgb(94, 47, 128);
 }
+
 .orange {
-	color: rgb(241,103,34);
+    color: rgb(241, 103, 34);
 }
+
 ul.social {
-	position: fixed;
-	right: 10px;
-	top: 10px;
-	list-style-type: none
-} 
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    list-style-type: none
+}
+
 ul.social li {
-	height: 24px;
-	width: 24px;
-	margin:2px; 
-	display: inline-block;
+    height: 24px;
+    width: 24px;
+    margin: 2px;
+    display: inline-block;
 }
-ul.social li a{
-	height: 24px;
-	width: 24px;
-	display: inline-block;
+
+ul.social li a {
+    height: 24px;
+    width: 24px;
+    display: inline-block;
 }
-.social .fb { 
-	background: url(../img/fb.png) no-repeat top left; 
-} 
-.social .twt { 
-	background: url(../img/twt.png) no-repeat top left; 
-} 
-.social .tmblr { 
-	background: url(../img/tmblr.png) no-repeat top left; 
-} 
-.social .inst { 
-	background: url(../img/inst.png) no-repeat top left; 
+
+.social .fb {
+    background: url(../img/fb.png) no-repeat top left;
+}
+
+.social .twt {
+    background: url(../img/twt.png) no-repeat top left;
+}
+
+.social .tmblr {
+    background: url(../img/tmblr.png) no-repeat top left;
+}
+
+.social .inst {
+    background: url(../img/inst.png) no-repeat top left;
 }
 
 .center-img {
-	margin:2em auto 0 auto;
-	display: block;
+    margin: 2em auto 0 auto;
+    display: block;
 }
+
 .arrow-up {
-	width: 0; 
-	height: 0; 
-	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
-	
-	border-bottom: 5px solid rgb(0,0,0);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+
+    border-bottom: 5px solid rgb(0, 0, 0);
 }
 
 .arrow-down {
-	width: 0; 
-	height: 0; 
-	border-left: 20px solid transparent;
-	border-right: 20px solid transparent;
-	
-	border-top: 20px solid rgb(0,0,0);
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+
+    border-top: 20px solid rgb(0, 0, 0);
 }
 
 .arrow-right {
-	width: 0; 
-	height: 0; 
-	border-top: 6px solid transparent;
-	border-bottom: 6px solid transparent;
-	float: right;
-	border-left: 6px solid rgb(0,0,0);
-	margin-left: .75em;
-	margin-top: 3px
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    float: right;
+    border-left: 6px solid rgb(0, 0, 0);
+    margin-left: .75em;
+    margin-top: 3px
 }
 
 .arrow-left {
-	width: 0; 
-	height: 0; 
-	border-top: 6px solid transparent;
-	border-bottom: 6px solid transparent; 
-	
-	border-right:6px solid rgb(0,0,0); 
-	float: left;
-	margin-right: .75em;
-	margin-top: 3px
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+
+    border-right: 6px solid rgb(0, 0, 0);
+    float: left;
+    margin-right: .75em;
+    margin-top: 3px
 }
 

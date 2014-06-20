@@ -1,97 +1,77 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="favicon.ico">
-    <title>Mezzrow</title>
-    <!-- Bootstrap core CSS -->
-    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="{% static "css/mezzrow.css" %}" rel="stylesheet">
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="favicon.ico">
+  <title>Mezzrow</title>
+  <!-- Bootstrap core CSS -->
+  <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{% static "css/mezzrow.css" %}" rel="stylesheet">
+  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-4"></div>
-        <div class="col-xs-4 no-scale">
-          <div class="navbar navbar-static-top" role="navigation">
-            <div class="navbar-inner">
-              <img src="{% static "img/head.png" %}" />
-              <ul class="nav navbar-nav">
-                <li class="active back"><a href="#">Schedule</a></li>
-                <li><a href="about.html">Who Are We</a></li>
-                <li><a href="contact.html">Info/Contact</a></li>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4"></div>
+    <div class="col-xs-4 no-scale">
+      <div class="navbar navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          <img src="{% static "img/head.png" %}"/>
+          <ul class="nav navbar-nav">
+            <li {% block home_active %}{% endblock home_active %}><a href="{% url "home" %}">Schedule</a></li>
+            <li {% block about_active %}{% endblock about_active %}><a href="{% url "about" %}">Who Are We</a></li>
+            <li {% block contact_active %}{% endblock contact_active %}><a href="contact.html">Info/Contact</a></li>
             <!--     <li><a href="reservations.html">Reservations</a></li> -->
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-4">
+          </ul>
         </div>
       </div>
     </div>
-    <ul class="navbar-right social">
-      <li><a href="" class="fb" rel="nofollow" target="_blank"></a></li>
-      <li><a href="" class="twt" rel="nofollow" target="_blank"></a></li>
-      <li><a href="" class="tmblr" rel="me author" target="_blank"></a></li>
-      <li><a href="" class="inst" rel="nofollow" target="_blank"></a></li>
-    </ul>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-4">
-        </div>
-        <div class="col-xs-4 frame no-scale">
-          <div class="frame-inner">
-            <hr class="frame-head-border-sm" />
-            <hr class="frame-head-border" />
-            <h2 class="frame-head">Performing this week</h2>
-            <hr class="frame-head-border bottom" />
-            <hr class="frame-head-border-sm bottom" />
-            <dl id="calendar"> <!-- Calendar events go here. -->
-            {% regroup events by start as regrouped_events %}
-              {% for day in regrouped_events %}
-                <dt class="purple">{{ day.grouper|date:"F j" }}th</dt>
-                {% for event in day.list %}
-                  <dd class="orange">{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}</dd>
-                  <dd class="event" data-date="{{ day.grouper|date:"F j" }}th" data-time="{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}" data-price="$40" data-img="{% static "img/event/ehud.png" %}">{{ event.display_title }}</dd>
-                {% endfor %}
-              {% endfor %}
-            </dl>
-
-            <div class="event-details" data-event="">
-              <img class="event-img img-thumbnail" src="" />
-              <ul class="text-left">
-                <li class="event-date"></li>
-                <li class="event-time"></li>
-                <li class="event-price"></li>
-              </ul>
-              <button type="button" class="btn btn-default btn-sm back"><span class="arrow-left"></span>View Full Schedule</button>
-              <button type="button" class="btn btn-default btn-sm"><a href="reservations.html">Make Reservations</a><span class="arrow-right"></span></button>
-            </div>
-
-       </div>
-        <div class="col-xs-4">
-        </div>
+    <div class="col-xs-4">
+    </div>
+  </div>
+</div>
+<ul class="navbar-right social">
+  <li><a href="" class="fb" rel="nofollow" target="_blank"></a></li>
+  <li><a href="" class="twt" rel="nofollow" target="_blank"></a></li>
+  <li><a href="" class="tmblr" rel="me author" target="_blank"></a></li>
+  <li><a href="" class="inst" rel="nofollow" target="_blank"></a></li>
+</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4">
+    </div>
+    <div class="col-xs-4 frame no-scale">
+      <div class="frame-inner">
+        <hr class="frame-head-border-sm"/>
+        <hr class="frame-head-border"/>
+        <h2 class="frame-head">{% block section_title %}{% endblock section_title %}</h2>
+        <hr class="frame-head-border bottom"/>
+        <hr class="frame-head-border-sm bottom"/>
+        {% block content %}
+        {% endblock content %}
       </div>
-      <footer>
-      </footer>
-    </div> <!-- /container -->
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
-    <script src="{% static "js/mezzrow.js" %}"></script>
-  </body>
+      <div class="col-xs-4">
+      </div>
+    </div>
+    <footer>
+    </footer>
+  </div>
+  <!-- /container -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="{% static "js/bootstrap.min.js" %}"></script>
+</body>
 </html>

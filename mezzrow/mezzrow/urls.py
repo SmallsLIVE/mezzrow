@@ -7,6 +7,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
+    url(r'^event/(?P<pk>\d+)-(?P<page_slug>\w+)', 'site_app.views.event_view', name='event'),
+    url(r'^about/$', 'site_app.views.about_view', name='about'),
     url(r'^$', 'site_app.views.home_view', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
