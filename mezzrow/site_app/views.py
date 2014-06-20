@@ -26,3 +26,9 @@ class AboutView(TemplateView):
     template_name = 'about.html'
 
 about_view = AboutView.as_view()
+
+
+class ContactView(TemplateView):
+    template_name = "contact.html"
+
+contact_view = ContactView.as_view()
