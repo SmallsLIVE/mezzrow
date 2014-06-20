@@ -1,0 +1,3 @@
+#smallslive
+django-oscar==0.7.2
+django-oscar-paypal==0.9
