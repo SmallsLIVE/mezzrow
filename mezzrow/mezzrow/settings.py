@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 from smallslive.smallslive.settings.local_filip import *
 from oscar import get_core_apps
 from oscar import OSCAR_MAIN_TEMPLATE_DIR
+from django.utils.translation import ugettext_lazy as _
+
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -58,6 +60,7 @@ INSTALLED_APPS = [
     'django_thumbor',
     'djstripe',
     'floppyforms',
+    'paypal',
     'pipeline',
     'sortedm2m',
     'south',
@@ -71,7 +74,10 @@ INSTALLED_APPS = [
     'smallslive.old_site',
     'smallslive.users',
     'site_app'
-] + get_core_apps(['catalogue'])
+] + get_core_apps([
+    'catalogue',
+    'checkout'
+])
 
 SITE_ID = 1
 
@@ -129,3 +135,15 @@ WSGI_APPLICATION = 'mezzrow.wsgi.application'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 from oscar.defaults import *
+
+OSCAR_DASHBOARD_NAVIGATION.append(
+    {
+        'label': _('PayPal'),
+        'icon': 'icon-globe',
+        'children': [
+            {
+                'label': _('Express transactions'),
+                'url_name': 'paypal-express-list',
+            },
+        ]
+    })
