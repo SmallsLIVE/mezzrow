@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.linkedin_oauth2',
     'allauth.socialaccount.providers.twitter',
     'crispy_forms',
+    'debug_toolbar',
     'django_extensions',
     'django_thumbor',
     'djstripe',
