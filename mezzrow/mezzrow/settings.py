@@ -8,6 +8,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 from smallslive.smallslive.settings.local_filip import *
+from oscar import get_core_apps
+from oscar import OSCAR_MAIN_TEMPLATE_DIR
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -29,7 +32,7 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'users.SmallsUser'
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.flatpages',
 
     # third party apps
     'allauth',
@@ -47,6 +51,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.linkedin_oauth2',
     'allauth.socialaccount.providers.twitter',
+    'compressor',
     'crispy_forms',
     'debug_toolbar',
     'django_extensions',
@@ -66,10 +71,38 @@ INSTALLED_APPS = (
     'smallslive.old_site',
     'smallslive.users',
     'site_app'
+] + get_core_apps(['catalogue'])
+
+SITE_ID = 1
+
+MIDDLEWARE_CLASSES += (
+    'oscar.apps.basket.middleware.BasketMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
+
+AUTHENTICATION_BACKENDS = (
+    'oscar.apps.customer.auth_backends.Emailbackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+    },
+}
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
+    OSCAR_MAIN_TEMPLATE_DIR,
+
+)
+
+TEMPLATE_CONTEXT_PROCESSORS += (
+    'oscar.apps.search.context_processors.search_form',
+    'oscar.apps.promotions.context_processors.promotions',
+    'oscar.apps.checkout.context_processors.checkout',
+    'oscar.apps.customer.notifications.context_processors.notifications',
+    'oscar.core.context_processors.metadata',
 )
 
 STATICFILES_DIRS = [
@@ -84,6 +117,7 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '5432',
+        'ATOMIC_REQUESTS': True,
     }
 }
 
@@ -91,3 +125,7 @@ DATABASES = {
 ROOT_URLCONF = 'mezzrow.urls'
 
 WSGI_APPLICATION = 'mezzrow.wsgi.application'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+from oscar.defaults import *
