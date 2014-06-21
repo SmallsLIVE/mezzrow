@@ -14,8 +14,8 @@ urlpatterns = patterns('',
     (r'^checkout/paypal/', include('paypal.express.urls')),
     (r'^dashboard/paypal/express/', include(application.urls)),
     (r'^i18n/', include('django.conf.urls.i18n')),
-    url(r'', include(shop.urls)),
     url(r'^$', 'site_app.views.home_view', name='home'),
+    url(r'', include(shop.urls)),
     url(r'^admin/', include(admin.site.urls)),
 )
 
