@@ -1,3 +1,3 @@
-#smallslive
+git+https://github.com/SmallsLIVE/smallslive.git@package#egg=smallslive
 django-oscar==0.7.2
 django-oscar-paypal==0.9
