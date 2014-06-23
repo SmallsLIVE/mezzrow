@@ -57,7 +57,8 @@ docs/_build/
 
 # Collected static and media
 collected_static/
-media/
+media/*
+!media/image_not_found.jpg
 koala-config.json
 .sass-cache/
 
