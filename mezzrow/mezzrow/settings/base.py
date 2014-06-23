@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'djstripe',
     'floppyforms',
     'paypal',
-    'pipeline',
+    #'pipeline',
     'sortedm2m',
     'south',
     'storages',
