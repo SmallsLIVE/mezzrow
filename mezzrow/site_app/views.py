@@ -1,3 +1,4 @@
+from django.utils.timezone import datetime, timedelta
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
@@ -9,7 +10,9 @@ class HomeView(ListView):
     template_name = 'home.html'
 
     def get_queryset(self):
-        return reversed(Event.objects.all().order_by('-start')[:20])
+        today = datetime.now().date()
+        few_days_out = today + timedelta(days=14)
+        return Event.objects.filter(start__range=(today, few_days_out)).reverse()
 
 home_view = HomeView.as_view()
 
