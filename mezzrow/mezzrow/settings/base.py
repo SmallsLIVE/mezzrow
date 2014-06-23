@@ -119,6 +119,9 @@ ROOT_URLCONF = 'mezzrow.urls'
 
 WSGI_APPLICATION = 'mezzrow.wsgi.application'
 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 from oscar.defaults import *
