@@ -320,3 +320,6 @@ ul.social li a {
     margin-top: 3px
 }
 
+.reservation_form {
+    display: inline-block;
+}
