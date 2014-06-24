@@ -134,8 +134,7 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 
-OSCAR_ALLOW_ANON_CHECKOUT = True
-
+# Paypal settings
 PAYPAL_API_USERNAME = os.environ.get("PAYPAL_API_USERNAME")
 PAYPAL_API_PASSWORD = os.environ.get("PAYPAL_API_PASSWORD")
 PAYPAL_API_SIGNATURE = os.environ.get("PAYPAL_API_SIGNATURE")
@@ -146,6 +145,9 @@ PAYPAL_CURRENCY = PAYPAL_PAYFLOW_CURRENCY = 'USD'
 PAYPAL_PAYFLOW_DASHBOARD_FORMS = True
 
 from oscar.defaults import *
+
+OSCAR_SHOP_NAME = 'Mezzrow'
+OSCAR_ALLOW_ANON_CHECKOUT = True
 
 OSCAR_DASHBOARD_NAVIGATION.append(
     {
