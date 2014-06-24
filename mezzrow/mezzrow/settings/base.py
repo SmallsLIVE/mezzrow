@@ -75,7 +75,8 @@ INSTALLED_APPS = [
     'site_app'
 ] + get_core_apps([
     'oscar_apps.catalogue',
-    'oscar_apps.checkout'
+    'oscar_apps.checkout',
+    'oscar_apps.partner'
 ])
 
 SITE_ID = 1
