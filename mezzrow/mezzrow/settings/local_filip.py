@@ -11,3 +11,9 @@ DATABASES = {
         'ATOMIC_REQUESTS': True,
     }
 }
+
+INSTALLED_APPS += (
+    'debug_toolbar',
+)
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
