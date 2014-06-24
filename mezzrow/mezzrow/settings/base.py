@@ -114,6 +114,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 ROOT_URLCONF = 'mezzrow.urls'
 
 WSGI_APPLICATION = 'mezzrow.wsgi.application'
@@ -121,7 +124,8 @@ WSGI_APPLICATION = 'mezzrow.wsgi.application'
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+OSCAR_ALLOW_ANON_CHECKOUT = True
 
 PAYPAL_API_USERNAME = os.environ.get("PAYPAL_API_USERNAME")
 PAYPAL_API_PASSWORD = os.environ.get("PAYPAL_API_PASSWORD")
