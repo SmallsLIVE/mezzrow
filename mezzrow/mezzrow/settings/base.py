@@ -74,8 +74,8 @@ INSTALLED_APPS = [
     'smallslive.users',
     'site_app'
 ] + get_core_apps([
-    'catalogue',
-    'checkout'
+    'oscar_apps.catalogue',
+    'oscar_apps.checkout'
 ])
 
 SITE_ID = 1

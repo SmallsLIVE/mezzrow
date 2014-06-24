@@ -1,6 +1,6 @@
 from oscar.apps.checkout import app
 
-from . import views
+from oscar_apps.checkout import views
 
 
 class CheckoutApplication(app.CheckoutApplication):
