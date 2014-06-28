@@ -10,9 +10,10 @@ class HomeView(ListView):
     template_name = 'home.html'
 
     def get_queryset(self):
-        today = datetime.now().date()
-        few_days_out = today + timedelta(days=14)
-        return Event.objects.filter(start__range=(today, few_days_out)).reverse()
+        #today = datetime.now().date()
+        #few_days_out = today + timedelta(days=14)
+        #return Event.objects.filter(start__range=(today, few_days_out)).reverse()
+        return reversed(Event.objects.order_by('-start')[:20])
 
 home_view = HomeView.as_view()
 
