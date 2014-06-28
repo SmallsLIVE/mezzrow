@@ -149,6 +149,7 @@ from oscar.defaults import *
 
 OSCAR_SHOP_NAME = 'Mezzrow'
 OSCAR_ALLOW_ANON_CHECKOUT = True
+OSCAR_DEFAULT_CURRENCY = 'USD'
 
 OSCAR_DASHBOARD_NAVIGATION.append(
     {
