@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 from smallslive.smallslive.settings.base import *
 from oscar import get_core_apps
 from oscar import OSCAR_MAIN_TEMPLATE_DIR
+from smallslive import SMALLSLIVE_TEMPLATE_DIR, SMALLSLIVE_STATIC_DIR
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -101,6 +102,7 @@ HAYSTACK_CONNECTIONS = {
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
     OSCAR_MAIN_TEMPLATE_DIR,
+    SMALLSLIVE_TEMPLATE_DIR,
 
 )
 
@@ -114,6 +116,7 @@ TEMPLATE_CONTEXT_PROCESSORS += (
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
+    SMALLSLIVE_STATIC_DIR,
 ]
 
 STATICFILES_FINDERS = (

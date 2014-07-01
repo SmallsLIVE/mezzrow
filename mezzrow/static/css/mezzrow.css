@@ -188,6 +188,8 @@ button.back {
     margin-top: 1em;
 }
 
+
+
 .frame-head {
     font-family: 'Nevis-Bold';
     font-size: 11pt;
@@ -322,4 +324,12 @@ ul.social li a {
 
 .reservation_form {
     display: inline-block;
+}
+
+.opaque {
+    background-color: #FFF;
+}
+
+.event-add-form {
+    text-align: left;
 }

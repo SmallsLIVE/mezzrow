@@ -58,6 +58,7 @@ docs/_build/
 # Collected static and media
 collected_static/
 media/*
+/mezzrow/media/*
 !media/image_not_found.jpg
 koala-config.json
 .sass-cache/
@@ -67,4 +68,3 @@ smallsliveusers.txt
 smallslive/static/css/application.css
 smallslive/static/sass/application.css
 
-/mezzrow/media/cache/
