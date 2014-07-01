@@ -11,7 +11,7 @@
       <dt class="purple">{{ day.grouper|date:"F j" }}th</dt>
       {% for event in day.list %}
         <dd class="orange">{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}</dd>
-        <dd class="event"><a href="{% url "event_detail" pk=event.id slug=event.title|slugify %}">{{ event.display_title }}</a></dd>
+        <dd class="event"><a href="{% url "event_detail" pk=event.id slug=event.title|slugify %}">{{ event.title }}</a></dd>
       {% endfor %}
     {% endfor %}
   </dl>
