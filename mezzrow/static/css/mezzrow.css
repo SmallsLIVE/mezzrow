@@ -85,8 +85,8 @@ button.back {
     background: transparent url(../img/head.png) top left no-repeat;
 }
 
-.navbar .nav,
-.navbar .nav > li {
+.navbar .nav-mezz,
+.navbar .nav-mezz > li {
     font-family: "Bebas Neue";
     text-transform: uppercase;
     float: none;
@@ -100,11 +100,11 @@ button.back {
     text-align: center;
 }
 
-.navbar .nav > li {
+.navbar .nav-mezz > li {
 
 }
 
-.nav > li > a {
+.nav-mezz > li > a {
     /* font-weight: 900; */
     border: 1px solid rgba(241, 103, 34, .8);
     font-size: 1.4em;
@@ -116,7 +116,7 @@ button.back {
     opacity: .8;
 }
 
-.nav > li > a:hover, .nav > li > a:focus, .nav > li.active a {
+.nav-mezz > li > a:hover, .nav-mezz > li > a:focus, .nav-mezz > li.active a {
     border: 1px solid rgba(241, 103, 34, 1);
     color: #F16722;
     opacity: 1;
@@ -330,6 +330,6 @@ ul.social li a {
     background-color: #FFF;
 }
 
-.event-add-form {
+.left-aligned-form {
     text-align: left;
 }

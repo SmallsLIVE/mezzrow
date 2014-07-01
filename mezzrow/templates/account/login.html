@@ -1,0 +1,17 @@
+{% extends "mezzrow_base_narrow.html" %}
+{% load account crispy_forms_tags socialaccount %}
+
+{% block section_title %}Log In{% endblock %}
+
+{% block content %}
+  <form class="login left-aligned-form" method="POST" action="{% url 'account_login' %}" >
+    {% csrf_token %}
+    {{ form|crispy }}
+    {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+    {% endif %}
+    <button class="btn btn-primary" type="submit">Log In</button>
+    <a class="button secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?</a>
+  </form>
+  </div>
+{% endblock %}

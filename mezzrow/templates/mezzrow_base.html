@@ -21,6 +21,31 @@
   {% block extra_head %}{% endblock %}
 </head>
 <body>
+{% if user.is_superuser %}
+  <div class="navbar navbar-inverse " role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Mezzrow admin</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="{% url "home" %}">Homepage</a></li>
+          <li><a href="{% url "event_add" %}">Event add</a></li>
+          <li><a href="#contact">Artist add</a></li>
+          <li><a href="{% url "dashboard:index" %}">Store dashboard</a></li>
+          <li><a href="{% url "account_logout" %}">Log out</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </div>
+{% endif %}
 <div class="container">
   <div class="row">
     <div class="col-xs-4"></div>
@@ -28,10 +53,11 @@
       <div class="navbar navbar-static-top" role="navigation">
         <div class="navbar-inner">
           <img src="{% static "img/head.png" %}"/>
-          <ul class="nav navbar-nav">
+          <ul class="nav nav-mezz navbar-nav">
             <li {% block home_active %}{% endblock home_active %}><a href="{% url "home" %}">Schedule</a></li>
             <li {% block about_active %}{% endblock about_active %}><a href="{% url "about" %}">Who Are We</a></li>
-            <li {% block contact_active %}{% endblock contact_active %}><a href="{% url "contact" %}">Info/Contact</a></li>
+            <li {% block contact_active %}{% endblock contact_active %}><a href="{% url "contact" %}">Info/Contact</a>
+            </li>
             <!--     <li><a href="reservations.html">Reservations</a></li> -->
           </ul>
         </div>
@@ -54,12 +80,12 @@
     </footer>
   </div>
 </div>
-  <!-- /container -->
-  <!-- Bootstrap core JavaScript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script src="{% static "js/bootstrap.min.js" %}"></script>
-  {% block extra_js %}{% endblock extra_js %}
+<!-- /container -->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+{% block extra_js %}{% endblock extra_js %}
 </body>
 </html>
