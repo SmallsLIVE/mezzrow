@@ -16,4 +16,6 @@ INSTALLED_APPS += (
     'debug_toolbar',
 )
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
