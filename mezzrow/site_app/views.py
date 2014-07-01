@@ -6,7 +6,7 @@ from django.views.generic.list import ListView
 from django.views.generic import TemplateView
 from smallslive.artists.views import ArtistAddView as CoreArtistAddView
 from smallslive.events.models import Event
-from smallslive.events.views import EventAddView as CoreEventAddView
+from smallslive.events.views import EventAddView as CoreEventAddView, EventEditView as CoreEventEditView
 
 
 class HomeView(ListView):
@@ -47,6 +47,13 @@ class EventAddView(CoreEventAddView):
         return reverse('event_detail', kwargs={'pk': self.object.id, 'slug': slugify(self.object.title)})
 
 event_add = EventAddView.as_view()
+
+
+class EventEditView(CoreEventEditView):
+    def get_success_url(self):
+        return reverse('event_detail', kwargs={'pk': self.object.id, 'slug': slugify(self.object.title)})
+
+event_edit = EventEditView.as_view()
 
 
 class ArtistAddView(CoreArtistAddView):

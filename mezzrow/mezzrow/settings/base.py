@@ -136,6 +136,50 @@ WSGI_APPLICATION = 'mezzrow.wsgi.application'
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+AWS_S3_CUSTOM_DOMAIN = None
+
+SHOW_TIMES = {
+    # Starts with Monday
+    "1": (
+        ("19:30-22:00", "Early show", "7:30-10:00 PM"),
+        ("22:00-1:00", "Main show", "10:00-1:00 AM"),
+        ("1:00-4:00", "After hours", "1:00-4:00 AM"),
+    ),
+    "2": (
+        ("19:30-22:00", "Early show", "7:30-10:00 PM"),
+        ("22:00-1:00", "Main show", "10:00-1:00 AM"),
+        ("1:00-4:00", "After hours", "1:00-4:00 AM"),
+    ),
+    "3": (
+        ("18:30-21:00", "Early bird", "6:30-9:00 PM"),
+        ("21:30-0:00", "Main show", "9:30-12:00 AM"),
+        ("0:30-4:00", "Round midnight", "12:30-4:00 AM"),
+    ),
+    "4": (
+        ("18:30-21:00", "Early bird", "6:30-9:00 PM"),
+        ("21:30-0:00", "Main show", "9:30-12:00 AM"),
+        ("0:30-4:00", "Round midnight", "12:30-4:00 AM"),
+    ),
+    "5": (
+        ("16:00-19:00", "Afternoon jam session", "4:00-7:00 PM"),
+        ("19:30-22:00", "Early bird", "7:30-10:00 PM"),
+        ("22:30-1:00", "Main show", "10:30-1:00 AM"),
+        ("1:30-4:00", "Afterhours", "1:30-4:00 AM"),
+    ),
+    "6": (
+        ("16:00-19:00", "Afternoon jam session", "4:00-7:00 PM"),
+        ("19:30-22:00", "Early bird", "7:30-10:00 PM"),
+        ("22:30-1:00", "Main show", "10:30-1:00 AM"),
+        ("1:30-4:00", "Afterhours", "1:30-4:00 AM"),
+    ),
+    "7": (
+        ("13:00-15:00", "Vocal workshop", "1:00-3:00 PM"),
+        ("16:30-19:00", "Sunday showcase", "4:30-7:00 PM"),
+        ("19:30-22:00", "Early show", "7:30-10:00 PM"),
+        ("22:00-23:30", "Johnny O'Neal residency", "10:00-11:30 PM"),
+        ("0:00-4:00", "Round midnight", "12:00-4:00 AM"),
+    )
+}
 
 
 # Paypal settings
