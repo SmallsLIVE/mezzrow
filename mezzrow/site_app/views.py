@@ -1,9 +1,10 @@
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.template.defaultfilters import slugify
 from django.utils.timezone import datetime, timedelta
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
+from smallslive.artists.views import ArtistAddView as CoreArtistAddView
 from smallslive.events.models import Event
 from smallslive.events.views import EventAddView as CoreEventAddView
 
@@ -45,5 +46,10 @@ class EventAddView(CoreEventAddView):
     def get_success_url(self):
         return reverse('event_detail', kwargs={'pk': self.object.id, 'slug': slugify(self.object.title)})
 
+event_add = EventAddView.as_view()
 
-event_add_view = EventAddView.as_view()
+
+class ArtistAddView(CoreArtistAddView):
+    success_url = reverse_lazy('home')
+
+artist_add = ArtistAddView.as_view()
