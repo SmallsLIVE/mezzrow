@@ -4,7 +4,7 @@ from .base import *
 
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "herokudefault")
-DEBUG = False
+DEBUG = os.environ.get("DEBUG", False)
 
 # Parse database configuration from $DATABASE_URL
 DATABASES['default'] = dj_database_url.config()
