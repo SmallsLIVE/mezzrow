@@ -1,4 +1,4 @@
-git+https://github.com/SmallsLIVE/smallslive.git@0b10718
+git+https://github.com/SmallsLIVE/smallslive.git
 django-bmemcached==0.2.1
 django-oscar==0.7.2
 django-oscar-paypal==0.9
