@@ -8,7 +8,7 @@
   <div class="event-details" data-event="">
     {% if event.photo %}
       <img class="event-img img-thumbnail" width="330" height="220"
-           src="{% thumbor_url event.photo.url|urlencode width=100 height=100 smart=True %}"/>
+           src="{% thumbor_url event.photo.url|urlencode width=330 height=220 smart=True %}"/>
     {% endif %}
     <ul class="text-left">
       <li class="event-date">{{ event.start|date:"F j" }}th</li>
