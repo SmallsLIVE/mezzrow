@@ -66,3 +66,5 @@ koala-config.json
 smallsliveusers.txt
 smallslive/static/css/application.css
 smallslive/static/sass/application.css
+
+/mezzrow/media/cache/
