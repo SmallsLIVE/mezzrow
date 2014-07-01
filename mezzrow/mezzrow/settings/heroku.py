@@ -3,8 +3,17 @@ import dj_database_url
 from .base import *
 
 
-SECRET_KEY = os.environ.get("SECRET_KEY", "herokudefault")
-DEBUG = os.environ.get("DEBUG", False)
+def env_var(key, default=None):
+    """Retrieves env vars and makes Python boolean replacements"""
+    val = os.environ.get(key, default)
+    if val == 'True':
+        val = True
+    elif val == 'False':
+        val = False
+    return val
+
+SECRET_KEY = env_var("SECRET_KEY", "herokudefault")
+DEBUG = env_var("DEBUG", False)
 
 # Parse database configuration from $DATABASE_URL
 DATABASES['default'] = dj_database_url.config()
@@ -27,11 +36,14 @@ CACHES = {
     }
 }
 
-MIDDLEWARE_CLASSES = (
-    'django.middleware.cache.UpdateCacheMiddleware',
-) + MIDDLEWARE_CLASSES + (
-    'django.middleware.cache.FetchFromCacheMiddleware',
-)
+WHOLE_SITE_CACHE = env_var("WHOLE_SITE_CACHE", False)
+
+if WHOLE_SITE_CACHE:
+    MIDDLEWARE_CLASSES = (
+        'django.middleware.cache.UpdateCacheMiddleware',
+    ) + MIDDLEWARE_CLASSES + (
+        'django.middleware.cache.FetchFromCacheMiddleware',
+    )
 
 CACHE_MIDDLEWARE_SECONDS = 300
 SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
