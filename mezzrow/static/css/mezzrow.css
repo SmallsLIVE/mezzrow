@@ -333,3 +333,7 @@ ul.social li a {
 .left-aligned-form {
     text-align: left;
 }
+
+.frame-inner .event-description p {
+    font-size: 100%;
+}

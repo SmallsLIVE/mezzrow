@@ -13,6 +13,7 @@
     <ul class="text-left">
       <li class="event-date">{{ event.start|date:"F j" }}th</li>
       <li class="event-time">{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}</li>
+      <li class="event-description">{{ event.description|safe }}</li>
       {% with product=event.products.all.0 %}
         {% if product %}
           <li class="event-price">{% include "catalogue/partials/stock_record.html" with verbose=1 product=product %}</li>
