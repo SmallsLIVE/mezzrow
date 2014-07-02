@@ -37,15 +37,6 @@ CACHES = {
     }
 }
 
-WHOLE_SITE_CACHE = env_var("WHOLE_SITE_CACHE", False)
-
-if WHOLE_SITE_CACHE:
-    MIDDLEWARE_CLASSES = (
-        'django.middleware.cache.UpdateCacheMiddleware',
-    ) + MIDDLEWARE_CLASSES + (
-        'django.middleware.cache.FetchFromCacheMiddleware',
-    )
-
 CACHE_MIDDLEWARE_SECONDS = 300
 SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 TEMPLATE_LOADERS = (
