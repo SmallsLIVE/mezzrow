@@ -61,8 +61,15 @@ STATIC_URL = '/static/'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
+# Sentry
+RAVEN_CONFIG = {
+    'dsn': os.environ.get("SENTRY_DSN"),
+}
+
 INSTALLED_APPS += (
     'djrill',
+    'raven.contrib.django.raven_compat',
+
 )
 MANDRILL_API_KEY = os.environ.get("MANDRILL_API_KEY")
 EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
