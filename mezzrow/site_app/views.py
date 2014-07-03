@@ -20,7 +20,8 @@ class HomeView(ListView):
         return Event.objects.filter(start__range=(today, few_days_out)).reverse()
 
 # cache for 60 * 60 = 60 min
-home_view = cache_page(60 * 60)(HomeView.as_view())
+#home_view = cache_page(60 * 60)(HomeView.as_view())
+home_view = HomeView.as_view()
 
 
 class EventDetailView(DetailView):
@@ -29,21 +30,24 @@ class EventDetailView(DetailView):
     template_name = 'event.html'
 
 # cache for 60 * 60 = 60 min
-event_view = cache_page(60 * 60)(EventDetailView.as_view())
+#event_view = cache_page(60 * 60)(EventDetailView.as_view())
+event_view = EventDetailView.as_view()
 
 
 class AboutView(TemplateView):
     template_name = 'about.html'
 
 # cache for 60 * 60 * 24 = 86400s = 24 hours
-about_view = cache_page(60 * 60 * 24)(AboutView.as_view())
+#about_view = cache_page(60 * 60 * 24)(AboutView.as_view())
+about_view = AboutView.as_view()
 
 
 class ContactView(TemplateView):
     template_name = "contact.html"
 
 # cache for 60 * 60 * 24 = 86400s = 24 hours
-contact_view = cache_page(60 * 60 * 24)(ContactView.as_view())
+#contact_view = cache_page(60 * 60 * 24)(ContactView.as_view())
+contact_view = ContactView.as_view()
 
 
 class EventAddView(CoreEventAddView):
