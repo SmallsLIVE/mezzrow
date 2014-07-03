@@ -1,10 +1,18 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
+from django.views.generic import TemplateView
 
 admin.autodiscover()
 
+
+class StaticPageView(TemplateView):
+    def get_template_names(self):
+        return ["{0}.html".format(self.kwargs['template_name'])]
+
+
 urlpatterns = patterns('',
+    url(r'^static_page/(?P<template_name>[A-Za-z_-]*)/$', StaticPageView.as_view(), name="static_page"),
     url(r'^events/(?P<pk>\d+)-(?P<page_slug>[-\w]+)/edit/$', 'site_app.views.event_edit', name='event_edit'),
     url(r'^events/(?P<pk>\d+)-(?P<slug>[-\w]+)', 'site_app.views.event_view', name='event_detail'),
     url(r'^events/add/', 'site_app.views.event_add', name='event_add'),
