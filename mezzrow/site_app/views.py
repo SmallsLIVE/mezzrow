@@ -1,6 +1,6 @@
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.template.defaultfilters import slugify
-from django.utils.timezone import datetime, timedelta
+from django.utils import timezone
 from django.views.decorators.cache import cache_page
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
@@ -15,8 +15,8 @@ class HomeView(ListView):
     template_name = 'home.html'
 
     def get_queryset(self):
-        today = datetime.now().date()
-        few_days_out = today + timedelta(days=14)
+        today = timezone.now().date()
+        few_days_out = today + timezone.timedelta(days=14)
         return Event.objects.filter(start__range=(today, few_days_out)).reverse()
 
 # cache for 60 * 60 = 60 min
