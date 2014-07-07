@@ -1,4 +1,4 @@
-from .base import *
+from .local_base import *
 
 DATABASES = {
     'default': {
@@ -11,12 +11,3 @@ DATABASES = {
         'ATOMIC_REQUESTS': True,
     }
 }
-
-INSTALLED_APPS += (
-    'debug_toolbar',
-)
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_S3_CALLING_FORMAT = 'boto.s3.connection.OrdinaryCallingFormat'
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
