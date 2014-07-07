@@ -83,7 +83,6 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-USE_TZ = False
 
 MIDDLEWARE_CLASSES += (
     'oscar.apps.basket.middleware.BasketMiddleware',
