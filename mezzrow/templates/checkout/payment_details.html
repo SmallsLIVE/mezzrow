@@ -1,6 +1,10 @@
 {% extends 'oscar/checkout/payment_details.html' %}
 {% load url from future %}
-{% load i18n %}
+{% load i18n static %}
+{% block extrastyles %}
+<link href="{% static "css/mezzrow.css" %}" rel="stylesheet">
+<link href="{% static "img/favicon.ico"  %}" rel="shortcut icon">
+{% endblock %}
 
 {% block payment_details %}
     <div class="well">

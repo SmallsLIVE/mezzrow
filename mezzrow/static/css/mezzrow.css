@@ -58,14 +58,26 @@ address {
 .event {
     cursor: pointer;
 }
-
+input, button, select, textarea{
+    font-family:"Trebuchet MS", Trebuchet, sans-serif; 
+}
 button {
     /*font-family: "Bebas Neue";*/
     text-transform: uppercase;
 }
-
-button, .btn, .btn-default a, .btn-default a:active, .btn-default a:focus, .btn-default a:hover, .btn-default:active, .btn-default:focus, .btn-default:hover {
+button, .btn, .btn-default, .btn-primary{
     color: #000;
+    background-image: none;
+    background-color: #FFF;
+    font-weight: 900;
+    border-color: #DCB505;
+    opacity: .8;
+
+}
+button:hover, .btn a:active, .btn a:focus, .btn a:hover, .btn-default a:active, .btn-default a:focus, .btn-default a:hover, .btn-default:active, .btn-default:focus, .btn-default:hover, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+    color: #000;
+    background-image: none;
+    background-color: #FFF;
     font-weight: 900;
     border-color: #DCB505;
     opacity: 1;
@@ -84,7 +96,12 @@ button.back {
 .head {
     background: transparent url(../img/head.png) top left no-repeat;
 }
-
+.brand {
+    opacity:1;
+    display: block;
+    margin: 0 auto;
+    width: 360px;
+}
 .navbar .nav-mezz,
 .navbar .nav-mezz > li {
     font-family: "Bebas Neue";
@@ -193,8 +210,10 @@ button.back {
 .frame-head {
     font-family: 'Nevis-Bold';
     font-size: 11pt;
+    font-weight: normal;
     margin: 0px;
     line-height: 1;
+    text-align: center;
     text-transform: uppercase;
     vertical-align: baseline;
     color: #000;
@@ -336,4 +355,30 @@ ul.social li a {
 
 .frame-inner .event-description p {
     font-size: 100%;
+}
+.well {
+    text-align: left;
+    background: rgba(255,255,255,.75);
+    border: 1px solid #DCB505;
+}
+[id^=id_]{
+    width:auto;
+}
+[id^=id_line]{
+    width:80%;
+}
+.form-actions   {
+    text-align: center;
+    background: transparent;
+    border: none;
+}
+.nav-checkout   {
+    display: none;
+}
+.help-block {
+    display: inline-block;
+    font-size: 80%;
+    width: 70%;
+    vertical-align: sub;
+    margin-left: 4%;
 }
