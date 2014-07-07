@@ -1,5 +1,5 @@
 {% extends "mezzrow_base_narrow.html" %}
-{% load basket_tags i18n purchase_info_tags static thumbor_tags %}
+{% load basket_tags i18n purchase_info_tags static thumbor_tags tz %}
 
 
 {% block section_title %}{{ event.title }}{% endblock section_title %}
@@ -11,7 +11,7 @@
            src="{% thumbor_url event.photo.url|urlencode width=330 height=220 smart=True %}"/>
     {% endif %}
     <ul class="text-left">
-      <li class="event-date">{{ event.start|date:"F j" }}th</li>
+      <li class="event-date">{{ event.listing_date|date:"F j" }}th {% if event.is_early_morning %}({{ event.listing_date|date:"l" }} late night){% endif %} </li>
       <li class="event-time">{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}</li>
       <li class="event-description">{{ event.description|safe }}</li>
       {% with product=event.products.all.0 %}
