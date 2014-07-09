@@ -1,10 +1,6 @@
 {% extends 'oscar/checkout/payment_details.html' %}
 {% load url from future %}
 {% load i18n static %}
-{% block extrastyles %}
-<link href="{% static "css/mezzrow.css" %}" rel="stylesheet">
-<link href="{% static "img/favicon.ico"  %}" rel="shortcut icon">
-{% endblock %}
 
 {% block payment_details %}
     <div class="well">
@@ -17,14 +13,16 @@
 
     <div class="well">
         <div class="sub-header">
-            <h3>{% trans "PayPal PayFlow Pro" %}</h3>
+            <h3>Pay with Credit Card</h3>
         </div>
         <form method="post" action="{% url 'checkout:preview' %}" class="form-stacked">
             {% csrf_token %}
             <h4>{% trans "Bankcard" %}</h4>
             {% include "partials/form_fields.html" with form=bankcard_form %}
+            {% comment %}
             <h4>{% trans "Billing address" %}</h4>
             {% include "partials/form_fields.html" with form=billing_address_form %}
+            {% endcomment %}
             <div class="form-actions">
                 <button type="submit" class="btn btn-large btn-primary">{% trans "Continue" %}</button>
             </div>

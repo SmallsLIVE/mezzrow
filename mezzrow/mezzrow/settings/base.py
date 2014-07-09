@@ -78,10 +78,12 @@ INSTALLED_APPS = [
     'oscar_apps.catalogue',
     'oscar_apps.checkout',
     'oscar_apps.dashboard.catalogue',
-    'oscar_apps.partner'
+    'oscar_apps.partner',
+    'oscar_apps.payment'
 ])
 
 SITE_ID = 1
+
 
 MIDDLEWARE_CLASSES += (
     'oscar.apps.basket.middleware.BasketMiddleware',
@@ -182,7 +184,7 @@ SHOW_TIMES = {
 }
 
 
-# Paypal settings
+# Paypal express
 PAYPAL_API_USERNAME = os.environ.get("PAYPAL_API_USERNAME")
 PAYPAL_API_PASSWORD = os.environ.get("PAYPAL_API_PASSWORD")
 PAYPAL_API_SIGNATURE = os.environ.get("PAYPAL_API_SIGNATURE")
@@ -192,11 +194,17 @@ PAYPAL_API_VERSION = '88.0'
 PAYPAL_CURRENCY = PAYPAL_PAYFLOW_CURRENCY = 'USD'
 PAYPAL_PAYFLOW_DASHBOARD_FORMS = True
 
+# Paypal PayFlow Pro
+PAYPAL_PAYFLOW_VENDOR_ID = os.environ.get('PAYPAL_PAYFLOW_VENDOR_ID')
+PAYPAL_PAYFLOW_PASSWORD = os.environ.get('PAYPAL_PAYFLOW_PASSWORD')
+PAYPAL_PAYFLOW_PRODUCTION_MODE = False
+
 from oscar.defaults import *
 
 OSCAR_SHOP_NAME = 'Mezzrow'
 OSCAR_ALLOW_ANON_CHECKOUT = True
 OSCAR_DEFAULT_CURRENCY = 'USD'
+OSCAR_REQUIRED_ADDRESS_FIELDS = None
 
 OSCAR_DASHBOARD_NAVIGATION.append(
     {

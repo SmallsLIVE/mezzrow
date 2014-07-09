@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load compress %}
+{% load promotion_tags %}
+{% load static %}
+
+{% block extrastyles %}
+  <link href="{% static "css/mezzrow.css" %}" rel="stylesheet">
+  <link href="{% static "img/favicon.ico" %}" rel="shortcut icon">
+{% endblock %}
+
+{% block layout %}
+
+  {# Site logo/title, mini-basket, browse dropdown and searchbox #}
+  <header class="header container-fluid">
+    <div class="page_inner">
+      <div class="row-fluid">
+        {% include "partials/brand.html" %}
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    {# Main content of page - other layout templates may override this block #}
+    {% block content_wrapper %}
+      <div class="row-fluid">
+        <div class="span2"></div>
+        <div class="span8 frame no-scale">
+          <div class="frame-inner">
+            {% block header %}
+              <hr class="frame-head-border-sm"/>
+              <hr class="frame-head-border"/>
+              <h2 class="frame-head">{% block headertext %}{% endblock %}</h2>
+              <hr class="frame-head-border bottom"/>
+              <hr class="frame-head-border-sm bottom"/>
+            {% endblock %}
+            <div class="content">
+              {% block subheader %}{% endblock subheader %}
+
+              {# Render promotions #}
+              <div id="promotions">
+                {% for promotion in promotions_page %}
+                  {% render_promotion promotion %}
+                {% endfor %}
+              </div>
+
+              {# Div exists for AJAX updates to entire content section #}
+              <div id="content_inner">{% block content %}{% endblock %}</div>
+            </div>
+          </div>
+        </div>
+        <div class="span2"></div>
+      </div>
+    {% endblock %}
+
+    {% include "partials/footer.html" %}
+  </div>
+{% endblock %}
+
+{% block extrascripts %}
+  {% include "partials/extrascripts.html" %}
+  {{ block.super }}
+{% endblock %}
