@@ -17,7 +17,7 @@ class HomeView(ListView):
     def get_queryset(self):
         today = timezone.now().date()
         few_days_out = today + timezone.timedelta(days=14)
-        return Event.objects.filter(start__range=(today, few_days_out)).reverse()
+        return Event.objects.filter(start__range=(today, few_days_out), state=Event.STATUS.Published).reverse()
 
 # cache for 60 * 60 = 60 min
 #home_view = cache_page(60 * 60)(HomeView.as_view())
