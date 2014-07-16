@@ -58,11 +58,8 @@ class PaymentDetailsView(views.PaymentDetailsView):
         """
         Make submission to PayPal
         """
-        # Using authorization here (two-stage model).  You could use sale to
-        # perform the auth and capture in one step.  The choice is dependent
-        # on your business model.
         bankcard = kwargs['bankcard']
-        facade.authorize(
+        facade.sale(
             order_number, total.incl_tax,
             bankcard)
 
@@ -74,4 +71,4 @@ class PaymentDetailsView(views.PaymentDetailsView):
             amount_allocated=total.incl_tax, currency=total.currency,
             label=bankcard.number)
         self.add_payment_source(source)
-        self.add_payment_event('Authorised', total.incl_tax)
+        self.add_payment_event('Sold', total.incl_tax)
