@@ -192,12 +192,12 @@ PAYPAL_SANDBOX_MODE = True
 PAYPAL_CALLBACK_HTTPS = False
 PAYPAL_API_VERSION = '88.0'
 PAYPAL_CURRENCY = PAYPAL_PAYFLOW_CURRENCY = 'USD'
-PAYPAL_PAYFLOW_DASHBOARD_FORMS = True
 
 # Paypal PayFlow Pro
 PAYPAL_PAYFLOW_VENDOR_ID = os.environ.get('PAYPAL_PAYFLOW_VENDOR_ID')
 PAYPAL_PAYFLOW_PASSWORD = os.environ.get('PAYPAL_PAYFLOW_PASSWORD')
 PAYPAL_PAYFLOW_PRODUCTION_MODE = False
+PAYPAL_PAYFLOW_DASHBOARD_FORMS = True
 
 from oscar.defaults import *
 
@@ -215,5 +215,9 @@ OSCAR_DASHBOARD_NAVIGATION.append(
                 'label': _('Express transactions'),
                 'url_name': 'paypal-express-list',
             },
+            {
+                'label': 'Payflow transactions',
+                'url_name': 'paypal-payflow-list',
+            }
         ]
     })
