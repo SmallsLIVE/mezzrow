@@ -205,6 +205,9 @@ button.back {
     margin-top: 1em;
 }
 
+.checkout p {
+    margin-top: 0;
+}
 
 
 .frame-head {
