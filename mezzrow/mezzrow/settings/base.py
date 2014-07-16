@@ -58,7 +58,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_extensions',
     'django_thumbor',
-    'djstripe',
     'floppyforms',
     'paypal',
     #'pipeline',
