@@ -101,6 +101,12 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.eggs.Loader',
+)
+
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
     OSCAR_MAIN_TEMPLATE_DIR,
