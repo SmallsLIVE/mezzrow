@@ -1,5 +1,6 @@
 from braces import views
 from django.core.urlresolvers import reverse, reverse_lazy
+from django.db.models import Q
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.views.decorators.cache import cache_page
@@ -21,12 +22,40 @@ class HomeView(ListView):
             events = Event.objects.filter(start__gte=today)
         else:
             few_days_out = today + timezone.timedelta(days=14)
-            events = Event.objects.filter(start__range=(today, few_days_out), state=Event.STATUS.Published).reverse()
+            events = Event.objects.filter(Q(state=Event.STATUS.Published) | Q(state=Event.STATUS.Cancelled),
+                                          start__range=(today, few_days_out)
+                                          ).reverse()
         return events.reverse()
 
 # cache for 60 * 60 = 60 min
 #home_view = cache_page(60 * 60)(HomeView.as_view())
 home_view = HomeView.as_view()
+
+
+class MonthView(HomeView):
+    def get_queryset(self):
+        today = timezone.now().date()
+        return Event.objects.filter(Q(state=Event.STATUS.Published) | Q(state=Event.STATUS.Cancelled),
+                                    start__gte=today,
+                                    start__month=today.month,
+                                    ).reverse()
+
+# cache for 60 * 60 = 60 min
+#month_view = cache_page(60 * 60)(MonthView.as_view())
+month_view = MonthView.as_view()
+
+
+class YearView(HomeView):
+    def get_queryset(self):
+        today = timezone.now().date()
+        return Event.objects.filter(Q(state=Event.STATUS.Published) | Q(state=Event.STATUS.Cancelled),
+                                    start__gte=today,
+                                    start__year=today.year,
+                                    ).reverse()
+
+# cache for 60 * 60 = 60 min
+#year_view = cache_page(60 * 60)(YearView.as_view())
+year_view = YearView.as_view()
 
 
 class EventDetailView(DetailView):
