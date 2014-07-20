@@ -24,7 +24,7 @@ class HomeView(ListView):
             few_days_out = today + timezone.timedelta(days=14)
             events = Event.objects.filter(Q(state=Event.STATUS.Published) | Q(state=Event.STATUS.Cancelled),
                                           start__range=(today, few_days_out)
-                                          ).reverse()
+                                          )
         return events.reverse()
 
 # cache for 60 * 60 = 60 min
