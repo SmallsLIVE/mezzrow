@@ -1,3 +1,4 @@
+from braces import views
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.template.defaultfilters import slugify
 from django.utils import timezone
@@ -54,21 +55,21 @@ class ContactView(TemplateView):
 contact_view = ContactView.as_view()
 
 
-class EventAddView(CoreEventAddView):
+class EventAddView(views.SuperuserRequiredMixin, CoreEventAddView):
     def get_success_url(self):
         return reverse('event_detail', kwargs={'pk': self.object.id, 'slug': slugify(self.object.title)})
 
 event_add = EventAddView.as_view()
 
 
-class EventEditView(CoreEventEditView):
+class EventEditView(views.SuperuserRequiredMixin, CoreEventEditView):
     def get_success_url(self):
         return reverse('event_detail', kwargs={'pk': self.object.id, 'slug': slugify(self.object.title)})
 
 event_edit = EventEditView.as_view()
 
 
-class ArtistAddView(CoreArtistAddView):
+class ArtistAddView(views.SuperuserRequiredMixin, CoreArtistAddView):
     success_url = reverse_lazy('home')
 
 artist_add = ArtistAddView.as_view()
