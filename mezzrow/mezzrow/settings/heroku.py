@@ -19,11 +19,15 @@ DEBUG = env_var("DEBUG", False)
 DATABASES['default'] = dj_database_url.config()
 DATABASES['default']['CONN_MAX_AGE'] = 30
 
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
 # Allow all host headers
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'www.mezzrow.com',
+    'www.mezzrow.com.',
+    'mezzrow.com',
+    'mezzrow.com.',
+    'mezzrow-prod.herokuapp.com',
+    'mezzrow-prod.herokuapp.com.',
+]
 
 # Memcached
 CACHES = {
@@ -66,3 +70,10 @@ INSTALLED_APPS += (
 )
 MANDRILL_API_KEY = os.environ.get("MANDRILL_API_KEY")
 EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
+
+
+# Security
+MIDDLEWARE_CLASSES = ('sslify.middleware.SSLifyMiddleware',) + MIDDLEWARE_CLASSES
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
