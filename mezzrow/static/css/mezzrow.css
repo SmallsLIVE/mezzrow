@@ -385,3 +385,9 @@ ul.social li a {
     vertical-align: sub;
     margin-left: 4%;
 }
+
+.event-edit {
+    color: red;
+    text-decoration: underline;
+    font-size: 1.2em;
+}
