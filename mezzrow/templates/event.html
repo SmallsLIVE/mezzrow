@@ -32,7 +32,7 @@
           </form>
         {% endif %}
         {% if user.is_superuser %}
-          <a href="{% url "event_edit" pk=event.id page_slug=event.title|slugify %}" class="btn btn-warning btn-sm">Edit event</a>
+          <a href="{% url "event_edit" pk=event.id slug=event.title|slugify %}" class="btn btn-warning btn-sm">Edit event</a>
         {% endif %}
       {% endwith %}
   </div>

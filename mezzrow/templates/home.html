@@ -12,7 +12,7 @@
       {% for event in day.list %}
         <dd class="orange">{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}</dd>
         <dd class="event"><a href="{% url "event_detail" pk=event.id slug=event.title|slugify %}">{{ event.title }}</a>
-          {% if user.is_superuser %}<br/><span class="label {{ event.status_css_class }}">{{ event.state }}</span><a href="{% url "event_edit" pk=event.id page_slug=event.title|slugify %}"> Edit</a>{% endif %}
+          {% if user.is_superuser %}<br/><span class="label {{ event.status_css_class }}">{{ event.state }}</span><a href="{% url "event_edit" pk=event.id slug=event.title|slugify %}"> Edit</a>{% endif %}
           {% if event.state == "Cancelled" and not user.is_superuser %}<span class="label {{ event.status_css_class }}">{{ event.state }}</span>{% endif %}
         </dd>
       {% endfor %}
