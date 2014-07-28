@@ -58,7 +58,7 @@ year_view = YearView.as_view()
 class EventDetailView(DetailView):
     context_object_name = 'event'
     model = Event
-    template_name = 'event.html'
+    template_name = 'events/event_detail.html'
 
 # cache for 60 * 60 = 60 min
 #event_view = cache_page(60 * 60)(EventDetailView.as_view())
