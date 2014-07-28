@@ -19,6 +19,8 @@
       {% with product=event.products.all.0 %}
         {% if product %}
           <li class="event-price">{% include "catalogue/partials/stock_record.html" with verbose=1 product=product %}</li>
+        {% else %}
+          <li class="event-price"><strong>No cover</strong></li>
         {% endif %}
         </ul>
         <a href="{% url "home" %}" type="button" class="btn btn-default btn-sm back"><span class="arrow-left"></span>View
