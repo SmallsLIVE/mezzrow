@@ -19,7 +19,7 @@ class EventListSitemap(sitemaps.Sitemap):
     changefreq = 'daily'
 
     def items(self):
-        return ['home', 'events_month', 'events_year']
+        return ['home']
 
     def location(self, obj):
         return reverse(obj)

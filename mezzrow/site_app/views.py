@@ -18,13 +18,10 @@ class HomeView(ListView):
 
     def get_queryset(self):
         today = timezone.now().date()
-        if self.request.user.is_superuser:
-            events = Event.objects.filter(start__gte=today)
-        else:
-            few_days_out = today + timezone.timedelta(days=14)
-            events = Event.objects.filter(Q(state=Event.STATUS.Published) | Q(state=Event.STATUS.Cancelled),
-                                          start__range=(today, few_days_out)
-                                          )
+        events = Event.objects.filter(start__gte=today)
+        # only admin sees draft and hidden events
+        if not self.request.user.is_superuser:
+            events = events.filter(Q(state=Event.STATUS.Published) | Q(state=Event.STATUS.Cancelled))
         return events.reverse()
 
 # cache for 60 * 60 = 60 min
