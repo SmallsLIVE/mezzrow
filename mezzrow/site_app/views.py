@@ -81,6 +81,14 @@ contact_view = cache_page(60 * 60 * 24)(ContactView.as_view())
 #contact_view = ContactView.as_view()
 
 
+class TicketingView(TemplateView):
+    template_name = "ticketing.html"
+
+# cache for 60 * 60 * 24 = 86400s = 24 hours
+ticketing_view = cache_page(60 * 60 * 24)(TicketingView.as_view())
+#ticketing_view = TicketingView.as_view()
+
+
 class EventAddView(views.SuperuserRequiredMixin, CoreEventAddView):
     def get_success_url(self):
         return reverse('event_detail', kwargs={'pk': self.object.id, 'slug': slugify(self.object.title)})

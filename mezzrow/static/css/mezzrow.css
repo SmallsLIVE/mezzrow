@@ -200,7 +200,7 @@ button.back {
     margin-bottom: 0;
 }
 
-.frame-inner p {
+.frame-inner p, .frame-inner ol {
     font-size: 75%;
     margin-top: 1em;
 }
