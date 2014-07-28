@@ -1,0 +1,21 @@
+{% extends "customer/emails/base.html" %}
+{% load currency_filters i18n %}
+
+{% block body %}
+  {% with ticket=order.lines.all.0 %}
+    <p xmlns="http://www.w3.org/1999/html">Dear Patron:</p>
+    <p>Thank you for your advanced purchase of a ticket(s) for: {{ ticket.product.event.title }}</p>
+    <p>This show is on: {{ ticket.product.event.start|date:"F jS, g:i A" }} Your ticket guarantees your place at a table
+      in our
+      Listening Room.</p>
+    <p>Your reservation number is: {{ order.number }}
+      The number of seats in your party is: {{ ticket.quantity }}</p>
+    <p>We ask that you arrive at a minimum of 20 minutes before the show you have selected. Your name will be on a list
+      at the door when you arrive. The manger will confirm your reservation and show you to your seat.</p>
+    <p>Tickets can be refunded in person at the club up until the day before the show. Please notify us by email (<a
+            href="mailto:mezzrowclub@gmail.com">mezzrowclub@gmail.com</a>) if you need to cancel your ticket for a
+      refund.</p>
+    <p>Late-comers will be seated at the discretion of the management.</p>
+    <p>We look forward to having you at Mezzrow – we hope you enjoy the concert!</p>
+  {% endwith %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% load currency_filters i18n %}
+{% with ticket=order.lines.all.0 %}
+Dear Patron:
+
+Thank you for your advanced purchase of a ticket(s) for: {{ ticket.product.event.title }}
+
+This show is on:  {{ ticket.product.event.start|date:"F jS, g:i A" }} Your ticket guarantees your place at a table in our Listening Room.
+
+Your reservation number is: {{ order.number }}
+The number of seats in your party is: {{ ticket.quantity }}
+
+We ask that you arrive at a minimum of 20 minutes before the show you have selected.  Your name will be on a list at the door when you arrive.  The manger will confirm your reservation and show you to your seat.
+
+Tickets can be refunded in person at the club up until the day before the show.  Please notify us by email (mezzrowclub@gmail.com) if you need to cancel your ticket for a refund.
+
+Late-comers will be seated at the discretion of the management.
+
+We look forward to having you at Mezzrow – we hope you enjoy the concert!
+{% endwith %}
