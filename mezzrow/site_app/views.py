@@ -7,7 +7,8 @@ from django.views.decorators.cache import cache_page
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
-from smallslive.artists.views import ArtistAddView as CoreArtistAddView
+from smallslive.artists.models import Artist
+from smallslive.artists.views import ArtistAddView as CoreArtistAddView, ArtistEditView as CoreArtistEditView
 from smallslive.events.models import Event
 from smallslive.events.views import EventAddView as CoreEventAddView, EventEditView as CoreEventEditView
 
@@ -65,6 +66,14 @@ class EventDetailView(DetailView):
 event_view = EventDetailView.as_view()
 
 
+class ArtistDetailView(DetailView):
+    context_object_name = 'artist'
+    model = Artist
+    template_name = 'artists/artist_detail.html'
+
+artist_view = ArtistDetailView.as_view()
+
+
 class AboutView(TemplateView):
     template_name = 'about.html'
 
@@ -104,6 +113,14 @@ event_edit = EventEditView.as_view()
 
 
 class ArtistAddView(views.SuperuserRequiredMixin, CoreArtistAddView):
-    success_url = reverse_lazy('home')
+    def get_success_url(self):
+        return reverse('artist_detail', kwargs={'pk': self.object.id, 'slug': slugify(self.object.full_name())})
 
 artist_add = ArtistAddView.as_view()
+
+
+class ArtistEditView(views.SuperuserRequiredMixin, CoreArtistEditView):
+    def get_success_url(self):
+        return reverse('artist_detail', kwargs={'pk': self.object.id, 'slug': slugify(self.object.full_name())})
+
+artist_edit = ArtistEditView.as_view()

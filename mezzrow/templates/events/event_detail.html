@@ -14,7 +14,7 @@
       <li class="event-date">{{ event.listing_date|date:"F jS" }} {% if event.is_early_morning %}({{ event.listing_date|date:"l" }} late night){% endif %} </li>
       <li class="event-time">{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}</li>
       <li><br/></li>
-      <li class="event-artists">Artists: {% for performer in event.get_performers %}{{ performer.artist }} ({{ performer.role }}){% if not forloop.last %}, {% endif %}{% endfor %}</li>
+      <li class="event-artists">Artists: {% for performer in event.get_performers %}<a href="{% url "artist_detail" pk=performer.artist.id slug=performer.artist.full_name|slugify %}">{{ performer.artist }}</a> ({{ performer.role }}){% if not forloop.last %}, {% endif %}{% endfor %}</li>
       <li class="event-description">{{ event.description|safe }}</li>
       {% with product=event.products.all.0 %}
         {% if product %}
