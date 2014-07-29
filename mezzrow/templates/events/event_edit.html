@@ -3,3 +3,10 @@
 {% block section_title %}
 Edit event
 {% endblock %}
+
+{% block delete_event %}
+  <form action="{% url "event_delete" pk=event.id slug=event.title|slugify %}" method="post" class="left-aligned-form">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-danger" value="Delete"/>
+  </form>
+{% endblock %}

@@ -5,6 +5,7 @@ from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.views.decorators.cache import cache_page
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import DeleteView
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
 from smallslive.artists.models import Artist
@@ -110,6 +111,13 @@ class EventEditView(views.SuperuserRequiredMixin, CoreEventEditView):
         return reverse('event_detail', kwargs={'pk': self.object.id, 'slug': slugify(self.object.title)})
 
 event_edit = EventEditView.as_view()
+
+
+class EventDeleteView(views.SuperuserRequiredMixin, DeleteView):
+    model = Event
+    success_url = reverse_lazy('home')
+
+event_delete = EventDeleteView.as_view()
 
 
 class ArtistAddView(views.SuperuserRequiredMixin, CoreArtistAddView):
