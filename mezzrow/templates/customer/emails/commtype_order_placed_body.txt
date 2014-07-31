@@ -7,6 +7,7 @@ Thank you for your advanced purchase of a ticket(s) for: {{ ticket.product.event
 This show is on:  {{ ticket.product.event.start|date:"F jS, g:i A" }} Your ticket guarantees your place at a table in our Listening Room.
 
 Your reservation number is: {{ order.number }}
+Party name: {{ order.person_name }}
 The number of seats in your party is: {{ ticket.quantity }}
 
 We ask that you arrive at a minimum of 20 minutes before the show you have selected.  Your name will be on a list at the door when you arrive.  The manger will confirm your reservation and show you to your seat.

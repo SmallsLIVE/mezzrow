@@ -10,6 +10,13 @@ from paypal.payflow import facade
 BankcardForm = get_class('payment.forms', 'BankcardForm')
 
 
+class IndexView(views.IndexView):
+    def form_valid(self, form):
+        reservation_name = form.cleaned_data['reservation_name']
+        self.checkout_session.set_reservation_name(reservation_name)
+        return super(IndexView, self).form_valid(form)
+
+
 class PaymentDetailsView(views.PaymentDetailsView):
 
     def get_context_data(self, **kwargs):
@@ -72,3 +79,15 @@ class PaymentDetailsView(views.PaymentDetailsView):
             label=bankcard.number)
         self.add_payment_source(source)
         self.add_payment_event('Sold', total.incl_tax)
+        
+    def submit(self, user, basket, shipping_address, shipping_method,  # noqa (too complex (10))
+               order_total, payment_kwargs=None, order_kwargs=None):
+        reservation_name = self.checkout_session.get_reservation_name()
+        if not order_kwargs:
+            order_kwargs = {}
+        if reservation_name:
+            order_kwargs.update({
+                'person_name': reservation_name
+            })
+        return super(PaymentDetailsView, self).submit(user, basket, shipping_address, shipping_method,
+               order_total, payment_kwargs, order_kwargs)

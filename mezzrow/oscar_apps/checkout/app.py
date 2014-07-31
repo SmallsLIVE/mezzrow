@@ -1,10 +1,10 @@
 from oscar.apps.checkout import app
-
-from oscar_apps.checkout import views
+from .views import PaymentDetailsView, IndexView
 
 
 class CheckoutApplication(app.CheckoutApplication):
-    payment_details_view = views.PaymentDetailsView
+    payment_details_view = PaymentDetailsView
+    index_view = IndexView
 
 
 application = CheckoutApplication()

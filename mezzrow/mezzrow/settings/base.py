@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     'oscar_apps.catalogue',
     'oscar_apps.checkout',
     'oscar_apps.dashboard.catalogue',
+    'oscar_apps.order',
     'oscar_apps.partner',
     'oscar_apps.payment'
 ])
