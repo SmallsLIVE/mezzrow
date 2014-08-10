@@ -187,14 +187,14 @@ button.back {
 }
 
 .frame-inner dt {
-    font-size: 100%;
+    font-size: 120%;
     margin: 2em 0 1em 0;
 }
 
-.frame-inner dd {
+/*.frame-inner dd {
     font-size: 85%;
     margin-bottom: 1em;
-}
+}*/
 
 .frame-inner dd.orange {
     margin-bottom: 0;
@@ -409,4 +409,16 @@ ul.social li a {
 
 .button-group button {
     text-transform: none;
+}
+
+.event-date {
+    font-size: 110%;
+    color: #000000;
+    margin-bottom: 1em;
+}
+
+.event-title {
+    font-size: 120%;
+    border-bottom: 1px dotted;
+    margin-bottom: 1em;
 }

@@ -10,8 +10,8 @@
     {% for day in regrouped_events %}
       <dt class="purple">{{ day.grouper|date:"F j" }}th</dt>
       {% for event in day.list %}
-        <dd class="orange">{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}</dd>
-        <dd class="event"><a href="{% url "event_detail" pk=event.id slug=event.title|slugify %}">{{ event.title }}</a>
+        <dd class="orange event-date">{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}</dd>
+        <dd class="event"><a href="{% url "event_detail" pk=event.id slug=event.title|slugify %}" class="event-title">{{ event.title }}</a>
           {% if user.is_superuser %}<br/><span class="label {{ event.status_css_class }}">{{ event.state }}</span> <a href="{% url "event_edit" pk=event.id slug=event.title|slugify %}" class="event-edit">Edit</a>{% endif %}
           {% if event.state == "Cancelled" and not user.is_superuser %}<span class="label {{ event.status_css_class }}">{{ event.state }}</span>{% endif %}
         </dd>
