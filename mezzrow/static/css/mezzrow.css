@@ -398,3 +398,15 @@ ul.social li a {
     text-decoration: underline;
     font-size: 1.2em;
 }
+
+.button-group {
+    margin-top: 15px;
+}
+
+.button-group form {
+    display: inline-block;
+}
+
+.button-group button {
+    text-transform: none;
+}

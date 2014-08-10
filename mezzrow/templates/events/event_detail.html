@@ -16,11 +16,14 @@
            src="{% thumbor_url event.photo.url|urlencode width=330 height=220 smart=True %}"/>
     {% endif %}
     <ul class="text-left">
-      <li class="event-date">{{ event.listing_date|date:"F jS" }} {% if event.is_early_morning %}({{ event.listing_date|date:"l" }} late night){% endif %} </li>
+      <li class="event-date">{{ event.listing_date|date:"F jS" }} {% if event.is_early_morning %}(
+        {{ event.listing_date|date:"l" }} late night){% endif %} </li>
       <li class="event-time">{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}</li>
       <li><br/></li>
       {% if event.get_performers %}
-        <li class="event-artists">Artists: {% for performer in event.get_performers %}<a href="{% url "artist_detail" pk=performer.artist.id slug=performer.artist.full_name|slugify %}">{{ performer.artist }}</a> ({{ performer.role }}){% if not forloop.last %}, {% endif %}{% endfor %}</li>
+        <li class="event-artists">Artists: {% for performer in event.get_performers %}
+          <a href="{% url "artist_detail" pk=performer.artist.id slug=performer.artist.full_name|slugify %}">
+          {{ performer.artist }}</a> ({{ performer.role }}){% if not forloop.last %}, {% endif %}{% endfor %}</li>
       {% endif %}
       <li class="event-description">{{ event.description|safe }}</li>
       {% with product=event.products.all.0 %}
@@ -43,7 +46,14 @@
           </form>
         {% endif %}
         {% if user.is_superuser %}
-          <a href="{% url "event_edit" pk=event.id slug=event.title|slugify %}" class="btn btn-warning btn-sm">Edit event</a>
+          <div class="button-group">
+          <a href="{% url "event_edit" pk=event.id slug=event.title|slugify %}" class="btn btn-warning btn-sm">Edit
+            event</a>
+          <form action="{% url "event_clone" pk=event.id slug=event.title|slugify %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning btn-sm">Clone event</button>
+          </form>
+          </div>
         {% endif %}
       {% endwith %}
   </div>

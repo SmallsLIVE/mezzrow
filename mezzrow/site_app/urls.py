@@ -20,6 +20,7 @@ sitemaps = {
 
 urlpatterns = patterns('',
     url(r'^static_page/(?P<template_name>[A-Za-z_-]*)/$', StaticPageView.as_view(), name="static_page"),
+    url(r'^events/(?P<pk>\d+)-(?P<slug>[-\w]+)/clone/$', 'smallslive.events.views.event_clone', name='event_clone'),
     url(r'^events/(?P<pk>\d+)-(?P<slug>[-\w]+)/delete/$', 'site_app.views.event_delete', name='event_delete'),
     url(r'^events/(?P<pk>\d+)-(?P<slug>[-\w]+)/edit/$', 'site_app.views.event_edit', name='event_edit'),
     url(r'^events/(?P<pk>\d+)-(?P<slug>[-\w]+)', 'site_app.views.event_view', name='event_detail'),
