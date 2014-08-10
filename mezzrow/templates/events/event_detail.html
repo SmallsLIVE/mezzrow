@@ -3,6 +3,11 @@
 
 
 {% block section_title %}{{ event.title }}{% endblock section_title %}
+{% block section_subtitle %}
+  {% if event.subtitle %}
+    <h4 class="frame-head frame-head-subtitle">{{ event.subtitle }}</h4>
+  {% endif %}
+{% endblock section_subtitle %}
 
 {% block content %}
   <div class="event-details" data-event="">

@@ -222,6 +222,13 @@ button.back {
     color: #000;
 }
 
+.frame-head-subtitle {
+    font-size: 9pt;
+    font-weight: lighter;
+    padding-top: 5px;
+    color: #333;
+}
+
 .frame-head-border {
     background-color: transparent;
     border-bottom: 1px solid #DCB505;
