@@ -29,7 +29,7 @@
     </ul>
 
     <div class="tickets">
-      {% for product in event.products.reverse %}
+      {% for product in event.products.all %}
         {% purchase_info_for_product request product as session %}
         <p class="slot">{{ product.slot }}
         <span class="price"> {{ session.price.excl_tax|currency:session.price.currency }}</span></p>
@@ -43,6 +43,9 @@
           <input type="hidden" name="next" value="{% url "basket:summary" %}"/>
           <button type="submit" class="btn btn-default btn-sm">Make Reservations<span
                   class="arrow-right"></span></button>
+          {% if user.is_superuser %}
+            <a href="{% url "dashboard:catalogue-product" pk=product.id %}" class="btn btn-default btn-sm">Edit ticket</a>
+          {% endif %}
         </form>
       {% empty %}
         <p class="event-price"><strong>No cover</strong></p>
