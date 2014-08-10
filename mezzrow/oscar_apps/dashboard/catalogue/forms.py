@@ -4,7 +4,7 @@ from oscar.apps.dashboard.catalogue.forms import ProductForm as CoreProductForm,
 
 class ProductForm(CoreProductForm):
     class Meta(CoreProductForm.Meta):
-        fields = ('title', 'event', 'slot', 'is_discountable',)
+        fields = ('title', 'event', 'set_time', 'is_discountable',)
 
         widgets = {
             'parent': ProductSelect,

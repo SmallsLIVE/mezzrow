@@ -31,7 +31,7 @@
     <div class="tickets">
       {% for product in event.products.all %}
         {% purchase_info_for_product request product as session %}
-        <p class="slot">{{ product.slot }}
+        <p class="set-time">{{ product.set_time }}
         <span class="price"> {{ session.price.excl_tax|currency:session.price.currency }}</span></p>
         <p class="{{ session.availability.code }} availability">
           {{ session.availability.message }}
