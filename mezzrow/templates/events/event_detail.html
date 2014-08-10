@@ -31,7 +31,7 @@
     <div class="tickets">
       {% for product in event.products.all %}
         {% purchase_info_for_product request product as session %}
-        <p class="set-time">{{ product.set_time }}
+        <p class="set">{{ product.set }}
         <span class="price"> {{ session.price.excl_tax|currency:session.price.currency }}</span></p>
         <p class="{{ session.availability.code }} availability">
           {{ session.availability.message }}
@@ -41,7 +41,7 @@
           {% csrf_token %}
           {{ basket_form.as_p }}
           <input type="hidden" name="next" value="{% url "basket:summary" %}"/>
-          <button type="submit" class="btn btn-default btn-sm">Make Reservations<span
+          <button type="submit" class="btn btn-default btn-sm">Make Reservations for the {{ product.set }} show<span
                   class="arrow-right"></span></button>
           {% if user.is_superuser %}
             <a href="{% url "dashboard:catalogue-product" pk=product.id %}" class="btn btn-default btn-sm">Edit ticket</a>

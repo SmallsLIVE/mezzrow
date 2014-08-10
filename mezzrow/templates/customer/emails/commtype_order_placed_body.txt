@@ -8,7 +8,7 @@ This show is on:  {{ ticket.product.event.start|date:"F jS, g:i A" }} Your ticke
 
 Your reservation number is: {{ order.number }}
 Party name: {{ order.person_name }}
-Set time: {{ ticket.product.set_time }}
+Set time: {{ ticket.product.set }}
 The number of seats in your party is: {{ ticket.quantity }}
 
 We ask that you arrive at a minimum of 20 minutes before the show you have selected.  Your name will be on a list at the door when you arrive.  The manager will confirm your reservation and show you to your seat.
