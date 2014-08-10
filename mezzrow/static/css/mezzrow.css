@@ -422,3 +422,18 @@ ul.social li a {
     border-bottom: 1px dotted;
     margin-bottom: 1em;
 }
+
+.tickets {
+    margin: 20px 0;
+    text-align: left;
+    font-size: 110%;
+}
+
+.price {
+    position: absolute;
+    right: 20px;
+}
+
+.slot {
+    font-weight: bold;
+}
