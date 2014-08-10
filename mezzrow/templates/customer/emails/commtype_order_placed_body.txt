@@ -8,9 +8,10 @@ This show is on:  {{ ticket.product.event.start|date:"F jS, g:i A" }} Your ticke
 
 Your reservation number is: {{ order.number }}
 Party name: {{ order.person_name }}
+Set time: {{ ticket.product.slot }}
 The number of seats in your party is: {{ ticket.quantity }}
 
-We ask that you arrive at a minimum of 20 minutes before the show you have selected.  Your name will be on a list at the door when you arrive.  The manger will confirm your reservation and show you to your seat.
+We ask that you arrive at a minimum of 20 minutes before the show you have selected.  Your name will be on a list at the door when you arrive.  The manager will confirm your reservation and show you to your seat.
 
 Tickets can be refunded in person at the club up until the day before the show.  Please notify us by email (mezzrowclub@gmail.com) if you need to cancel your ticket for a refund.
 
