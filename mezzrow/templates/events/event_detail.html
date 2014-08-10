@@ -41,8 +41,10 @@
           {% csrf_token %}
           {{ basket_form.as_p }}
           <input type="hidden" name="next" value="{% url "basket:summary" %}"/>
+          {% if session.availability.num_available > 0%}
           <button type="submit" class="btn btn-default btn-sm">Make Reservations for the {{ product.set }} show<span
                   class="arrow-right"></span></button>
+          {% endif %}
           {% if user.is_superuser %}
             <a href="{% url "dashboard:catalogue-product" pk=product.id %}" class="btn btn-default btn-sm">Edit ticket</a>
           {% endif %}
