@@ -49,8 +49,6 @@
             <a href="{% url "dashboard:catalogue-product" pk=product.id %}" class="btn btn-default btn-sm">Edit ticket</a>
           {% endif %}
         </form>
-      {% empty %}
-        <p class="event-price"><strong>No cover</strong></p>
       {% endfor %}
     </div>
     <a href="{% url "home" %}" type="button" class="btn btn-default btn-sm back"><span class="arrow-left"></span>View
