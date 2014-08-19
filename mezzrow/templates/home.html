@@ -18,4 +18,10 @@
       {% endfor %}
     {% endfor %}
   </dl>
+  {% if not user.is_superuser %}
+    <p>{% if prev_url %}
+     <a href="{{ prev_url }}">Previous</a>{% endif %} {% if next_url and prev_url %}
+      | {% endif %} {% if next_url %}<a href="{{ next_url }}">Next</a>{% endif %}</p>
+  {% else %}<p>Note: showing all events in the system to the admin user</p>
+  {% endif %}
 {% endblock content %}

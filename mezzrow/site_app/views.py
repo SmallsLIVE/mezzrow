@@ -20,12 +20,35 @@ class HomeView(ListView):
     template_name = 'home.html'
 
     def get_queryset(self):
-        today = timezone.now().date()
-        events = Event.objects.filter(start__gte=today)
+        """
+        The view returns a list of events in two week intervals, for both the home page
+        and the "next" links. The correct two week interval is set through the URL or by
+        default it's a two week interval from the current date.
+
+        """
+        two_week_interval = int(self.kwargs.get('week', 0))
+        date_range_start = timezone.now().date() + timezone.timedelta(days=two_week_interval*14)
+        date_range_end = date_range_start + timezone.timedelta(days=(two_week_interval+1)*14)
+        events = Event.objects.filter(start__range=(date_range_start, date_range_end))
         # only admin sees draft and hidden events
         if not self.request.user.is_superuser:
             events = events.filter(Q(state=Event.STATUS.Published) | Q(state=Event.STATUS.Cancelled))
         return events.reverse()
+
+    def get_context_data(self, **kwargs):
+        data = super(HomeView, self).get_context_data(**kwargs)
+        week = int(self.kwargs.get('week', 0))
+        if week > 1:
+            data['prev_url'] = reverse('next', kwargs={'week': week-1})
+        elif week == 1:
+            data['prev_url'] = reverse('home')
+        # check if there are events in the next interval before showing the "next" link
+        date_range_start = timezone.now().date() + timezone.timedelta(days=(week+1)*14)
+        date_range_end = date_range_start + timezone.timedelta(days=(week+2)*14)
+        next_events_exist = Event.objects.filter(start__range=(date_range_start, date_range_end)).exists()
+        if next_events_exist:
+            data['next_url'] = reverse('next', kwargs={'week': week+1})
+        return data
 
 # cache for 60 * 60 = 60 min
 #home_view = cache_page(60 * 60)(HomeView.as_view())

@@ -30,12 +30,15 @@ urlpatterns = patterns('',
     url(r'^artists/(?P<pk>\d+)-(?P<slug>[-\w]+)/edit/', 'site_app.views.artist_edit', name='artist_edit'),
     url(r'^artists/(?P<pk>\d+)-(?P<slug>[-\w]+)', 'site_app.views.artist_view', name='artist_detail'),
     url(r'^artists/add/$', 'site_app.views.artist_add', name='artist_add'),
-    url(r'^artists/(?P<pk>\d+)/instrument_ajax/$', 'smallslive.artists.views.artist_instrument_ajax', name='artist_intrument_ajax'),
+    url(r'^artists/(?P<pk>\d+)/instrument_ajax/$', 'smallslive.artists.views.artist_instrument_ajax',
+        name='artist_intrument_ajax'),
     url(r'^ticketing/$', 'site_app.views.ticketing_view', name='ticketing'),
     url(r'^contact/$', 'site_app.views.contact_view', name='contact'),
     url(r'^about/$', 'site_app.views.about_view', name='about'),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
-    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    url(r'^next/(?P<week>\d+)/$', 'site_app.views.home_view', name='next'),
+    url(r'^$', 'site_app.views.home_view', name='home'),
 )
 
 urlpatterns += staticfiles_urlpatterns()
