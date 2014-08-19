@@ -11,3 +11,7 @@ DATABASES = {
         'ATOMIC_REQUESTS': True,
     }
 }
+
+INSTALLED_APPS += (
+    'devserver',
+)
