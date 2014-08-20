@@ -23,35 +23,38 @@ class HomeView(ListView):
         """
         The view returns a list of events in two week intervals, for both the home page
         and the "next" links. The correct two week interval is set through the URL or by
-        default it's a two week interval from the current date.
+        default it's a two week interval from the current date. The admin user sees all events
+        immediately, regardless of date intervals and event status.
         """
-        two_week_interval = int(self.kwargs.get('week', 0))
-        start_days = two_week_interval * 14
-        date_range_start = timezone.now().date() + timezone.timedelta(days=start_days)
-        # extra +1 at the end is to include the events on the last days when filtering on a DateTime field
-        end_days = ((two_week_interval + 1) * 14) + 1
-        date_range_end = date_range_start + timezone.timedelta(days=end_days)
-        events = Event.objects.filter(start__range=(date_range_start, date_range_end))
-        # only admin sees draft and hidden events
+        events = Event.objects.all()
         if not self.request.user.is_superuser:
+            two_week_interval = int(self.kwargs.get('week', 0))
+            start_days = two_week_interval * 14
+            date_range_start = timezone.now().date() + timezone.timedelta(days=start_days)
+            # extra +1 at the end is to include the events on the last days when filtering on a DateTime field
+            end_days = ((two_week_interval + 1) * 14) + 1
+            date_range_end = date_range_start + timezone.timedelta(days=end_days)
+            events = events.filter(start__range=(date_range_start, date_range_end))
+            # only admin sees draft and hidden events
             events = events.filter(Q(state=Event.STATUS.Published) | Q(state=Event.STATUS.Cancelled))
         return events.reverse()
 
     def get_context_data(self, **kwargs):
         data = super(HomeView, self).get_context_data(**kwargs)
-        week = int(self.kwargs.get('week', 0))
-        if week > 1:
-            data['prev_url'] = reverse('next', kwargs={'week': week-1})
-        elif week == 1:
-            data['prev_url'] = reverse('home')
-        # check if there are events in the next interval before showing the "next" link
-        start_days = (week + 1) * 14
-        date_range_start = timezone.now().date() + timezone.timedelta(days=start_days)
-        end_days = ((week + 2) * 14) + 1
-        date_range_end = date_range_start + timezone.timedelta(days=end_days)
-        next_events_exist = Event.objects.filter(start__range=(date_range_start, date_range_end)).exists()
-        if next_events_exist:
-            data['next_url'] = reverse('next', kwargs={'week': week+1})
+        if not self.request.user.is_superuser:
+            week = int(self.kwargs.get('week', 0))
+            if week > 1:
+                data['prev_url'] = reverse('next', kwargs={'week': week-1})
+            elif week == 1:
+                data['prev_url'] = reverse('home')
+            # check if there are events in the next interval before showing the "next" link
+            start_days = ((week + 1) * 14) + 1
+            date_range_start = timezone.now().date() + timezone.timedelta(days=start_days)
+            end_days = ((week + 2) * 14) + 1
+            date_range_end = date_range_start + timezone.timedelta(days=end_days)
+            next_events_exist = Event.objects.filter(start__range=(date_range_start, date_range_end)).exists()
+            if next_events_exist:
+                data['next_url'] = reverse('next', kwargs={'week': week+1})
         return data
 
 # cache for 60 * 60 = 60 min
