@@ -46,8 +46,8 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 TEMPLATE_LOADERS = (
     ('django.template.loaders.cached.Loader', (
-        'django.template.loaders.app_directories.Loader',
         'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
         'django.template.loaders.eggs.Loader',
     )),
 )
