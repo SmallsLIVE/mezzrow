@@ -16,7 +16,7 @@
         </div>
         <form method="post" action="{% url 'checkout:preview' %}" class="form-stacked">
             {% csrf_token %}
-            <h4>{% trans "Bankcard" %}</h4>
+            <h4>Credit card</h4>
             {% include "partials/form_fields.html" with form=bankcard_form %}
             {% comment %}
             <h4>{% trans "Billing address" %}</h4>
