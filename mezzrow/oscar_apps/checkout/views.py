@@ -84,7 +84,10 @@ class PaymentDetailsView(views.PaymentDetailsView):
         
     def submit(self, user, basket, shipping_address, shipping_method,  # noqa (too complex (10))
                order_total, payment_kwargs=None, order_kwargs=None):
-        first_name, last_name = self.checkout_session.get_reservation_name()
+        if user:
+            first_name, last_name = user.first_name, user.last_name
+        else:
+            first_name, last_name = self.checkout_session.get_reservation_name()
         if not order_kwargs:
             order_kwargs = {}
         if first_name and last_name:
