@@ -376,7 +376,7 @@ ul.social li a {
 }
 input[type=text], input[type=url], input[type=email], input[type=password] {
     width:50%;
-    min-width: 400px;
+    min-width: 340px;
 }
 [id^=id_line]{
     width:80%;
