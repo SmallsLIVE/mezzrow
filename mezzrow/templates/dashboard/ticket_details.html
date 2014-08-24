@@ -34,7 +34,7 @@
         {% for order in orders %}
           <tr>
             <td>{{ order.id }}</td>
-            <td><strong>{{ order.person_name }}</strong></td>
+            <td><strong>{{ order.last_name }}, {{ order.first_name }}</strong></td>
             <td><strong>{{ order.num_items }}</strong></td>
             <td>${{ order.total_incl_tax }}</td>
           </tr>

@@ -15,7 +15,7 @@ class TicketDetailsView(DetailView):
         sets = {}
         for product in self.object.products.all():
             person_list = []
-            for order in Order.objects.filter(basket__lines__product=product).order_by('person_name'):
+            for order in Order.objects.filter(basket__lines__product=product).order_by('last_name'):
                 person_list.append(order)
             sets[product.set] = person_list
         data['ticket_data'] = sets
