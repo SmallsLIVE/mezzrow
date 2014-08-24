@@ -84,7 +84,9 @@ class PaymentDetailsView(views.PaymentDetailsView):
         
     def submit(self, user, basket, shipping_address, shipping_method,  # noqa (too complex (10))
                order_total, payment_kwargs=None, order_kwargs=None):
-        if user:
+        # if a registered user is making an order, copy his name to the order,
+        # otherwise we're getting the reservation name from the guest user on the gateway form
+        if not user.is_anonymous():
             first_name, last_name = user.first_name, user.last_name
         else:
             first_name, last_name = self.checkout_session.get_reservation_name()
