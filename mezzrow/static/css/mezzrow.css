@@ -374,6 +374,10 @@ ul.social li a {
 [id^=id_]{
     width:auto;
 }
+input[type=text], input[type=url]{
+    width:50%;
+    min-width: 400px;
+}
 [id^=id_line]{
     width:80%;
 }
