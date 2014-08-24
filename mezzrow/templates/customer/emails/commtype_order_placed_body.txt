@@ -5,7 +5,7 @@ Dear Guest:
 Thank you for your advanced purchase of a ticket(s) for: {{ ticket.product.event.title }}. Your ticket guarantees your place at a table in our Listening Room.
 
 RESERVATION #: {{ order.number }}
-PARTY NAME: {{ order.person_name }}
+PARTY NAME: {{ order.last_name }}, {{ order.first_name }}
 SHOWTIME: {{ ticket.product.event.start|date:"F jS, g:i A" }} {{ ticket.product.set }}
 Number of seats: {{ ticket.quantity }}
 

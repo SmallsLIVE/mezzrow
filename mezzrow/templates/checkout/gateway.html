@@ -21,15 +21,16 @@
       <div class="span4">
         {% include "partials/form_field.html" with field=form.username %}
       </div>
-      <div class="span4">
-        {% include "partials/form_field.html" with field=form.reservation_name %}
-      </div>
     </div>
 
     <div class="control-group">
       <div class="controls">
-        <div class="radio">
+         <div class="radio">
           {{ form.options.0 }}
+          <div class="form-inline">
+            {% include "partials/form_field.html" with field=form.first_name %}
+            {% include "partials/form_field.html" with field=form.last_name %}
+          </div>
         </div>
       </div>
     </div>

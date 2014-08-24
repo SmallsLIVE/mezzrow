@@ -7,7 +7,7 @@
     <p>Thank you for your advanced purchase of a ticket(s) for: {{ ticket.product.event.title }}.
       Your ticket guarantees your place(s) at a table in our Listening Room.</p>
     <p>RESERVATION #: {{ order.number }} <br/>
-      PARTY NAME: {{ order.person_name }} <br/>
+      PARTY NAME: {{ order.last_name }}, {{ order.first_name }} <br/>
       SHOWTIME: {{ ticket.product.event.start|date:"F jS, g:i A" }} {{ ticket.product.set }}
       Number of Seats: {{ ticket.quantity }}</p>
     <p>Your party’s name will be on a list at the door when you arrive.  We ask that you arrive a minimum of 20 minutes before the show you have selected.

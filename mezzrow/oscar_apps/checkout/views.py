@@ -12,8 +12,10 @@ BankcardForm = get_class('payment.forms', 'BankcardForm')
 
 class IndexView(views.IndexView):
     def form_valid(self, form):
-        reservation_name = form.cleaned_data['reservation_name']
-        self.checkout_session.set_reservation_name(reservation_name)
+        if form.is_guest_checkout():
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            self.checkout_session.set_reservation_name(first_name, last_name)
         return super(IndexView, self).form_valid(form)
 
 
@@ -82,12 +84,13 @@ class PaymentDetailsView(views.PaymentDetailsView):
         
     def submit(self, user, basket, shipping_address, shipping_method,  # noqa (too complex (10))
                order_total, payment_kwargs=None, order_kwargs=None):
-        reservation_name = self.checkout_session.get_reservation_name()
+        first_name, last_name = self.checkout_session.get_reservation_name()
         if not order_kwargs:
             order_kwargs = {}
-        if reservation_name:
+        if first_name and last_name:
             order_kwargs.update({
-                'person_name': reservation_name
+                'first_name': first_name,
+                'last_name': last_name
             })
         return super(PaymentDetailsView, self).submit(user, basket, shipping_address, shipping_method,
                order_total, payment_kwargs, order_kwargs)
