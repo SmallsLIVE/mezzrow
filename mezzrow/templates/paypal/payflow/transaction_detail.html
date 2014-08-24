@@ -58,7 +58,7 @@
 
     {% if show_forms %}
         <h2>{% trans "Actions" %}</h2>
-        <form method="post" action=".">
+        <form method="post" action="">
             {% csrf_token %}
             <button class="btn btn-success {% if not txn.can_be_captured %}disable{% endif %}" type="submit" name="action" value="capture">{% trans "Capture" %}</button>
             <button class="btn btn-danger {% if not txn.can_be_voided %}disable{% endif %}" type="submit" name="action" value="void">{% trans "Void" %}</button>
