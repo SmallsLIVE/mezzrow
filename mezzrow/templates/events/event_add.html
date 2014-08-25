@@ -14,6 +14,9 @@
 {% block content %}
   <form method="post" enctype="multipart/form-data" class="left-aligned-form">
     {% crispy form %}
+    <div class="buttonHolder">
+      <input type="submit" name="submit" value="Save event" class="btn btn-primary btn btn-primary" id="submit-id-submit">
+    </div>
   </form>
 {% endblock content %}
 

@@ -8,6 +8,10 @@
 {% block content %}
   <form method="post" enctype="multipart/form-data" class="left-aligned-form">
     {% crispy form %}
+    <div class="buttonHolder">
+      <input type="submit" name="submit" value="Save event" class="btn btn-primary btn btn-primary" id="submit-id-submit">
+      <input type="button" name="delete" value="Delete event" class="btn btn btn-danger" id="button-id-delete" data-target="#deleteModal" data-toggle="modal">
+    </div>
   </form>
   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
        aria-hidden="true">

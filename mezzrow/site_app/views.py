@@ -12,7 +12,6 @@ from smallslive.artists.models import Artist
 from smallslive.artists.views import ArtistAddView as CoreArtistAddView, ArtistEditView as CoreArtistEditView
 from smallslive.events.models import Event
 from smallslive.events.views import EventAddView as CoreEventAddView, EventEditView as CoreEventEditView
-from .forms import EventEditForm
 
 
 class HomeView(ListView):
@@ -138,8 +137,6 @@ event_add = EventAddView.as_view()
 
 
 class EventEditView(views.SuperuserRequiredMixin, CoreEventEditView):
-    form_class = EventEditForm
-
     def get_success_url(self):
         return reverse('event_detail', kwargs={'pk': self.object.id, 'slug': slugify(self.object.title)})
 
