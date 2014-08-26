@@ -1,0 +1,68 @@
+{% extends "mezzrow_base_narrow.html" %}
+{% load basket_tags currency_filters i18n purchase_info_tags static thumbor_tags tz %}
+
+
+{% block section_title %}{{ event.title }}{% endblock section_title %}
+{% block section_subtitle %}
+  {% if event.subtitle %}
+    <h4 class="frame-head frame-head-subtitle">{{ event.subtitle }}</h4>
+  {% endif %}
+{% endblock section_subtitle %}
+
+{% block content %}
+  <div class="event-details" data-event="">
+    {% if event.photo %}
+      <img class="event-img img-thumbnail" width="330" height="220"
+           src="{% thumbor_url event.photo.url|urlencode width=330 height=220 smart=True %}"/>
+    {% endif %}
+    <ul class="text-left">
+      <li class="event-date">{{ event.listing_date|date:"F jS" }} {% if event.is_early_morning %}(
+        {{ event.listing_date|date:"l" }} late night){% endif %} </li>
+      <li class="event-time">{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}</li>
+      <li><br/></li>
+      {% if event.get_performers %}
+        <li class="event-artists">Artists: {% for performer in event.get_performers %}
+          <a href="{% url "artist_detail" pk=performer.artist.id slug=performer.artist.full_name|slugify %}">
+            {{ performer.artist }}</a> ({{ performer.role }}){% if not forloop.last %}, {% endif %}{% endfor %}</li>
+      {% endif %}
+      <li class="event-description">{{ event.description|safe }}</li>
+    </ul>
+
+    <div class="tickets">
+      {% for product in event.products.all %}
+        {% purchase_info_for_product request product as session %}
+        <p class="set">{{ product.set }}
+        <span class="price"> {{ session.price.excl_tax|currency:session.price.currency }}</span></p>
+        <p class="{{ session.availability.code }} availability">
+          {{ session.availability.message }}
+        </p>
+        {% basket_form request product as basket_form single %}
+        <form action="{% url 'basket:add' %}" class="reservation_form" method="post">
+          {% csrf_token %}
+          {{ basket_form.as_p }}
+          <input type="hidden" name="next" value="{% url "basket:summary" %}"/>
+          {% if session.availability.num_available > 0%}
+          <button type="submit" class="btn btn-default btn-sm">Make Reservations for the {{ product.set }} show<span
+                  class="arrow-right"></span></button>
+          {% endif %}
+          {% if user.is_superuser %}
+            <a href="{% url "dashboard:catalogue-product" pk=product.id %}" class="btn btn-default btn-sm">Edit ticket</a>
+          {% endif %}
+        </form>
+      {% endfor %}
+    </div>
+    <a href="{% url "home" %}" type="button" class="btn btn-default btn-sm back"><span class="arrow-left"></span>View
+      Full Schedule</a>
+    {% if user.is_superuser %}
+      <div class="button-group">
+        <a href="{% url "event_edit" pk=event.id slug=event.title|slugify %}" class="btn btn-warning btn-sm">Edit
+          event</a>
+
+        <form action="{% url "event_clone" pk=event.id slug=event.title|slugify %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-warning btn-sm">Clone event</button>
+        </form>
+      </div>
+    {% endif %}
+  </div>
+{% endblock content %}

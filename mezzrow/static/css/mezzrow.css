@@ -187,24 +187,27 @@ button.back {
 }
 
 .frame-inner dt {
-    font-size: 100%;
+    font-size: 120%;
     margin: 2em 0 1em 0;
 }
 
-.frame-inner dd {
+/*.frame-inner dd {
     font-size: 85%;
     margin-bottom: 1em;
-}
+}*/
 
 .frame-inner dd.orange {
     margin-bottom: 0;
 }
 
-.frame-inner p {
-    font-size: 75%;
+.frame-inner p, .frame-inner ol {
+    font-size: 85%;
     margin-top: 1em;
 }
 
+.checkout p {
+    margin-top: 0;
+}
 
 
 .frame-head {
@@ -217,6 +220,13 @@ button.back {
     text-transform: uppercase;
     vertical-align: baseline;
     color: #000;
+}
+
+.frame-head-subtitle {
+    font-size: 9pt;
+    font-weight: lighter;
+    padding-top: 5px;
+    color: #333;
 }
 
 .frame-head-border {
@@ -364,9 +374,19 @@ ul.social li a {
 [id^=id_]{
     width:auto;
 }
+input[type=text], input[type=url], input[type=email], input[type=password] {
+    width:50%;
+    min-width: 340px;
+}
 [id^=id_line]{
     width:80%;
 }
+
+#id_ccv {
+    width: 40px;
+    min-width: 40px;
+}
+
 .form-actions   {
     text-align: center;
     background: transparent;
@@ -381,4 +401,53 @@ ul.social li a {
     width: 70%;
     vertical-align: sub;
     margin-left: 4%;
+}
+
+.event-edit {
+    color: red;
+    text-decoration: underline;
+    font-size: 1.2em;
+}
+
+.button-group {
+    margin-top: 15px;
+}
+
+.button-group form {
+    display: inline-block;
+}
+
+.button-group button {
+    text-transform: none;
+}
+
+.event-date {
+    font-size: 105%;
+    color: #000000;
+    margin-bottom: 1em;
+}
+
+.event-title {
+    font-size: 120%;
+    border-bottom: 1px dotted;
+    margin-bottom: 1em;
+}
+
+.tickets {
+    margin: 20px 0;
+    text-align: left;
+    font-size: 110%;
+}
+
+.price {
+    position: absolute;
+    right: 20px;
+}
+
+.set {
+    font-weight: bold;
+}
+
+.form-inline .control-group{
+    margin-bottom: 0;
 }

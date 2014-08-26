@@ -12,4 +12,12 @@ DATABASES = {
     }
 }
 
+INSTALLED_APPS += (
+    'devserver',
+)
 
+CACHES= {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}

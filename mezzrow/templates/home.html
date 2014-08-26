@@ -1,6 +1,6 @@
 {% extends "mezzrow_base_narrow.html" %}
 
-{% block section_title %}Performing this week{% endblock section_title %}
+{% block section_title %}Schedule{% endblock section_title %}
 
 {% block home_active %}class="active back"{% endblock home_active %}
 
@@ -8,11 +8,20 @@
   <dl id="calendar"> <!-- Calendar events go here. -->
     {% regroup events by listing_date as regrouped_events %}
     {% for day in regrouped_events %}
-      <dt class="purple">{{ day.grouper|date:"F j" }}th</dt>
+      <dt class="purple">{{ day.grouper|date:"F jS" }}</dt>
       {% for event in day.list %}
-        <dd class="orange">{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}</dd>
-        <dd class="event"><a href="{% url "event_detail" pk=event.id slug=event.title|slugify %}">{{ event.title }}</a></dd>
+        <dd class="orange event-date">{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}</dd>
+        <dd class="event"><a href="{% url "event_detail" pk=event.id slug=event.title|slugify %}" class="event-title">{{ event.title }}</a>
+          {% if user.is_superuser %}<br/><span class="label {{ event.status_css_class }}">{{ event.state }}</span> <a href="{% url "event_edit" pk=event.id slug=event.title|slugify %}" class="event-edit">Edit</a>{% endif %}
+          {% if event.state == "Cancelled" and not user.is_superuser %}<span class="label {{ event.status_css_class }}">{{ event.state }}</span>{% endif %}
+        </dd>
       {% endfor %}
     {% endfor %}
   </dl>
+  {% if not user.is_superuser %}
+    <p>{% if prev_url %}
+     <a href="{{ prev_url }}">Previous</a>{% endif %} {% if next_url and prev_url %}
+      | {% endif %} {% if next_url %}<a href="{{ next_url }}">Next</a>{% endif %}</p>
+  {% else %}<p>Note: showing all events in the system to the admin user</p>
+  {% endif %}
 {% endblock content %}

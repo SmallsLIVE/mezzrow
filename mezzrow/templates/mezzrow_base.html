@@ -7,7 +7,7 @@
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Mezzrow</title>
+  <title>{% block section_title %}{% endblock section_title %} | Mezzrow</title>
   <!-- Bootstrap core CSS -->
   <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
   <!-- Custom styles for this template -->
@@ -25,7 +25,7 @@
   <div class="navbar navbar-inverse " role="navigation">
     <div class="container">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -46,6 +46,10 @@
     </div>
   </div>
 {% endif %}
+      <ul class="navbar-right social">
+        <li><a href="https://www.facebook.com/mezzrowclub" class="fb" rel="nofollow" target="_blank"></a></li>
+        <li><a href="#" class="twt" rel="nofollow" target="_blank"></a></li>
+      </ul>
 <div class="container">
   <div class="row">
     <div class="col-xs-4"></div>
@@ -56,8 +60,8 @@
           <ul class="nav nav-mezz navbar-nav">
             <li {% block home_active %}{% endblock home_active %}><a href="{% url "home" %}">Schedule</a></li>
             <li {% block about_active %}{% endblock about_active %}><a href="{% url "about" %}">Who We Are</a></li>
-            <li {% block contact_active %}{% endblock contact_active %}><a href="{% url "contact" %}">Info/Contact</a>
-            </li>
+            <li {% block contact_active %}{% endblock contact_active %}><a href="{% url "contact" %}">Info/Contact</a></li>
+            <li {% block ticketing_active %}{% endblock ticketing_active %}><a href="{% url "ticketing" %}">Ticketing</a></li>
             <!--     <li><a href="reservations.html">Reservations</a></li> -->
           </ul>
         </div>
@@ -67,12 +71,6 @@
     </div>
   </div>
 </div>
-<ul class="navbar-right social">
-  <li><a href="" class="fb" rel="nofollow" target="_blank"></a></li>
-  <li><a href="" class="twt" rel="nofollow" target="_blank"></a></li>
-  <li><a href="" class="tmblr" rel="me author" target="_blank"></a></li>
-  <li><a href="" class="inst" rel="nofollow" target="_blank"></a></li>
-</ul>
 <div class="container">
   <div class="row">
     {% block container %}{% endblock container %}
@@ -86,6 +84,16 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="{% static "js/bootstrap.min.js" %}"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-53231317-1', 'auto');
+ga('send', 'pageview');
+
+</script>
 {% block extra_js %}{% endblock extra_js %}
 </body>
 </html>

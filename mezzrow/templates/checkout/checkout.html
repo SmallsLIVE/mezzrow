@@ -22,6 +22,7 @@
     {% endif %}
 
     <div class="row-fluid shipping-payment">
+        {% comment %}
         {% block shipping_address %}
             <div class="span6">
                 <div class="sub-header">
@@ -77,6 +78,7 @@
                 {% endif %}
             </div>
         {% endblock shipping_address %}
+        {% endcomment %}
 
         {# You will almost certainly want to override this block to provide a payment summary #}
         {% block payment_method %}

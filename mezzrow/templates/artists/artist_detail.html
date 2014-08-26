@@ -1,0 +1,23 @@
+{% extends "mezzrow_base_narrow.html" %}
+{% load i18n static thumbor_tags tz %}
+
+
+{% block section_title %}{{ artist.full_name }}{% endblock section_title %}
+
+{% block content %}
+  <div class="event-details" data-event="">
+    {% if artist.photo %}
+      <img class="event-img img-thumbnail" width="330" height="220"
+           src="{% thumbor_url artist.photo.url|urlencode width=330 height=220 smart=True %}"/>
+    {% endif %}
+
+    <ul class="text-left">
+      {% if user.is_superuser %}<li><a class="btn btn-danger" href="{% url "artist_edit" pk=artist.id slug=artist.full_name|slugify %}">Edit</a></li>{% endif %}
+      <li><strong>{{ artist.full_name }}</strong></li>
+      <li><strong>Instruments:</strong> {{ artist.instruments.all|join:", " }}</li>
+      <li><br/></li>
+      {% if artist.biography %}<li><strong>Biography:</strong> {{ artist.biography|safe }}</li>{% endif %}
+      {% if artist.website %}<li><strong>Website:</strong> {{ artist.website|urlize }}</li>{% endif %}
+    </ul>
+  </div>
+{% endblock content %}
