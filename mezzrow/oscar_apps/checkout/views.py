@@ -5,6 +5,7 @@ from oscar.apps.checkout import views
 from oscar.apps.payment import forms, models
 from oscar.core.loading import get_class
 
+from paypal.express.views import SuccessResponseView as CoreSuccessResponseView
 from paypal.payflow import facade
 
 BankcardForm = get_class('payment.forms', 'BankcardForm')
@@ -19,7 +20,27 @@ class IndexView(views.IndexView):
         return super(IndexView, self).form_valid(form)
 
 
-class PaymentDetailsView(views.PaymentDetailsView):
+class ReservationNameMixin(object):
+    def submit(self, user, basket, shipping_address, shipping_method,  # noqa (too complex (10))
+               order_total, payment_kwargs=None, order_kwargs=None):
+        # if a registered user is making an order, copy his name to the order,
+        # otherwise we're getting the reservation name from the guest user on the gateway form
+        if not user.is_anonymous():
+            first_name, last_name = user.first_name, user.last_name
+        else:
+            first_name, last_name = self.checkout_session.get_reservation_name()
+        if not order_kwargs:
+            order_kwargs = {}
+        if first_name and last_name:
+            order_kwargs.update({
+                'first_name': first_name,
+                'last_name': last_name
+            })
+        return super(ReservationNameMixin, self).submit(user, basket, shipping_address, shipping_method,
+               order_total, payment_kwargs, order_kwargs)
+
+
+class PaymentDetailsView(ReservationNameMixin, views.PaymentDetailsView):
 
     def get_context_data(self, **kwargs):
         # Override method so the bankcard and billing address forms can be
@@ -82,20 +103,6 @@ class PaymentDetailsView(views.PaymentDetailsView):
         self.add_payment_source(source)
         self.add_payment_event('Sold', total.incl_tax)
         
-    def submit(self, user, basket, shipping_address, shipping_method,  # noqa (too complex (10))
-               order_total, payment_kwargs=None, order_kwargs=None):
-        # if a registered user is making an order, copy his name to the order,
-        # otherwise we're getting the reservation name from the guest user on the gateway form
-        if not user.is_anonymous():
-            first_name, last_name = user.first_name, user.last_name
-        else:
-            first_name, last_name = self.checkout_session.get_reservation_name()
-        if not order_kwargs:
-            order_kwargs = {}
-        if first_name and last_name:
-            order_kwargs.update({
-                'first_name': first_name,
-                'last_name': last_name
-            })
-        return super(PaymentDetailsView, self).submit(user, basket, shipping_address, shipping_method,
-               order_total, payment_kwargs, order_kwargs)
+
+class PaypalExpressSuccessResponseView(ReservationNameMixin, CoreSuccessResponseView):
+    pass
