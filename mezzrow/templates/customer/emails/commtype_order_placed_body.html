@@ -8,7 +8,7 @@
       Your ticket guarantees your place(s) at a table in our Listening Room.</p>
     <p>RESERVATION #: {{ order.number }} <br/>
       PARTY NAME: {{ order.last_name }}, {{ order.first_name }} <br/>
-      SHOWTIME: {{ ticket.product.event.start|date:"F jS, g:i A" }} {{ ticket.product.set }}
+      SHOWTIME: {{ ticket.product.event.start|date:"F jS" }} {{ ticket.product.set }} <br/>
       Number of Seats: {{ ticket.quantity }}</p>
     <p>Your party’s name will be on a list at the door when you arrive.  We ask that you arrive a minimum of 20 minutes before the show you have selected.
       The manager will confirm your reservation and show you to your seat.  Late-comers will be seated at the discretion of the management.</p>
