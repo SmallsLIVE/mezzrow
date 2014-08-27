@@ -1,6 +1,9 @@
 from braces import views
+from django.conf import settings
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.db.models import Q
+from django.forms.formsets import all_valid
+from django.http import HttpResponseRedirect
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.views.decorators.cache import cache_page
@@ -12,6 +15,7 @@ from smallslive.artists.models import Artist
 from smallslive.artists.views import ArtistAddView as CoreArtistAddView, ArtistEditView as CoreArtistEditView
 from smallslive.events.models import Event
 from smallslive.events.views import EventAddView as CoreEventAddView, EventEditView as CoreEventEditView
+from .forms import TicketAddForm
 
 
 class HomeView(ListView):
@@ -132,6 +136,59 @@ ticketing_view = cache_page(60 * 60 * 24)(TicketingView.as_view())
 class EventAddView(views.SuperuserRequiredMixin, CoreEventAddView):
     def get_success_url(self):
         return reverse('event_detail', kwargs={'pk': self.object.id, 'slug': slugify(self.object.title)})
+
+    def get(self, request, *args, **kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        inlines = self.construct_inlines()
+        ticket_forms = self.construct_ticket_forms()
+        return self.render_to_response(self.get_context_data(form=form, inlines=inlines, ticket_forms=ticket_forms))
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        ticket_forms = self.construct_ticket_forms(data=request.POST)
+
+        if form.is_valid():
+            self.object = form.save(commit=False)
+            form_validated = True
+        else:
+            form_validated = False
+
+        inlines = self.construct_inlines()
+
+        if all_valid(inlines) and all_valid(ticket_forms) and form_validated:
+            return self.forms_valid(form, inlines, ticket_forms)
+        return self.forms_invalid(form, inlines, ticket_forms)
+
+    def forms_valid(self, form, inlines, ticket_forms):
+        """
+        If the form and formsets are valid, save the associated models.
+        """
+        self.object = form.save()
+        for formset in inlines:
+            formset.save()
+        for ticket in ticket_forms:
+            if ticket.cleaned_data.get('form_enabled'):
+                ticket.save(event=self.object)
+        return HttpResponseRedirect(self.get_success_url())
+
+    def forms_invalid(self, form, inlines, ticket_forms):
+        """
+        If the form or formsets are invalid, re-render the context data with the
+        data-filled form and formsets and errors.
+        """
+        return self.render_to_response(self.get_context_data(form=form, inlines=inlines, ticket_forms=ticket_forms))
+
+    def construct_ticket_forms(self, data=None):
+        ticket_forms = []
+        for i in range(1, settings.TICKETS_NUMBER_OF_SETS+1):
+            ticket_form = TicketAddForm(data, prefix="set{0}".format(i), number=i)
+            ticket_forms.append(ticket_form)
+        return ticket_forms
+
 
 event_add = EventAddView.as_view()
 

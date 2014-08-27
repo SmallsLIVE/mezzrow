@@ -187,6 +187,7 @@ SHOW_TIMES = {
         ("0:15-1:30", "After hours", "12:15-1:30 AM"),
     ),
 }
+TICKETS_NUMBER_OF_SETS = 4
 
 
 # Paypal express

@@ -14,6 +14,17 @@
 {% block content %}
   <form method="post" enctype="multipart/form-data" class="left-aligned-form">
     {% crispy form %}
+    <div class="alert alert-warning">
+      <div id="div_id_state" class="form-group">
+        <label for="id_state" class="control-label">Add tickets</label>
+
+        <div class="controls ">
+          {% for ticket_form in ticket_forms %}
+            {% crispy ticket_form %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
     <div class="buttonHolder">
       <input type="submit" name="submit" value="Save event" class="btn btn-primary btn btn-primary" id="submit-id-submit">
     </div>
@@ -29,10 +40,25 @@
   <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.js' %}"></script>
   <script>
     var show_times = {{ show_times|safe }};
+    $toggle = $(".toggle");
+
+    function checkTicketFormVisibility(element) {
+      $full_form = $(element).parents(".form-group").next();
+        if($(element).is(':checked')) {
+          $full_form.show();
+        } else {
+          $full_form.hide();
+        }
+    }
+    $toggle.click(function() {
+        checkTicketFormVisibility(this)
+      });
+
     $(document).ready(function () {
       EventForm.SITE_URL = "{{ request.META.HTTP_HOST }}";
       EventForm.init();
       $('.imagepicker').imagepicker();
+      checkTicketFormVisibility($toggle);
     });
   </script>
 {% endblock %}
