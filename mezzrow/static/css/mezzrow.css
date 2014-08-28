@@ -371,6 +371,14 @@ ul.social li a {
     background: rgba(255,255,255,.75);
     border: 1px solid #DCB505;
 }
+
+.alert .well {
+    margin-left: 20px;
+    width: 50%;
+}
+.alert .form-group {
+    margin-bottom: 5px;
+}
 [id^=id_]{
     width:auto;
 }

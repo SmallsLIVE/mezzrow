@@ -6,7 +6,7 @@ Thank you for your advanced purchase of a ticket(s) for: {{ ticket.product.event
 
 RESERVATION #: {{ order.number }}
 PARTY NAME: {{ order.last_name }}, {{ order.first_name }}
-SHOWTIME: {{ ticket.product.event.start|date:"F jS, g:i A" }} {{ ticket.product.set }}
+SHOWTIME: {{ ticket.product.event.start|date:"F jS" }} {{ ticket.product.set }}
 Number of seats: {{ ticket.quantity }}
 
 Your party’s name will be on a list at the door when you arrive.  We ask that you arrive a minimum of 20 minutes before the show you have selected.
