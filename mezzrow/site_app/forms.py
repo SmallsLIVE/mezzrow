@@ -56,8 +56,10 @@ class TicketAddForm(forms.Form):
     def save(self, event):
         tickets_category, created = Category.objects.get_or_create(name="Tickets")
         product_class, created = ProductClass.objects.get_or_create(name="Tickets", requires_shipping=False)
+        ticket_title = "{0} {1.month}/{1.day}/{1.year} - {2}".format(
+            event.title.strip(), event.start, self.cleaned_data.get('set_name'))
         product = Product.objects.create(
-            title=event.title,
+            title=ticket_title,
             product_class=product_class,
             event_id=event.id,
             set=self.cleaned_data.get('set_name'),
