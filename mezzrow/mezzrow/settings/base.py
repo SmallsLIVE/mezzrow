@@ -152,39 +152,39 @@ AWS_S3_CUSTOM_DOMAIN = None
 SHOW_TIMES = {
     # Starts with Monday
     "1": (
-        ("18:30-21:00", "Early show", "6:30 PM - 9:00 PM"),
-        ("21:30-0:00", "Main show", "9:30 PM - 12:00 AM"),
-        ("0:15-1:30", "After hours", "12:15 AM - 1:30 AM"),
+        ("18:30-20:00", "Early show", "6:30 PM - 8:00 PM"),
+        ("20:30-0:00", "Main show", "8:30 PM - 12:00 AM"),
+        ("0:30-1:30", "After hours", "12:30 AM - 1:30 AM"),
     ),
     "2": (
-        ("18:30-21:00", "Early show", "6:30 PM - 9:00 PM"),
-        ("21:30-0:00", "Main show", "9:30 PM - 12:00 AM"),
-        ("0:15-1:30", "After hours", "12:15 AM - 1:30 AM"),
+        ("18:30-20:00", "Early show", "6:30 PM - 8:00 PM"),
+        ("20:30-0:00", "Main show", "8:30 PM - 12:00 AM"),
+        ("0:30-1:30", "After hours", "12:30 AM - 1:30 AM"),
     ),
     "3": (
-        ("18:30-21:00", "Early show", "6:30 PM - 9:00 PM"),
-        ("21:30-0:00", "Main show", "9:30 PM - 12:00 AM"),
-        ("0:15-1:30", "After hours", "12:15 AM - 1:30 AM"),
+        ("18:30-20:00", "Early show", "6:30 PM - 8:00 PM"),
+        ("20:30-0:00", "Main show", "8:30 PM - 12:00 AM"),
+        ("0:30-1:30", "After hours", "12:30 AM - 1:30 AM"),
     ),
     "4": (
-        ("18:30-21:00", "Early show", "6:30 PM - 9:00 PM"),
-        ("21:30-0:00", "Main show", "9:30 PM - 12:00 AM"),
-        ("0:15-1:30", "After hours", "12:15 AM - 1:30 AM"),
+        ("18:30-20:00", "Early show", "6:30 PM - 8:00 PM"),
+        ("20:30-0:00", "Main show", "8:30 PM - 12:00 AM"),
+        ("0:30-1:30", "After hours", "12:30 AM - 1:30 AM"),
     ),
     "5": (
-        ("18:30-21:00", "Early show", "6:30 PM - 9:00 PM"),
-        ("21:30-0:00", "Main show", "9:30 PM - 12:00 AM"),
-        ("0:15-1:30", "After hours", "12:15 AM - 1:30 AM"),
+        ("18:30-20:00", "Early show", "6:30 PM - 8:00 PM"),
+        ("20:30-0:00", "Main show", "8:30 PM - 12:00 AM"),
+        ("0:30-1:30", "After hours", "12:30 AM - 1:30 AM"),
     ),
     "6": (
-        ("18:30-21:00", "Early show", "6:30 PM - 9:00 PM"),
-        ("21:30-0:00", "Main show", "9:30 PM - 12:00 AM"),
-        ("0:15-1:30", "After hours", "12:15 AM - 1:30 AM"),
+        ("18:30-20:00", "Early show", "6:30 PM - 8:00 PM"),
+        ("20:30-0:00", "Main show", "8:30 PM - 12:00 AM"),
+        ("0:30-1:30", "After hours", "12:30 AM - 1:30 AM"),
     ),
     "7": (
-        ("18:30-21:00", "Early show", "6:30 PM - 9:00 PM"),
-        ("21:30-0:00", "Main show", "9:30 PM - 12:00 AM"),
-        ("0:15-1:30", "After hours", "12:15 AM - 1:30 AM"),
+        ("18:30-20:00", "Early show", "6:30 PM - 8:00 PM"),
+        ("20:30-0:00", "Main show", "8:30 PM - 12:00 AM"),
+        ("0:30-1:30", "After hours", "12:30 AM - 1:30 AM"),
     ),
 }
 TICKETS_NUMBER_OF_SETS = 4
