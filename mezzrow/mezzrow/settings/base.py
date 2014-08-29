@@ -188,6 +188,7 @@ SHOW_TIMES = {
     ),
 }
 TICKETS_NUMBER_OF_SETS = 4
+ORDER_CONFIRMATION_COPY_EMAIL = 'mezzrowclub@gmail.com'
 
 
 # Paypal express
