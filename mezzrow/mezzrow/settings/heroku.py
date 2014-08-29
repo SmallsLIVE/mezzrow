@@ -18,7 +18,7 @@ DEBUG = env_var("DEBUG", False)
 
 # Parse database configuration from $DATABASE_URL
 DATABASES['default'] = dj_database_url.config()
-DATABASES['default']['CONN_MAX_AGE'] = 30
+DATABASES['default']['CONN_MAX_AGE'] = 300
 
 # Allow all host headers
 ALLOWED_HOSTS = [
