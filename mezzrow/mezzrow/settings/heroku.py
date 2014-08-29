@@ -72,10 +72,6 @@ LOGGING = {
         },
     },
     'filters': {
-        'special': {
-            '()': 'project.logging.SpecialFilter',
-            'foo': 'bar',
-        }
     },
     'handlers': {
         'null': {
