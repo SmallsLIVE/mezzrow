@@ -26,7 +26,7 @@ class TicketReportGenerator(ReportGenerator):
     }
 
     def generate(self):
-        events = Event._default_manager.all()
+        events = Event._default_manager.order_by('start')
 
         additional_data = {
             'start_date': self.start_date,
