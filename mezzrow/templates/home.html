@@ -5,6 +5,7 @@
 {% block home_active %}class="active back"{% endblock home_active %}
 
 {% block content %}
+  <p>Please click on the link for additional information and advanced ticketing</p>
   <dl id="calendar"> <!-- Calendar events go here. -->
     {% regroup events by listing_date as regrouped_events %}
     {% for day in regrouped_events %}
