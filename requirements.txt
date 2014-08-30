@@ -4,6 +4,6 @@ django-oscar==0.7.2
 django-oscar-paypal==0.9.1
 django-sslify>=0.2
 natsort==3.4.1
-newrelic==2.26.0.22
+newrelic==2.28.0.26
 python-binary-memcached==0.24.2
 raven==5.0.0
