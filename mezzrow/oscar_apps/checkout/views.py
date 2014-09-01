@@ -89,17 +89,17 @@ class PaymentDetailsView(ReservationNameMixin, views.PaymentDetailsView):
         Make submission to PayPal
         """
         bankcard = kwargs['bankcard']
-        facade.sale(
-            order_number, total.incl_tax,
-            bankcard)
+        facade.sale(order_number, total.incl_tax, bankcard)
 
         # Record payment source and event
         source_type, is_created = models.SourceType.objects.get_or_create(
             name='Credit Card')
         source = source_type.sources.model(
             source_type=source_type,
-            amount_allocated=total.incl_tax, currency=total.currency,
-            label=bankcard.number)
+            amount_allocated=total.incl_tax,
+            amount_debited=total.incl_tax,
+            currency=total.currency,
+            label=bankcard.obfuscated_number)
         self.add_payment_source(source)
         self.add_payment_event('Sold', total.incl_tax)
         
