@@ -57,6 +57,7 @@ address {
 
 .event {
     cursor: pointer;
+    margin-bottom: 10px;
 }
 input, button, select, textarea{
     font-family:"Trebuchet MS", Trebuchet, sans-serif; 
