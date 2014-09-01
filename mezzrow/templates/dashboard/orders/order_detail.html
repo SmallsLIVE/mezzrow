@@ -18,7 +18,10 @@
       <td>{{ order.date_placed|date:"H:i" }}</td>
       <td>{{ order.status|default:"N/A" }}</td>
       <td>
-        <input type="button" name="refund" value="Refund order" class="btn btn btn-danger" id="button-id-delete" data-target="#refundModal" data-toggle="modal">
+        {% if order.status != "Cancelled" %}
+          <input type="button" name="refund" value="Refund order" class="btn btn btn-danger" id="button-id-delete"
+                 data-target="#refundModal" data-toggle="modal">
+        {% endif %}
       </td>
     </tr>
   </table>
@@ -27,7 +30,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
           <h4 class="modal-title" id="myModalLabel">Refund order #{{ order.number }}</h4>
         </div>
