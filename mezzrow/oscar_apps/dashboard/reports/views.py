@@ -20,7 +20,8 @@ class TicketDetailsView(DetailView):
         products = natsorted(products, key=attrgetter('set'))
         for product in products:
             person_list = []
-            for order in Order.objects.filter(basket__lines__product=product).order_by('last_name'):
+            for order in Order.objects.filter(basket__lines__product=product).exclude(
+                    status="Cancelled").order_by('last_name'):
                 person_list.append(order)
             sets[product.set] = person_list
         data['ticket_data'] = sets

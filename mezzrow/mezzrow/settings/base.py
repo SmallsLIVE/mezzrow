@@ -215,6 +215,17 @@ OSCAR_DEFAULT_CURRENCY = 'USD'
 OSCAR_REQUIRED_ADDRESS_FIELDS = None
 OSCAR_FROM_EMAIL = 'mezzrowclub@gmail.com'
 
+OSCAR_INITIAL_ORDER_STATUS = 'Completed'
+OSCAR_INITIAL_LINE_STATUS = 'Completed'
+OSCAR_ORDER_STATUS_PIPELINE = {
+    'Completed': ('Cancelled',),
+    'Cancelled': (),
+}
+OSCAR_LINE_STATUS_PIPELINE = OSCAR_ORDER_STATUS_PIPELINE
+OSCAR_ORDER_STATUS_CASCADE = {
+    'Cancelled': 'Cancelled'
+}
+
 OSCAR_DASHBOARD_NAVIGATION.append(
     {
         'label': _('PayPal'),
