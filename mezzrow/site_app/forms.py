@@ -15,8 +15,8 @@ StockRecord = get_class('partner.models', 'StockRecord')
 
 class TicketAddForm(forms.Form):
     form_enabled = forms.BooleanField(initial=False, required=False)
-    price = forms.DecimalField(label="Ticket price ($)", required=False)
-    seats = forms.IntegerField(label="Number of seats", required=False)
+    price = forms.DecimalField(label="Ticket price ($)", initial=25, required=False)
+    seats = forms.IntegerField(label="Number of seats", initial=30, required=False)
     set_name = forms.CharField(max_length=50, label="Set name (example: Set 1: 9-11 PM)", required=False)
 
     class Meta:
