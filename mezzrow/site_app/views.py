@@ -220,7 +220,7 @@ class EventCloneView(CoreEventCloneView):
             # if that SKU exist for some reason, generate a random one that can be changed later manually
             sku_exists = StockRecord.objects.filter(partner_sku=new_sku).exists()
             if sku_exists:
-                new_sku = uuid.uuid4()[:8]
+                new_sku = uuid.uuid4().hex[:10]
             stock_record.partner_sku = new_sku
             stock_record.save()
             ProductImage.objects.create(product=ticket, original=event.photo)

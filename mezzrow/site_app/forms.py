@@ -74,7 +74,7 @@ class TicketAddForm(forms.Form):
         # if that SKU exist for some reason, generate a random one that can be changed later manually
         sku_exists = StockRecord.objects.filter(partner_sku=new_sku).exists()
         if sku_exists:
-            new_sku = uuid.uuid4()[:8]
+            new_sku = uuid.uuid4().hex[:10]
         StockRecord.objects.create(
             partner=partner,
             product=product,
