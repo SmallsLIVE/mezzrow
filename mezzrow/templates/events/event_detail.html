@@ -16,7 +16,7 @@
            src="{% thumbor_url event.photo.url|urlencode width=330 height=220 smart=True %}"/>
     {% endif %}
     <ul class="text-left">
-      <li class="event-date">{{ event.listing_date|date:"F jS" }} {% if event.is_early_morning %}(
+      <li class="event-date">{{ event.listing_date|date:"l, F jS" }} {% if event.is_early_morning %}(
         {{ event.listing_date|date:"l" }} late night){% endif %} </li>
       <li class="event-time">{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}</li>
       <li><br/></li>
@@ -31,10 +31,9 @@
     <div class="tickets">
       {% for product in event.products.all %}
         {% purchase_info_for_product request product as session %}
-        <p class="set">{{ product.set }}
-        <span class="price"> {{ session.price.excl_tax|currency:session.price.currency }}</span></p>
+        <p class="set">{{ product.set }}</p>
         <p class="{{ session.availability.code }} availability">
-          {{ session.availability.message }}
+          {{ session.availability.num_available }} guaranteed seats available
         </p>
         {% basket_form request product as basket_form single %}
         <form action="{% url 'basket:add' %}" class="reservation_form" method="post">
