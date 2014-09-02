@@ -1,3 +1,4 @@
+import uuid
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Div
 from django import forms
@@ -21,7 +22,7 @@ class TicketAddForm(forms.Form):
         fields = ('price', 'seats', 'set_name')
 
     def __init__(self, *args, **kwargs):
-        number = kwargs.pop('number', 1)
+        self.number = kwargs.pop('number', 1)
         super(TicketAddForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.form_tag = False
@@ -36,7 +37,7 @@ class TicketAddForm(forms.Form):
                 css_class='well'
             ),
         )
-        self.fields['form_enabled'].label = "Add ticket to set {0}".format(number)
+        self.fields['form_enabled'].label = "Add ticket to set {0}".format(self.number)
 
     def clean(self):
         cleaned_data = super(TicketAddForm, self).clean()
@@ -69,15 +70,15 @@ class TicketAddForm(forms.Form):
             category=tickets_category
         )
         partner, created = Partner.objects.get_or_create(name="Mezzrow")
-        last_stockrecord = StockRecord.objects.order_by('-id').first()
-        if last_stockrecord:
-            last_id = last_stockrecord.id
-        else:
-            last_id = 0
+        new_sku = "{0.month}-{0.day}-{0:%y}-{1}".format(event.start, self.number)
+        # if that SKU exist for some reason, generate a random one that can be changed later manually
+        sku_exists = StockRecord.objects.filter(partner_sku=new_sku).exists()
+        if sku_exists:
+            new_sku = uuid.uuid4()[:8]
         StockRecord.objects.create(
             partner=partner,
             product=product,
-            partner_sku=last_id+1,
+            partner_sku=new_sku,
             num_in_stock=self.cleaned_data.get('seats'),
             price_excl_tax=self.cleaned_data.get('price'),
         )
