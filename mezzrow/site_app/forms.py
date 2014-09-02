@@ -2,6 +2,7 @@ import uuid
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Div
 from django import forms
+from oscar.apps.catalogue.models import ProductImage
 from oscar.core.loading import get_class
 
 Category = get_class('catalogue.models', 'Category')
@@ -81,4 +82,8 @@ class TicketAddForm(forms.Form):
             partner_sku=new_sku,
             num_in_stock=self.cleaned_data.get('seats'),
             price_excl_tax=self.cleaned_data.get('price'),
+        )
+        ProductImage.objects.create(
+            product=product,
+            original=event.photo
         )
