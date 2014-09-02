@@ -32,22 +32,36 @@
       {% for product in event.products.all %}
         {% purchase_info_for_product request product as session %}
         <p class="set">{{ product.set }}</p>
-        <p class="{{ session.availability.code }} availability">
-          {{ session.availability.num_available }} guaranteed seats available
-        </p>
-        {% basket_form request product as basket_form single %}
-        <form action="{% url 'basket:add' %}" class="reservation_form" method="post">
-          {% csrf_token %}
-          {{ basket_form.as_p }}
-          <input type="hidden" name="next" value="{% url "basket:summary" %}"/>
-          {% if session.availability.num_available > 0%}
-          <button type="submit" class="btn btn-default btn-sm">Guaranteed Seat for the {{ product.set }} Show<span
-                  class="arrow-right"></span></button>
+        {% if session.availability.is_available_to_buy %}
+          <p class="{{ session.availability.code }} availability">
+            {{ session.availability.num_available }} guaranteed seats available
+          </p>
+          {% basket_form request product as basket_form single %}
+          <form action="{% url 'basket:add' %}" class="reservation_form" method="post">
+            {% csrf_token %}
+            {{ basket_form.as_p }}
+            <input type="hidden" name="next" value="{% url "basket:summary" %}"/>
+            {% if session.availability.num_available > 0 %}
+              <button type="submit" class="btn btn-default btn-sm">Guaranteed Seat for the {{ product.set }} Show<span
+                      class="arrow-right"></span></button>
+            {% endif %}
+            {% if user.is_superuser %}
+              <a href="{% url "dashboard:catalogue-product" pk=product.id %}" class="btn btn-default btn-sm">Edit
+                ticket</a>
+            {% endif %}
+          </form>
+        {% else %}
+          {% if has_active_alert %}
+            <p>{% trans "You have an active stock alert for this product." %}</p>
+          {% else %}
+            <form id="alert_form" method="post" action="{% url 'customer:alert-create' pk=product.id %}"
+                  class="add-to-basket">
+              {% csrf_token %}
+              <p>{% trans "You can get an email alert when this product is back in stock." %}</p>
+              <button type="submit" class="btn btn-default btn-sm">{% trans "Notify me" %}</button>
+            </form>
           {% endif %}
-          {% if user.is_superuser %}
-            <a href="{% url "dashboard:catalogue-product" pk=product.id %}" class="btn btn-default btn-sm">Edit ticket</a>
-          {% endif %}
-        </form>
+        {% endif %}
       {% endfor %}
     </div>
     <a href="{% url "home" %}" type="button" class="btn btn-default btn-sm back"><span class="arrow-left"></span>View
