@@ -11,7 +11,7 @@
     {% if event.products %}
       <ul><strong>Tickets:</strong>
       {% for product in event.products.all %}
-        <li><a href="{% url "dashboard:catalogue-product" pk=product.id %}">{{ product.title }} - {{ product.set }}</a></li>
+        <li><a href="{% url "dashboard:catalogue-product" pk=product.id %}">{{ product.title }}</a></li>
       {% endfor %}
       </ul>
     {% endif %}
