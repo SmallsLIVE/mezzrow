@@ -12,6 +12,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
+from oscar.apps.catalogue.models import ProductImage
 from oscar.apps.partner.models import StockRecord
 from smallslive.artists.models import Artist
 from smallslive.artists.views import ArtistAddView as CoreArtistAddView, ArtistEditView as CoreArtistEditView
@@ -222,6 +223,7 @@ class EventCloneView(CoreEventCloneView):
                 new_sku = uuid.uuid4()[:8]
             stock_record.partner_sku = new_sku
             stock_record.save()
+            ProductImage.objects.create(product=ticket, original=event.photo)
 
 
 event_clone = EventCloneView.as_view()
