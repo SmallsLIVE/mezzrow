@@ -57,7 +57,7 @@
             <form id="alert_form" method="post" action="{% url 'customer:alert-create' pk=product.id %}"
                   class="add-to-basket">
               {% csrf_token %}
-              <p>All advanced tickets for this show have been sold.  Please choose another show or send an email to
+              <p>All advanced tickets for the <strong>{{ product.set }}</strong> show have been sold.  Please choose another show or send an email to
                 <a href="mailto:mezzrowclub@gmail.com">mezzrowclub@gmail.com</a> to be put on a wait-list.</p>
               {% comment %}<button type="submit" class="btn btn-default btn-sm">{% trans "Notify me" %}</button>{% endcomment %}
             </form>
