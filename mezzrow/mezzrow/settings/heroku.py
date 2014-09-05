@@ -52,6 +52,7 @@ CACHES = {
     },
     'staticfiles': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'TIMEOUT': 60 * 60 * 24 * 365,
         'LOCATION': 'staticfiles-filehashes'
     }
 }
