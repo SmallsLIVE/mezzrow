@@ -10,7 +10,7 @@
     src: url('../fonts/Nevis-Bold.ttf.woff') format('woff'),
     url('../fonts/Nevis-Bold.ttf.svg#Nevis-Bold') format('svg'),
     url('../fonts/Nevis-Bold.ttf.eot'),
-    url('../fonts/Nevis-Bold.eot?#iefix') format('embedded-opentype');
+    url('../fonts/Nevis-Bold.ttf.eot?#iefix') format('embedded-opentype');
     font-weight: normal;
     font-style: normal;
 }
