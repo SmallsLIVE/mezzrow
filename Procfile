@@ -1,1 +1,1 @@
-web: newrelic-admin run-program gunicorn --workers $WEB_CONCURRENCY --pythonpath mezzrow mezzrow.wsgi
+web: newrelic-admin run-program waitress --port 80 --pythonpath mezzrow.wsgi:application
