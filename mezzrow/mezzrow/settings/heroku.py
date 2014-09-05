@@ -18,7 +18,17 @@ DEBUG = env_var("DEBUG", False)
 
 # Parse database configuration from $DATABASE_URL
 DATABASES['default'] = dj_database_url.config()
-DATABASES['default']['CONN_MAX_AGE'] = 300
+DATABASES['default']['ENGINE'] = 'django_postgrespool'
+#DATABASES['default']['CONN_MAX_AGE'] = 300
+SOUTH_DATABASE_ADAPTERS = {
+    'default': 'south.db.postgresql_psycopg2'
+}
+DATABASE_POOL_ARGS = {
+    'max_overflow': 10,
+    'pool_size': 10,
+    'recycle': 300
+}
+
 
 # Allow all host headers
 ALLOWED_HOSTS = [
