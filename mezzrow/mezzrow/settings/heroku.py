@@ -49,6 +49,10 @@ CACHES = {
             'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
             'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
         }
+    },
+    'staticfiles': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'staticfiles-filehashes'
     }
 }
 
@@ -67,6 +71,7 @@ TEMPLATE_LOADERS = (
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
+
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_CUSTOM_DOMAIN")
