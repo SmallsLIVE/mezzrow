@@ -42,13 +42,16 @@ ALLOWED_HOSTS = [
 
 # Memcached
 CACHES = {
+    # 'default': {
+    #     'BACKEND': 'django_bmemcached.memcached.BMemcached',
+    #     'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
+    #     'OPTIONS': {
+    #         'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
+    #         'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
+    #     }
+    # },
     'default': {
-        'BACKEND': 'django_bmemcached.memcached.BMemcached',
-        'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
-        'OPTIONS': {
-            'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
-            'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
-        }
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     },
     'staticfiles': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
@@ -60,13 +63,13 @@ CACHES = {
 CACHE_MIDDLEWARE_SECONDS = 300
 SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-TEMPLATE_LOADERS = (
-    ('django.template.loaders.cached.Loader', (
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-        'django.template.loaders.eggs.Loader',
-    )),
-)
+# TEMPLATE_LOADERS = (
+#     ('django.template.loaders.cached.Loader', (
+#         'django.template.loaders.filesystem.Loader',
+#         'django.template.loaders.app_directories.Loader',
+#         'django.template.loaders.eggs.Loader',
+#     )),
+# )
 
 # Static asset configuration
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
