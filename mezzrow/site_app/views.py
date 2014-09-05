@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_cookie
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView
 from django.views.generic.list import ListView
@@ -65,7 +66,7 @@ class HomeView(ListView):
         return data
 
 # cache for 60 * 60 = 60 min
-home_view = cache_page(60 * 60)(HomeView.as_view())
+home_view = vary_on_cookie(cache_page(60 * 60)(HomeView.as_view()))
 #home_view = HomeView.as_view()
 
 
@@ -78,7 +79,7 @@ class MonthView(HomeView):
                                     ).reverse()
 
 # cache for 60 * 60 = 60 min
-month_view = cache_page(60 * 60)(MonthView.as_view())
+month_view = vary_on_cookie(cache_page(60 * 60)(MonthView.as_view()))
 #month_view = MonthView.as_view()
 
 
@@ -91,7 +92,7 @@ class YearView(HomeView):
                                     ).reverse()
 
 # cache for 60 * 60 = 60 min
-year_view = cache_page(60 * 60)(YearView.as_view())
+year_view = vary_on_cookie(cache_page(60 * 60)(YearView.as_view()))
 #year_view = YearView.as_view()
 
 
@@ -101,7 +102,7 @@ class EventDetailView(DetailView):
     template_name = 'events/event_detail.html'
 
 # cache for 60 * 60 = 60 min
-event_view = cache_page(60 * 60)(EventDetailView.as_view())
+event_view = vary_on_cookie(cache_page(60 * 60)(EventDetailView.as_view()))
 #event_view = EventDetailView.as_view()
 
 
@@ -110,7 +111,7 @@ class ArtistDetailView(DetailView):
     model = Artist
     template_name = 'artists/artist_detail.html'
 
-artist_view = cache_page(60 * 60)(ArtistDetailView.as_view())
+artist_view = vary_on_cookie(cache_page(60 * 60)(ArtistDetailView.as_view()))
 #artist_view = ArtistDetailView.as_view()
 
 
@@ -118,7 +119,7 @@ class AboutView(TemplateView):
     template_name = 'about.html'
 
 # cache for 60 * 60 * 24 = 86400s = 24 hours
-about_view = cache_page(60 * 60 * 24)(AboutView.as_view())
+about_view = vary_on_cookie(cache_page(60 * 60 * 24)(AboutView.as_view()))
 #about_view = AboutView.as_view()
 
 
@@ -126,7 +127,7 @@ class ContactView(TemplateView):
     template_name = "contact.html"
 
 # cache for 60 * 60 = 86400s = 24 hours
-contact_view = cache_page(60 * 60)(ContactView.as_view())
+contact_view = vary_on_cookie(cache_page(60 * 60)(ContactView.as_view()))
 #contact_view = ContactView.as_view()
 
 
@@ -134,7 +135,7 @@ class TicketingView(TemplateView):
     template_name = "ticketing.html"
 
 # cache for 60 * 60 * 24 = 86400s = 24 hours
-ticketing_view = cache_page(60 * 60 * 24)(TicketingView.as_view())
+ticketing_view = vary_on_cookie(cache_page(60 * 60 * 24)(TicketingView.as_view()))
 #ticketing_view = TicketingView.as_view()
 
 
