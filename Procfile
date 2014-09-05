@@ -1,1 +1,1 @@
-web: cd mezzrow && newrelic-admin run-program waitress-serve --port 80  mezzrow.wsgi:application
+web: cd mezzrow && newrelic-admin run-program waitress-serve --port $PORT  mezzrow.wsgi:application
