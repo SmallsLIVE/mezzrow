@@ -18,9 +18,9 @@ urlpatterns = patterns('',
     (r'^dashboard/paypal/payflow/', include(payflow_app.urls)),
     (r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^accounts/', include('allauth.urls', app_name="allauth")),
+    url('^$', include('loaderio.urls')),
     url(r'', include('site_app.urls')),
     url(r'', include(shop.urls)),
-    url('^$', include('loaderio.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
 
