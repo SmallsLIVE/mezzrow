@@ -114,6 +114,7 @@ RAVEN_CONFIG = {
 
 INSTALLED_APPS += (
     'djrill',
+    'loaderio',
     'raven.contrib.django.raven_compat',
 
 )

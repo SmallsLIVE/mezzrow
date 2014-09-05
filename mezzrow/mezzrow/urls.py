@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('allauth.urls', app_name="allauth")),
     url(r'', include('site_app.urls')),
     url(r'', include(shop.urls)),
+    url('^$', include('loaderio.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
 
