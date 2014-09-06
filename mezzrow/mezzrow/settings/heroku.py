@@ -43,13 +43,13 @@ ALLOWED_HOSTS = [
 # Memcached
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-        # 'BACKEND': 'django_bmemcached.memcached.BMemcached',
-        # 'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
-        # 'OPTIONS': {
-        #     'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
-        #     'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
-        # }
+        #'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        'BACKEND': 'django_bmemcached.memcached.BMemcached',
+        'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
+        'OPTIONS': {
+            'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
+            'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
+        }
     },
     'staticfiles': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
