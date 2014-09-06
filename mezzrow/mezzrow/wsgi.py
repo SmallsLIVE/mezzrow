@@ -11,11 +11,7 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mezzrow.settings")
 
 from django.core.wsgi import get_wsgi_application
-from dj_static import Cling, MediaCling
-
-
-class MezzrowCling(Cling):
-    def get_base_url(self):
-        return '/static/'
+from dj_static import MediaCling
+from .wsgi_static import MezzrowCling
 
 application = MezzrowCling(MediaCling(get_wsgi_application()))
