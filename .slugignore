@@ -4,3 +4,6 @@ tests.pyc
 local.py
 local.pyc
 node_modules
+*.scss
+*.less
+.sass-cache
