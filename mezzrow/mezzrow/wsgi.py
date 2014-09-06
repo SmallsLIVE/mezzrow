@@ -12,4 +12,4 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mezzrow.settings")
 
 from django.core.wsgi import get_wsgi_application
 from dj_static import Cling, MediaCling
-application = Cling(MediaCling(get_wsgi_application()))
+application = Cling(MediaCling(get_wsgi_application(), base_dir='/static/'), base_dir='/static/')
