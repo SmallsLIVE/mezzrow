@@ -218,7 +218,7 @@ class EventCloneView(CoreEventCloneView):
             stock_record.id = None
             stock_record.product = ticket
             stock_record.num_in_stock = stock_record.initial_num_in_stock
-            new_sku = "{0.month}-{0.day}-{0:%y}-{1}".format(event.start, set_number)
+            new_sku = "{0}-{1.month}-{1.day}-{1:%y}-{2}".format(event.id, event.start, set_number)
             # if that SKU exist for some reason, generate a random one that can be changed later manually
             sku_exists = StockRecord.objects.filter(partner_sku=new_sku).exists()
             if sku_exists:

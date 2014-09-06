@@ -71,7 +71,7 @@ class TicketAddForm(forms.Form):
             category=tickets_category
         )
         partner, created = Partner.objects.get_or_create(name="Mezzrow")
-        new_sku = "{0.month}-{0.day}-{0:%y}-{1}".format(event.start, self.number)
+        new_sku = "{0}-{1.month}-{1.day}-{1:%y}-{2}".format(event.id, event.start, self.number)
         # if that SKU exist for some reason, generate a random one that can be changed later manually
         sku_exists = StockRecord.objects.filter(partner_sku=new_sku).exists()
         if sku_exists:
