@@ -6,23 +6,29 @@
 
 {% block content %}
   <p>Please click on the link for additional information and advanced ticketing</p>
+  {% if user.is_superuser %}
+    <p>Note: showing all future events in the system to the admin user</p>
+    <p><a href="{% url "past_events" %}">Show past events</a></p>
+  {% endif %}
   <dl id="calendar"> <!-- Calendar events go here. -->
     {% regroup events by listing_date as regrouped_events %}
     {% for day in regrouped_events %}
       <dt class="purple">{{ day.grouper|date:"D, F jS, Y" }}</dt>
       {% for event in day.list %}
         <dd class="orange event-date">{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}</dd>
-        <dd class="event"><a href="{% url "event_detail" pk=event.id slug=event.title|slugify %}" class="event-title">{{ event.title }}</a>
-          {% if user.is_superuser %}<br/><span class="label {{ event.status_css_class }}">{{ event.state }}</span> <a href="{% url "event_edit" pk=event.id slug=event.title|slugify %}" class="event-edit">Edit</a>{% endif %}
-          {% if event.state == "Cancelled" and not user.is_superuser %}<span class="label {{ event.status_css_class }}">{{ event.state }}</span>{% endif %}
+        <dd class="event"><a href="{% url "event_detail" pk=event.id slug=event.title|slugify %}"
+                             class="event-title">{{ event.title }}</a>
+          {% if user.is_superuser %}<br/><span class="label {{ event.status_css_class }}">{{ event.state }}</span>
+            <a href="{% url "event_edit" pk=event.id slug=event.title|slugify %}" class="event-edit">Edit</a>{% endif %}
+          {% if event.state == "Cancelled" and not user.is_superuser %}<span class="label {{ event.status_css_class }}">
+            {{ event.state }}</span>{% endif %}
         </dd>
       {% endfor %}
     {% endfor %}
   </dl>
   {% if not user.is_superuser %}
     <p>{% if prev_url %}
-     <a href="{{ prev_url }}">Previous</a>{% endif %} {% if next_url and prev_url %}
+      <a href="{{ prev_url }}">Previous</a>{% endif %} {% if next_url and prev_url %}
       | {% endif %} {% if next_url %}<a href="{{ next_url }}">Next</a>{% endif %}</p>
-  {% else %}<p>Note: showing all events in the system to the admin user</p>
   {% endif %}
 {% endblock content %}

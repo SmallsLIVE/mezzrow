@@ -31,8 +31,8 @@ class HomeView(ListView):
         """
         The view returns a list of events in two week intervals, for both the home page
         and the "next" links. The correct two week interval is set through the URL or by
-        default it's a two week interval from the current date. The admin user sees all events
-        immediately, regardless of date intervals and event status.
+        default it's a two week interval from the current date. The admin user sees all future
+        events immediately, regardless of date intervals and event status.
         """
         events = Event.objects.all()
         if not self.request.user.is_superuser:
@@ -45,6 +45,8 @@ class HomeView(ListView):
             events = events.filter(start__range=(date_range_start, date_range_end))
             # only admin sees draft and hidden events
             events = events.filter(Q(state=Event.STATUS.Published) | Q(state=Event.STATUS.Cancelled))
+        else:
+            events = events.filter(start__gte=timezone.now().date())
         return events.reverse()
 
     def get_context_data(self, **kwargs):
@@ -68,6 +70,16 @@ class HomeView(ListView):
 # cache for 60 * 60 = 60 min
 home_view = vary_on_cookie(cache_page(60 * 60)(HomeView.as_view()))
 #home_view = HomeView.as_view()
+
+
+class PastEventsView(views.SuperuserRequiredMixin, ListView):
+    context_object_name = 'events'
+    template_name = 'home.html'
+
+    def get_queryset(self):
+        return Event.objects.filter(start__lt=timezone.now())
+
+past_events = vary_on_cookie(cache_page(5 * 60)(PastEventsView.as_view()))
 
 
 class MonthView(HomeView):
