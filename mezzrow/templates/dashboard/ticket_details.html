@@ -19,7 +19,7 @@
       <small>{{ event.start|date:"F jS, g:i A" }} </small>
     </h1>
   </div>
-  {% for set, orders in ticket_data.items %}
+  {% for set, lines in ticket_data.items %}
     <div class="row">
       <h4>{{ set }}</h4>
       <table class="table table-condensed">
@@ -32,12 +32,12 @@
         </tr>
         </thead>
         <tbody>
-        {% for order in orders %}
+        {% for line in lines %}
           <tr>
-            <td>{{ order.id }}</td>
-            <td><strong>{{ order.last_name }}, {{ order.first_name }}</strong></td>
-            <td><strong>{{ order.num_items }}</strong></td>
-            <td>${{ order.total_incl_tax }}</td>
+            <td>{{ line.order.number }}</td>
+            <td><strong>{{ line.order.last_name }}, {{ line.order.first_name }}</strong></td>
+            <td><strong>{{ line.quantity }}</strong></td>
+            <td>${{ line.line_price_incl_tax }}</td>
           </tr>
         {% endfor %}
         </tbody>

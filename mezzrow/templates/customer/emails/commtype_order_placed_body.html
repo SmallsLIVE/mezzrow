@@ -2,22 +2,37 @@
 {% load currency_filters i18n %}
 
 {% block body %}
-  {% with ticket=order.lines.all.0 %}
+  {% with tickets=order.lines.all %}
     <p xmlns="http://www.w3.org/1999/html">Dear Guest:</p>
-    <p>Thank you for your advanced purchase of a ticket(s) for: {{ ticket.product.event.title }}.
+    {% if tickets|length > 1 %}
+      <p>Thank you for your advanced purchase of a ticket(s) for:</p>
+      <ul>{% for ticket in tickets %}
+        <li> {{ ticket.product.event.title }}.</li>
+      {% endfor %}</ul>
+      <p>Your ticket guarantees your place(s) at a table in our Listening Room.</p>
+    {% else %}
+      <p>Thank you for your advanced purchase of a ticket(s) for: {{ tickets.0.product.event.title }}.
       Your ticket guarantees your place(s) at a table in our Listening Room.</p>
-    <p>RESERVATION #: {{ order.number }} <br/>
+    {% endif %}
+    <p>RESERVATION #: {{ order.number }} </p>
+    {% for ticket in tickets %}
+    <p>
       PARTY NAME: {{ order.last_name }}, {{ order.first_name }} <br/>
       SHOWTIME: {{ ticket.product.event.start|date:"F jS" }} {{ ticket.product.set }} <br/>
-      Number of Seats: {{ ticket.quantity }}</p>
-    <p>Your party’s name will be on a list at the door when you arrive.  We ask that you arrive a minimum of 20 minutes before the show you have selected.
-      The manager will confirm your reservation and show you to your seat.  Late-comers will be seated at the discretion of the management.</p>
+      Number of Seats: {{ ticket.quantity }}
+    </p>
+    {% endfor %}
+
+    <p>Your party’s name will be on a list at the door when you arrive. We ask that you arrive a minimum of 20 minutes
+      before the show you have selected.
+      The manager will confirm your reservation and show you to your seat. Late-comers will be seated at the discretion
+      of the management.</p>
     <p>We look forward to having you at Mezzrow – we hope you enjoy the music.</p>
     <p>Any further questions please email us – <a href="mailto:mezzrowclub@gmail.com">mezzrowclub@gmail.com</a></p>
     <p>Thanks!</p>
     <p>Mezzrow
-163 West 10th Street, Basement
-New York, NY 10014
-<a href="http://www.mezzrow.com">www.mezzrow.com</a></p>
+      163 West 10th Street, Basement
+      New York, NY 10014
+      <a href="http://www.mezzrow.com">www.mezzrow.com</a></p>
   {% endwith %}
 {% endblock %}

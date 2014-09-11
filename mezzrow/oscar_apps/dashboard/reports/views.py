@@ -5,7 +5,7 @@ from natsort import natsorted
 from oscar.core.loading import get_class
 from smallslive.events.models import Event
 
-Order = get_class('order.models', 'Order')
+Line = get_class('order.models', 'Line')
 
 
 class TicketDetailsView(DetailView):
@@ -20,9 +20,9 @@ class TicketDetailsView(DetailView):
         products = natsorted(products, key=attrgetter('set'))
         for product in products:
             person_list = []
-            for order in Order.objects.filter(basket__lines__product=product).exclude(
-                    status="Cancelled").order_by('last_name'):
-                person_list.append(order)
+            for line in Line.objects.filter(product=product).exclude(
+                    status="Cancelled").order_by('order__last_name'):
+                person_list.append(line)
             sets[product.set] = person_list
         data['ticket_data'] = sets
         return data
