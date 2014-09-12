@@ -52,8 +52,8 @@
       </ul>
 <div class="container">
   <div class="row">
-    <div class="col-xs-4"></div>
-    <div class="col-xs-4 no-scale">
+    <div class="col-xs-3"></div>
+    <div class="col-xs-6 no-scale">
       <div class="navbar navbar-static-top" role="navigation">
         <div class="navbar-inner">
           <img src="{% static "img/head.png" %}"/>
@@ -62,12 +62,13 @@
             <li {% block about_active %}{% endblock about_active %}><a href="{% url "about" %}">Who We Are</a></li>
             <li {% block contact_active %}{% endblock contact_active %}><a href="{% url "contact" %}">Info/Contact</a></li>
             <li {% block ticketing_active %}{% endblock ticketing_active %}><a href="{% url "ticketing" %}">Ticketing</a></li>
+            <li {% block gallery_active %}{% endblock gallery_active %}><a href="{% url "gallery" %}">Photos</a></li>
             <!--     <li><a href="reservations.html">Reservations</a></li> -->
           </ul>
         </div>
       </div>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-3">
     </div>
   </div>
 </div>

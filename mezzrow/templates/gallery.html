@@ -1,0 +1,33 @@
+{% extends "mezzrow_base_medium.html" %}
+{% load static from staticfiles %}
+
+{% block section_title %}Gallery{% endblock section_title %}
+
+{% block gallery_active %}class="active back"{% endblock gallery_active %}
+
+{% block content %}
+  <div class="gallery">
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
+        <a href="{% static "img/gallery/1.jpg" %}"><img src="{% static "img/gallery/1_thumb.jpg" %}" class="img-responsive" alt=""/></a>
+        <a href="{% static "img/gallery/3.jpg" %}"><img src="{% static "img/gallery/3_thumb.jpg" %}" class="img-responsive" alt=""/></a>
+        <a href="{% static "img/gallery/5.jpg" %}"><img src="{% static "img/gallery/5_thumb.jpg" %}" class="img-responsive" alt=""/></a>
+        <a href="{% static "img/gallery/7.jpg" %}"><img src="{% static "img/gallery/7_thumb.jpg" %}" class="img-responsive" alt=""/></a>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <a href="{% static "img/gallery/2.jpg" %}"><img src="{% static "img/gallery/2_thumb.jpg" %}" class="img-responsive" alt=""/></a>
+        <a href="{% static "img/gallery/4.jpg" %}"><img src="{% static "img/gallery/4_thumb.jpg" %}" class="img-responsive" alt=""/></a>
+        <a href="{% static "img/gallery/6.jpg" %}"><img src="{% static "img/gallery/6_thumb.jpg" %}" class="img-responsive" alt=""/></a>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block extra_js %}
+  <script src="{% static "js/imagelightbox.min.js" %}"></script>
+  <script src="{% static "js/gallery.js" %}"></script>
+{% endblock extra_js %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static "css/imagelightbox.css" %}"/>
+{% endblock extra_head %}

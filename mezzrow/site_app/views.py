@@ -132,7 +132,7 @@ class AboutView(TemplateView):
     template_name = 'about.html'
 
 # cache for 60 * 60 = 4600s = 1 hour
-about_view = vary_on_cookie(cache_page(60 * 60 * 24)(AboutView.as_view()))
+about_view = vary_on_cookie(cache_page(60 * 60)(AboutView.as_view()))
 #about_view = AboutView.as_view()
 
 
@@ -148,8 +148,16 @@ class TicketingView(TemplateView):
     template_name = "ticketing.html"
 
 # cache for 60 * 60 = 4600s = 1 hour
-ticketing_view = vary_on_cookie(cache_page(60 * 60 * 24)(TicketingView.as_view()))
+ticketing_view = vary_on_cookie(cache_page(60 * 60)(TicketingView.as_view()))
 #ticketing_view = TicketingView.as_view()
+
+
+class GalleryView(TemplateView):
+    template_name = "gallery.html"
+
+# cache for 60 * 60 = 4600s = 1 hour
+gallery_view = vary_on_cookie(cache_page(60 * 60)(GalleryView.as_view()))
+#gallery_view = GalleryView.as_view()
 
 
 class EventAddView(views.SuperuserRequiredMixin, CoreEventAddView):
