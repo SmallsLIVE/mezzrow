@@ -130,30 +130,6 @@ artist_view = vary_on_cookie(cache_page(5 * 60)(ArtistDetailView.as_view()))
 #artist_view = ArtistDetailView.as_view()
 
 
-class AboutView(TemplateView):
-    template_name = 'about.html'
-
-# cache for 60 * 60 = 4600s = 1 hour
-about_view = vary_on_cookie(cache_page(60 * 60)(AboutView.as_view()))
-#about_view = AboutView.as_view()
-
-
-class ContactView(TemplateView):
-    template_name = "contact.html"
-
-# cache for 60 * 60 = 4600s = 1 hour
-contact_view = vary_on_cookie(cache_page(60 * 60)(ContactView.as_view()))
-#contact_view = ContactView.as_view()
-
-
-class TicketingView(TemplateView):
-    template_name = "ticketing.html"
-
-# cache for 60 * 60 = 4600s = 1 hour
-ticketing_view = vary_on_cookie(cache_page(60 * 60)(TicketingView.as_view()))
-#ticketing_view = TicketingView.as_view()
-
-
 class GalleryView(TemplateView):
     template_name = "gallery.html"
 

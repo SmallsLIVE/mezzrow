@@ -90,7 +90,6 @@ SITE_ID = 1
 
 MIDDLEWARE_CLASSES += (
     'oscar.apps.basket.middleware.BasketMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (

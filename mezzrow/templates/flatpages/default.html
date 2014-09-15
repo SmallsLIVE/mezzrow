@@ -1,0 +1,12 @@
+{% extends "mezzrow_base_narrow.html" %}
+{% load static from staticfiles %}
+
+{% block section_title %}
+    {{ flatpage.title}}
+{% endblock %}
+
+{% block content %}
+  <div class="contact">
+    {{ flatpage.content }}
+  </div>
+{% endblock %}
