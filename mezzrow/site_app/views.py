@@ -38,11 +38,13 @@ class HomeView(ListView):
         if not self.request.user.is_superuser:
             two_week_interval = int(self.kwargs.get('week', 0))
             start_days = two_week_interval * 14
-            date_range_start = timezone.now().date() + timezone.timedelta(days=start_days)
+            date_range_start = timezone.localtime(timezone.now()) + timezone.timedelta(days=start_days)
+            # don't show last nights events that are technically today
+            date_range_start = date_range_start.replace(hour=10)
             # extra +1 at the end is to include the events on the last days when filtering on a DateTime field
             end_days = ((two_week_interval + 1) * 14) + 1
             date_range_end = date_range_start + timezone.timedelta(days=end_days)
-            events = events.filter(start__range=(date_range_start, date_range_end))
+            events = events.filter(start__gte=date_range_start, start__lte=date_range_end)
             # only admin sees draft and hidden events
             events = events.filter(Q(state=Event.STATUS.Published) | Q(state=Event.STATUS.Cancelled))
         else:
