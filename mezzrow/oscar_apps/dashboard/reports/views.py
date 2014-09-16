@@ -21,7 +21,7 @@ class TicketDetailsView(DetailView):
         for product in products:
             person_list = []
             for line in Line.objects.filter(product=product).exclude(
-                    status="Cancelled").order_by('order__last_name'):
+                    status="Cancelled").exclude(status="Exchanged").order_by('order__last_name'):
                 person_list.append(line)
             sets[product.set] = person_list
         data['ticket_data'] = sets

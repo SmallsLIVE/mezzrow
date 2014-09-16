@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     'oscar_apps.checkout',
     'oscar_apps.customer',
     'oscar_apps.dashboard.catalogue',
+    'oscar_apps.dashboard.orders',
     'oscar_apps.dashboard.reports',
     'oscar_apps.order',
     'oscar_apps.partner',
@@ -218,7 +219,7 @@ OSCAR_FROM_EMAIL = 'mezzrowclub@gmail.com'
 OSCAR_INITIAL_ORDER_STATUS = 'Completed'
 OSCAR_INITIAL_LINE_STATUS = 'Completed'
 OSCAR_ORDER_STATUS_PIPELINE = {
-    'Completed': ('Cancelled',),
+    'Completed': ('Cancelled', 'Exchanged'),
     'Cancelled': (),
 }
 OSCAR_LINE_STATUS_PIPELINE = OSCAR_ORDER_STATUS_PIPELINE
