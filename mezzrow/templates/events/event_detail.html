@@ -34,7 +34,7 @@
         <p class="set">{{ product.set }}</p>
         {% if session.availability.is_available_to_buy %}
           <p class="{{ session.availability.code }} availability">
-            {{ session.availability.num_available }} guaranteed seats available
+            {{ session.availability.num_available }} Music Room seats available
           </p>
           {% basket_form request product as basket_form single %}
           <form action="{% url 'basket:add' %}" class="reservation_form" method="post">
@@ -42,7 +42,7 @@
             {{ basket_form.as_p }}
             <input type="hidden" name="next" value="{% url "basket:summary" %}"/>
             {% if session.availability.num_available > 0 %}
-              <button type="submit" class="btn btn-default btn-sm">Guaranteed Seat for the {{ product.set }} Show<span
+              <button type="submit" class="btn btn-default btn-sm">Music Room seats for the {{ product.set }} Show<span
                       class="arrow-right"></span></button>
             {% endif %}
             {% if user.is_superuser %}
@@ -57,9 +57,8 @@
             <form id="alert_form" method="post" action="{% url 'customer:alert-create' pk=product.id %}"
                   class="add-to-basket">
               {% csrf_token %}
-              <p>All advanced tickets for the <strong>{{ product.set }}</strong> show have been sold.  Please choose another show or send an email to
-                <a href="mailto:mezzrowclub@gmail.com">mezzrowclub@gmail.com</a> to be put on a wait-list this show.
-                There may still be room in the lounge for the non-reserved seats.</p>
+              <p>All the Music Room seats have been reserved for this show, however, there is still room available as a walk-in for our Lounge.  Please email us at
+                <a href="mailto:mezzrowclub@gmail.com">mezzrowclub@gmail.com</a> if you need further information</p>
               {% comment %}<button type="submit" class="btn btn-default btn-sm">{% trans "Notify me" %}</button>{% endcomment %}
             </form>
           {% endif %}
