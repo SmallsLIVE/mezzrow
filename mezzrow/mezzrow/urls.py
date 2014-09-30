@@ -1,5 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic.base import RedirectView
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from oscar.app import shop
 from paypal.express.dashboard.app import application as express_app
 from paypal.payflow.dashboard.app import application as payflow_app
