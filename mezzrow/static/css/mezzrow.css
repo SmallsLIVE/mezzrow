@@ -271,7 +271,7 @@ button.back {
 }
 
 ul.social {
-    position: fixed;
+    position: absolute;
     right: 10px;
     top: 10px;
     list-style-type: none
@@ -470,4 +470,9 @@ input[type=text], input[type=url], input[type=email], input[type=password] {
 
 .gallery img:hover {
     opacity: 1;
+}
+
+.mezzrow-logo {
+    margin-left: auto;
+    margin-right: auto;
 }

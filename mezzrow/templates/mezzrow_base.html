@@ -4,15 +4,15 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
   <title>{% block section_title %}{% endblock section_title %} | Mezzrow</title>
+
   <link rel="shortcut icon" href="{% static "favicon.ico" %}">
-  <!-- Bootstrap core CSS -->
   <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
-  <!-- Custom styles for this template -->
   <link href="{% static "css/mezzrow.css" %}" rel="stylesheet">
+
   <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -53,11 +53,10 @@
       </ul>
 <div class="container">
   <div class="row">
-    <div class="col-xs-3"></div>
-    <div class="col-xs-6 no-scale">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
       <div class="navbar navbar-static-top" role="navigation">
         <div class="navbar-inner">
-          <img src="{% static "img/head.png" %}"/>
+          <img src="{% static "img/head.png" %}" class="img-responsive mezzrow-logo"/>
           <ul class="nav nav-mezz navbar-nav">
             <li {% block home_active %}{% endblock home_active %}><a href="{% url "home" %}">Schedule</a></li>
             <li {% block about_active %}{% endblock about_active %}><a href="{% url "about" %}">Who We Are</a></li>
@@ -69,8 +68,6 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-3">
-    </div>
   </div>
 </div>
 <div class="container">
@@ -81,22 +78,18 @@
   </div>
 </div>
 <!-- /container -->
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="{% static "js/bootstrap.min.js" %}"></script>
 <script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-53231317-1', 'auto');
-ga('require', 'linkid', 'linkid.js');
-ga('require', 'displayfeatures');
-ga('send', 'pageview');
-
+  ga('create', 'UA-53231317-1', 'auto');
+  ga('require', 'linkid', 'linkid.js');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
 </script>
 {% block extra_js %}{% endblock extra_js %}
 </body>

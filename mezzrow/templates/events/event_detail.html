@@ -42,8 +42,7 @@
             {{ basket_form.as_p }}
             <input type="hidden" name="next" value="{% url "basket:summary" %}"/>
             {% if session.availability.num_available > 0 %}
-              <button type="submit" class="btn btn-default btn-sm">Music Room seats for the {{ product.set }} Show<span
-                      class="arrow-right"></span></button>
+              <button type="submit" class="btn btn-default btn-sm">Music Room seats for the {{ product.set }} Show <span class="glyphicon glyphicon-chevron-right"></span></button>
             {% endif %}
             {% if user.is_superuser %}
               <a href="{% url "dashboard:catalogue-product" pk=product.id %}" class="btn btn-default btn-sm">Edit
@@ -65,7 +64,7 @@
         {% endif %}
       {% endfor %}
     </div>
-    <a href="{% url "home" %}" type="button" class="btn btn-default btn-sm back"><span class="arrow-left"></span>View
+    <a href="{% url "home" %}" type="button" class="btn btn-default btn-sm back"><span class="glyphicon glyphicon-chevron-left"></span> View
       Full Schedule</a>
     {% if user.is_superuser %}
       <div class="button-group">
