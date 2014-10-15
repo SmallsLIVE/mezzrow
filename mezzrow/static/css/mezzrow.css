@@ -102,6 +102,7 @@ button.back {
     display: block;
     margin: 0 auto;
     width: 360px;
+    text-align: center;
 }
 .navbar .nav-mezz,
 .navbar .nav-mezz > li {
@@ -475,4 +476,12 @@ input[type=text], input[type=url], input[type=email], input[type=password] {
 .mezzrow-logo {
     margin-left: auto;
     margin-right: auto;
+}
+
+.basket-items:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+
+.basket-items:nth-child(even) {
+    background-color: #fff;
 }
