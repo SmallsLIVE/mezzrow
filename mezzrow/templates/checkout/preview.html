@@ -1,60 +1,124 @@
 {% extends "checkout/checkout.html" %}
 {% load currency_filters %}
-{% load url from future %}
 {% load i18n %}
+{% load purchase_info_tags %}
+{% load thumbnail %}
+{% load url from future %}
 
 {% block title %}
-    {% trans "Order preview" %} | {{ block.super }}
+  {% trans "Order preview" %} | {{ block.super }}
 {% endblock %}
 
 {% block checkout_nav %}
-    {% include 'checkout/nav.html' with step=4 %}
+  {% include 'checkout/nav.html' with step=4 %}
 {% endblock %}
 
 {% block checkout_title %}
-    {% trans "Preview order" %}
+  {% trans "Preview order" %}
 {% endblock %}
 
-{% block place_order %}
-    <form method="post" action="{% url 'checkout:preview' %}" id="place_order_form">
-        {% csrf_token %}
-        <input type="hidden" name="action" value="place_order" />
+{% block order_contents %}
+  <div class="sub-header">
+    <h2>{% trans "Order contents" %}</h2>
+  </div>
+  <div class="row-fluid" id="no-more-tables">
+    <table class="table table-condensed">
+      <thead>
+      <tr class="basket-title">
+        <th class="hidden-phone hidden-table"></th>
+        <th>{% trans "Product" %}</th>
+        <th>{% trans "Quantity" %}</th>
+        <th>{% trans "Price" %}</th>
+      </tr>
+      </thead>
+      {% for line in basket.all_lines %}
+        {% purchase_info_for_line request line as session %}
+        <tr class="basket-items">
+            <td class="hidden-phone hidden-table">
+              <div class="image_container">
+                {% with image=line.product.primary_image %}
+                  {% thumbnail image.original "100x100" upscale=False as thumb %}
+                    <a href="{{ form.instance.product.get_absolute_url }}"><img class="thumbnail" src="{{ thumb.url }}"
+                                                                                alt="{{ product.get_title }}"></a>
+                  {% endthumbnail %}
+                {% endwith %}
+              </div>
+            </td>
+            <td data-title="Item">
+              <h4><a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a></h4>
+              <span class="availability {{ session.availability.code }}">{{ session.availability.message }}</span>
+            </td>
+            <td data-title="Quantity">
+              {{ line.quantity }}
+            </td>
+            <td data-title="Price">
+              <p class="price_color">
+                {% if not show_tax_separately and line.is_tax_known %}
+                  {{ line.line_price_incl_tax|currency:basket.currency }}
+                {% else %}
+                  {{ line.line_price_excl_tax|currency:basket.currency }}
+                {% endif %}
+              </p>
+            </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
 
-        {% comment %}
+
+  <div class="row-fluid">
+    <div class="span6">&nbsp;</div>
+    <div class="span6">
+      {% include 'basket/partials/basket_totals.html' %}
+    </div>
+  </div>
+
+  {% block order_contents_actions %}
+  {% endblock %}
+
+{% endblock order_contents %}
+
+{% block place_order %}
+  <form method="post" action="{% url 'checkout:preview' %}" id="place_order_form">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="place_order"/>
+
+    {% comment %}
             When submitting sensitive data on the payment details page (eg a bankcard)
             we don't want to save the data and so we pass the bound form to the preview
             template and render it in a hidden div.  Then the payment information will
             get re-submitted when the user confirms the order.
         {% endcomment %}
-        <div style="display:none">
-            {% block hiddenforms %}{{ bankcard_form.as_p }}{% endblock %}
-        </div>
+    <div style="display:none">
+      {% block hiddenforms %}{{ bankcard_form.as_p }}{% endblock %}
+    </div>
 
-        <div class="form-actions clearfix">
-            <div class="row-fluid">
-                <div class="span6 offset6">
-                    <a href="{% url 'basket:summary' %}" class="btn">{% trans "Edit order contents" %}</a>
-                     <button id='place-order' type="submit" class="btn btn-primary btn-large js-disable-on-click" data-loading-text="{% trans 'Submitting...' %}">{% trans "Place order" %}</button>
-                </div>
-            </div>
+    <div class="form-actions clearfix">
+      <div class="row-fluid">
+        <div class="span6 offset6">
+          <a href="{% url 'basket:summary' %}" class="btn">{% trans "Edit order contents" %}</a>
+          <button id='place-order' type="submit" class="btn btn-primary btn-large js-disable-on-click"
+                  data-loading-text="{% trans 'Submitting...' %}">{% trans "Place order" %}</button>
         </div>
-    </form>
+      </div>
+    </div>
+  </form>
 {% endblock place_order %}
 
 
 {% block payment_method %}
-    <div class="span12">
+  <div class="span12">
     <div class="sub-header">
-        <h2>{% trans "Payment" %}</h2>
+      <h2>{% trans "Payment" %}</h2>
     </div>
     <div class="well well-success">
-        <p>{% blocktrans with amount=order_total.incl_tax|currency %}<strong>{{ amount }}</strong> will be debited from your bankcard.{% endblocktrans %}</p>
-        <div class="alert-actions">
-            <a href="{% url 'checkout:payment-details' %}" class="btn">{% trans "Change payment details" %}</a>
-        </div>
+      <p>{% blocktrans with amount=order_total.incl_tax|currency %}<strong>{{ amount }}</strong> will be debited from
+        your bankcard.{% endblocktrans %}</p>
+
+      <div class="alert-actions">
+        <a href="{% url 'checkout:payment-details' %}" class="btn">{% trans "Change payment details" %}</a>
+      </div>
     </div>
-</div>
+  </div>
 {% endblock %}
 
-{% block order_contents_actions %}
-{% endblock %}
