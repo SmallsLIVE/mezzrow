@@ -10,7 +10,7 @@
 
 {% block layout %}
 
-  <header class="header container-fluid">
+  <header class="header container">
     <div class="page_inner">
       <div class="row-fluid">
         {% include "partials/brand.html" %}
@@ -22,9 +22,7 @@
 
   <div class="container">
     <div class="row-fluid">
-      <div class="span2">
-      </div>
-      <div class="span8 frame no-scale">
+      <div class="span10 offset1 frame">
         <div class="frame-inner checkout">
           <hr class="frame-head-border-sm"/>
           <hr class="frame-head-border"/>
@@ -59,8 +57,6 @@
             {% endfor %}
           </div>
         </div>
-      </div>
-      <div class="span2">
       </div>
     </div>
     <!-- /row -->

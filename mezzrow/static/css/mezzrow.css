@@ -101,7 +101,7 @@ button.back {
     opacity:1;
     display: block;
     margin: 0 auto;
-    width: 360px;
+    width: 100%;
     text-align: center;
 }
 .navbar .nav-mezz,
@@ -384,10 +384,7 @@ ul.social li a {
 [id^=id_]{
     width:auto;
 }
-input[type=text], input[type=url], input[type=email], input[type=password] {
-    width:50%;
-    min-width: 280px;
-}
+
 [id^=id_line]{
     width:80%;
 }
@@ -484,4 +481,19 @@ input[type=text], input[type=url], input[type=email], input[type=password] {
 
 .basket-items:nth-child(even) {
     background-color: #fff;
+}
+
+/* phone styles */
+@media (max-width: 480px) {
+    input[type=text], input[type=url], input[type=email], input[type=password] {
+        width:100%;
+    }
+}
+
+/* everything but a phone */
+@media (min-width: 481px) {
+    input[type=text], input[type=url], input[type=email], input[type=password] {
+        width:50%;
+        min-width: 280px;
+    }
 }
