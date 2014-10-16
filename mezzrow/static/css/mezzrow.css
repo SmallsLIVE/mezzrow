@@ -487,10 +487,22 @@ td .image_container {
     min-height: 100px;
 }
 
+.errorlist li {
+    color: #B94A48;
+}
+
 /* phone styles */
 @media (max-width: 480px) {
     input[type=text], input[type=url], input[type=email], input[type=password] {
         width:100%;
+    }
+}
+
+/* phone and tablet styles */
+@media (max-width: 767px) {
+    #product_gallery .carousel-inner > .item {
+        height: inherit;
+        line-height: inherit;
     }
 }
 

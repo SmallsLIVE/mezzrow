@@ -16,7 +16,9 @@
 
   <form action="." method="post" class="form-stacked well">
     {% csrf_token %}
+    <div class="control-group error">
     {{ form.non_field_errors }}
+    </div>
     <div class="row" style="margin-left: 20px">
       <div class="span4">
         {% include "partials/form_field.html" with field=form.username %}
