@@ -6,7 +6,8 @@ django-oscar-paypal==0.9.1
 django-postgrespool==0.3.0
 django-sslify>=0.2
 gevent==1.0.1
+gunicorn==19.1.1
 natsort==3.5.0
-newrelic==2.28.0.26
+newrelic==2.34.0.29
 python-binary-memcached==0.24.2
 raven==5.0.0
