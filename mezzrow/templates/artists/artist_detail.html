@@ -16,7 +16,7 @@
       <li><strong>{{ artist.full_name }}</strong></li>
       <li><strong>Instruments:</strong> {{ artist.instruments.all|join:", " }}</li>
       <li><br/></li>
-      {% if artist.biography %}<li><strong>Biography:</strong> {{ artist.biography|safe }}</li>{% endif %}
+      {% if artist.biography %}<li class="event-description"><strong>Biography:</strong> {{ artist.biography|safe }}</li>{% endif %}
       {% if artist.website %}<li><strong>Website:</strong> {{ artist.website|urlize }}</li>{% endif %}
     </ul>
   </div>
