@@ -51,14 +51,14 @@
                                 {{ form.id }}
                                 {% with image=product.primary_image %}
                                     {% thumbnail image.original "100x100" upscale=False as thumb %}
-                                        <a href="{{ product.get_absolute_url }}">
+                                        <a href="{% url "event_detail" pk=product.event.id slug=product.event.title|slugify %}">
                                             <img class="thumbnail" src="{{ thumb.url }}" alt="{{ product.get_title }}"/>
                                         </a>
                                     {% endthumbnail %}
                                 {% endwith %}
                             </td>
                             <td class="" data-title="Item">
-                                <h4><a href="{{ product.get_absolute_url }}">{{ line.description }}</a></h4>
+                                <h4><a href="{% url "event_detail" pk=product.event.id slug=product.event.title|slugify %}">{{ line.description }}</a></h4>
                                 <p class="availability {{ session.availability.code }}">{{ session.availability.message }}</p>
                             </td>
                             <td class="" data-title="Quantity">
