@@ -118,42 +118,42 @@
     <div class="sub-header">
         <h3>{% trans "Order details" %}</h3>
     </div>
+    <div class="row-fluid" id="no-more-tables">
 
-    <div class="basket-title">
-        <div class="row-fluid">
-            <h4 class="span9">{% trans "Items purchased" %}</h4>
+    <table class="table table-condensed">
+    <thead>
+    <tr class="basket-title">
+            <th class="hidden-phone hidden-tablet"></th>
+            <th>{% trans "Items purchased" %}</th>
             {% comment %}<h4 class="span3 align-center">{% trans "Estimated dispatch date" %}</h4>{% endcomment %}
-            <h4 class="span1 align-center">{% trans "Quantity" %}</h4>
-            <h4 class="span2 align-right">{% trans "Total" %}</h4>
-        </div>
-    </div>
-
+            <th>{% trans "Quantity" %}</th>
+            <th>{% trans "Total" %}</th>
+    </tr>
+    </thead>
+    <tbody>
     {% for line in order.lines.all %}
-        <div class="basket-items">
-            <div class="row-fluid">
-                {% comment %}
-                <div class="span2">
+        <tr class="basket-items">
+                <td class="hidden-phone hidden-tablet">
                     <div class="image_container">
                         {% with image=line.product.primary_image %}
-                            {% thumbnail image.original "200x200" upscale=False as thumb %}
+                            {% thumbnail image.original "100x100" upscale=False as thumb %}
                             <a href="{{ line.product.get_absolute_url }}"><img class="thumbnail" src="{{ thumb.url }}" alt="{{ product.get_title }}"></a>
                             {% endthumbnail %}
                         {% endwith %}
                     </div>
-                </div>
-                {% endcomment %}
-                <div class="span9">
+                </td>
+                <td data-title="Item">
                     <h4><a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a></h4>
-                </div>
+                </td>
                 {% comment %}
                 <div class="span3 align-center">
                     {{ line.est_dispatch_date|default:"-" }}
                 </div>
                 {% endcomment %}
-                <div class="span1 align-center">
+                <td data-title="Quantity">
                     {{ line.quantity }}
-                </div>
-                <div class="span2 align-right">
+                </td>
+                <td data-title="Price">
                     <p class="price_color">
                         {% if show_tax_separately %}
                             {{ line.line_price_before_discounts_excl_tax|currency:order.currency }}
@@ -161,10 +161,12 @@
                             {{ line.line_price_before_discounts_incl_tax|currency:order.currency }}
                         {% endif %}
                     </p>
-                </div>
-            </div>
-        </div>
+                </td>
+        </tr>
     {% endfor %}
+    </tbody>
+    </table>
+    </div>
 
     {% block basket_totals %}
         <div class="row-fluid">

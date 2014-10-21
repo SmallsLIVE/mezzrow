@@ -1,9 +1,7 @@
 {% extends "mezzrow_base.html" %}
 
 {% block container %}
-  <div class="col-xs-3">
-  </div>
-  <div class="col-xs-6 frame no-scale">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 frame">
     <div class="frame-inner">
       <hr class="frame-head-border-sm"/>
       <hr class="frame-head-border"/>
@@ -13,8 +11,6 @@
       <hr class="frame-head-border-sm bottom"/>
       {% block content %}
       {% endblock content %}
-    </div>
-    <div class="col-xs-3">
     </div>
   </div>
 {% endblock container %}

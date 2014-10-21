@@ -101,7 +101,8 @@ button.back {
     opacity:1;
     display: block;
     margin: 0 auto;
-    width: 360px;
+    width: 100%;
+    text-align: center;
 }
 .navbar .nav-mezz,
 .navbar .nav-mezz > li {
@@ -271,7 +272,7 @@ button.back {
 }
 
 ul.social {
-    position: fixed;
+    position: absolute;
     right: 10px;
     top: 10px;
     list-style-type: none
@@ -383,10 +384,7 @@ ul.social li a {
 [id^=id_]{
     width:auto;
 }
-input[type=text], input[type=url], input[type=email], input[type=password] {
-    width:50%;
-    min-width: 280px;
-}
+
 [id^=id_line]{
     width:80%;
 }
@@ -470,4 +468,48 @@ input[type=text], input[type=url], input[type=email], input[type=password] {
 
 .gallery img:hover {
     opacity: 1;
+}
+
+.mezzrow-logo {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.basket-items:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+
+.basket-items:nth-child(even) {
+    background-color: #fff;
+}
+
+td .image_container {
+    min-height: 100px;
+}
+
+.errorlist li {
+    color: #B94A48;
+}
+
+/* phone styles */
+@media (max-width: 480px) {
+    input[type=text], input[type=url], input[type=email], input[type=password] {
+        width:100%;
+    }
+}
+
+/* phone and tablet styles */
+@media (max-width: 767px) {
+    #product_gallery .carousel-inner > .item {
+        height: inherit;
+        line-height: inherit;
+    }
+}
+
+/* everything but a phone */
+@media (min-width: 481px) {
+    input[type=text], input[type=url], input[type=email], input[type=password] {
+        width:50%;
+        min-width: 280px;
+    }
 }
