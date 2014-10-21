@@ -1,5 +1,7 @@
+{% load static from staticfiles %}
+
 <div class="span10 offset1">
   <a class="brand" href="{{ homepage_url }}">
-    <img src="/static/img/head.png" alt="{% block brand_title %}{{ shop_name }}{% endblock %}" />
+    <img src="{% static "img/head.png" %}" alt="{% block brand_title %}{{ shop_name }}{% endblock %}" />
   </a>
 </div>
