@@ -34,7 +34,7 @@
         <p class="set">{{ product.set }}</p>
         {% if session.availability.is_available_to_buy %}
           <p class="{{ session.availability.code }} availability">
-            {{ session.availability.num_available }} Music Room seats available
+            {{ session.availability.num_available }} reserve seats available
           </p>
           {% basket_form request product as basket_form single %}
           <form action="{% url 'basket:add' %}" class="reservation_form" method="post">
@@ -42,7 +42,7 @@
             {{ basket_form.as_p }}
             <input type="hidden" name="next" value="{% url "basket:summary" %}"/>
             {% if session.availability.num_available > 0 %}
-              <button type="submit" class="btn btn-default btn-sm">Music Room seats for the {{ product.set }} Show <span class="glyphicon glyphicon-chevron-right"></span></button>
+              <button type="submit" class="btn btn-default btn-sm">reserve seats for the {{ product.set }} Show <span class="glyphicon glyphicon-chevron-right"></span></button>
             {% endif %}
             {% if user.is_superuser %}
               <a href="{% url "dashboard:catalogue-product" pk=product.id %}" class="btn btn-default btn-sm">Edit
@@ -56,7 +56,7 @@
             <form id="alert_form" method="post" action="{% url 'customer:alert-create' pk=product.id %}"
                   class="add-to-basket">
               {% csrf_token %}
-              <p>All the Music Room seats have been reserved for this show, however, there is still room available as a walk-in for our Lounge.  Please email us at
+              <p>All the reserve seats have been reserved for this show, however, there is still room available as a walk-in for our Lounge.  Please email us at
                 <a href="mailto:mezzrowclub@gmail.com">mezzrowclub@gmail.com</a> if you need further information</p>
               {% comment %}<button type="submit" class="btn btn-default btn-sm">{% trans "Notify me" %}</button>{% endcomment %}
             </form>
