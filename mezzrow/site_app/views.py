@@ -48,7 +48,7 @@ class HomeView(ListView):
             # only admin sees draft and hidden events
             events = events.filter(Q(state=Event.STATUS.Published) | Q(state=Event.STATUS.Cancelled))
         else:
-            events = events.filter(start__gte=timezone.now().date())
+            events = events.filter(start__gte=timezone.localtime(timezone.now()).date())
         return events.reverse()
 
     def get_context_data(self, **kwargs):
