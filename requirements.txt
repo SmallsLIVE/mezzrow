@@ -1,4 +1,4 @@
-git+https://github.com/SmallsLIVE/smallslive.git@f51c77a7527a775285888d921aa13c6ff8a855a5
+git+https://github.com/SmallsLIVE/smallslive.git@cbdd241b17cdd1c869d4e651e62dc8f1c0a68657
 django-bmemcached==0.2.1
 django-loaderio==0.3.0
 django-oscar==0.7.2
