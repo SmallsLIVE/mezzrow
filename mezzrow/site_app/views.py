@@ -224,7 +224,8 @@ class EventCloneView(CoreEventCloneView):
                 new_sku = uuid.uuid4().hex[:10]
             stock_record.partner_sku = new_sku
             stock_record.save()
-            ProductImage.objects.create(product=ticket, original=event.photo)
+            if event.photo:
+                ProductImage.objects.create(product=ticket, original=event.photo)
 
 
 event_clone = EventCloneView.as_view()
