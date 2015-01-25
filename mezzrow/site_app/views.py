@@ -206,11 +206,23 @@ event_edit = EventEditView.as_view()
 
 
 class EventCloneView(CoreEventCloneView):
-    def extra_event_processing(self, event, old_event_id):
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.old_event_id = self.object.id
+        response = super(EventCloneView, self).post(request, *args, **kwargs)
+        self.extra_event_processing()
+        return response
+
+    def extra_event_processing(self):
+        event = self.new_object
+        old_event = Event.objects.get(id=self.old_event_id)
         # clone the tickets
-        old_event = Event.objects.get(id=old_event_id)
         for set_number, ticket in enumerate(old_event.products.all().order_by('id'), start=1):
             stock_record = ticket.stockrecord
+            if ticket.images.exists():
+                image = ticket.primary_image()
+            else:
+                image = None
             ticket.id = None
             ticket.event = event
             ticket.save()
@@ -224,8 +236,10 @@ class EventCloneView(CoreEventCloneView):
                 new_sku = uuid.uuid4().hex[:10]
             stock_record.partner_sku = new_sku
             stock_record.save()
-            if event.photo:
-                ProductImage.objects.create(product=ticket, original=event.photo)
+            if image:
+                image.id = None
+                image.product = ticket
+                image.save()
 
 
 event_clone = EventCloneView.as_view()
