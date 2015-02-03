@@ -206,15 +206,8 @@ event_edit = EventEditView.as_view()
 
 
 class EventCloneView(CoreEventCloneView):
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        self.old_event_id = self.object.id
-        response = super(EventCloneView, self).post(request, *args, **kwargs)
-        self.extra_event_processing()
-        return response
-
     def extra_event_processing(self):
-        event = self.new_object
+        event = self.object
         old_event = Event.objects.get(id=self.old_event_id)
         # clone the tickets
         for set_number, ticket in enumerate(old_event.products.all().order_by('id'), start=1):
