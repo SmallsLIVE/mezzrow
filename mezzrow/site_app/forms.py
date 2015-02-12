@@ -58,7 +58,7 @@ class TicketAddForm(forms.Form):
     def save(self, event):
         tickets_category, created = Category.objects.get_or_create(name="Tickets")
         product_class, created = ProductClass.objects.get_or_create(name="Tickets", requires_shipping=False)
-        ticket_title = "{0} {1.month}/{1.day}/{1.year} - {2}".format(
+        ticket_title = u"{0} {1.month}/{1.day}/{1.year} - {2}".format(
             event.title.strip(), event.start, self.cleaned_data.get('set_name'))
         product = Product.objects.create(
             title=ticket_title,
@@ -71,7 +71,7 @@ class TicketAddForm(forms.Form):
             category=tickets_category
         )
         partner, created = Partner.objects.get_or_create(name="Mezzrow")
-        new_sku = "{0}-{1.month}-{1.day}-{1:%y}-{2}".format(event.id, event.start, self.number)
+        new_sku = u"{0}-{1.month}-{1.day}-{1:%y}-{2}".format(event.id, event.start, self.number)
         # if that SKU exist for some reason, generate a random one that can be changed later manually
         sku_exists = StockRecord.objects.filter(partner_sku=new_sku).exists()
         if sku_exists:
@@ -83,7 +83,8 @@ class TicketAddForm(forms.Form):
             num_in_stock=self.cleaned_data.get('seats'),
             price_excl_tax=self.cleaned_data.get('price'),
         )
-        ProductImage.objects.create(
-            product=product,
-            original=event.photo
-        )
+        if event.photo:
+            ProductImage.objects.create(
+                product=product,
+                original=event.photo
+            )

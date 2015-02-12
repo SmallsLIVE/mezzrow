@@ -206,25 +206,33 @@ event_edit = EventEditView.as_view()
 
 
 class EventCloneView(CoreEventCloneView):
-    def extra_event_processing(self, event, old_event_id):
+    def extra_event_processing(self):
+        event = self.object
+        old_event = Event.objects.get(id=self.old_event_id)
         # clone the tickets
-        old_event = Event.objects.get(id=old_event_id)
         for set_number, ticket in enumerate(old_event.products.all().order_by('id'), start=1):
             stock_record = ticket.stockrecord
+            if ticket.images.exists():
+                image = ticket.primary_image()
+            else:
+                image = None
             ticket.id = None
             ticket.event = event
             ticket.save()
             stock_record.id = None
             stock_record.product = ticket
             stock_record.num_in_stock = stock_record.initial_num_in_stock
-            new_sku = "{0}-{1.month}-{1.day}-{1:%y}-{2}".format(event.id, event.start, set_number)
+            new_sku = u"{0}-{1.month}-{1.day}-{1:%y}-{2}".format(event.id, event.start, set_number)
             # if that SKU exist for some reason, generate a random one that can be changed later manually
             sku_exists = StockRecord.objects.filter(partner_sku=new_sku).exists()
             if sku_exists:
                 new_sku = uuid.uuid4().hex[:10]
             stock_record.partner_sku = new_sku
             stock_record.save()
-            ProductImage.objects.create(product=ticket, original=event.photo)
+            if image:
+                image.id = None
+                image.product = ticket
+                image.save()
 
 
 event_clone = EventCloneView.as_view()
