@@ -69,8 +69,8 @@ class HomeView(ListView):
                 data['next_url'] = reverse('next', kwargs={'week': week+1})
         return data
 
-# cache for 5 * 60 = 5 min
-home_view = vary_on_cookie(cache_page(5 * 60)(HomeView.as_view()))
+# cache for 1 * 60 = 1 min
+home_view = vary_on_cookie(cache_page(1 * 60)(HomeView.as_view()))
 #home_view = HomeView.as_view()
 
 
@@ -81,7 +81,7 @@ class PastEventsView(views.SuperuserRequiredMixin, ListView):
     def get_queryset(self):
         return Event.objects.filter(start__lt=timezone.now())
 
-past_events = vary_on_cookie(cache_page(5 * 60)(PastEventsView.as_view()))
+past_events = vary_on_cookie(cache_page(1 * 60)(PastEventsView.as_view()))
 
 
 class MonthView(HomeView):
@@ -92,8 +92,8 @@ class MonthView(HomeView):
                                     start__month=today.month,
                                     ).reverse()
 
-# cache for 5 * 60 = 5 min
-month_view = vary_on_cookie(cache_page(5 * 60)(MonthView.as_view()))
+# cache for 1 * 60 = 1 min
+month_view = vary_on_cookie(cache_page(1 * 60)(MonthView.as_view()))
 #month_view = MonthView.as_view()
 
 
@@ -105,8 +105,8 @@ class YearView(HomeView):
                                     start__year=today.year,
                                     ).reverse()
 
-# cache for 5 * 60 = 5 min
-year_view = vary_on_cookie(cache_page(5 * 60)(YearView.as_view()))
+# cache for 1 * 60 = 1 min
+year_view = vary_on_cookie(cache_page(1 * 60)(YearView.as_view()))
 #year_view = YearView.as_view()
 
 
@@ -115,8 +115,8 @@ class EventDetailView(DetailView):
     model = Event
     template_name = 'events/event_detail.html'
 
-# cache for 5 * 60 = 5 min
-event_view = vary_on_cookie(cache_page(5 * 60)(EventDetailView.as_view()))
+# cache for 1 * 60 = 1 min
+event_view = vary_on_cookie(cache_page(1 * 60)(EventDetailView.as_view()))
 #event_view = EventDetailView.as_view()
 
 
@@ -125,8 +125,8 @@ class ArtistDetailView(DetailView):
     model = Artist
     template_name = 'artists/artist_detail.html'
 
-# cache for 5 * 60 = 5 min
-artist_view = vary_on_cookie(cache_page(5 * 60)(ArtistDetailView.as_view()))
+# cache for 1 * 60 = 1 min
+artist_view = vary_on_cookie(cache_page(1 * 60)(ArtistDetailView.as_view()))
 #artist_view = ArtistDetailView.as_view()
 
 
