@@ -12,7 +12,5 @@ class EmailUserCreationForm(CoreEmailUserCreationForm):
         fields = ('email', 'first_name', 'last_name')
 
     def save(self, commit=True):
-        print self.fields['first_name']
         user = super(EmailUserCreationForm, self).save(commit=commit)
-        print user.first_name
         return user
