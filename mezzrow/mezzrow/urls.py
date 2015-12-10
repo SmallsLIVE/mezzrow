@@ -11,6 +11,8 @@ from oscar_apps.checkout.views import PaypalExpressSuccessResponseView
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^api/todays-events/$',
+        'site_app.api.todays_events', name="todays_events"),
     url(r'^checkout/paypal/preview/(?P<basket_id>\d+)/$',
         PaypalExpressSuccessResponseView.as_view(preview=True), name='paypal-success-response'),
     url(r'^checkout/paypal/place-order/(?P<basket_id>\d+)/$', PaypalExpressSuccessResponseView.as_view(),
