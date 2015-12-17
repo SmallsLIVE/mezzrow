@@ -8,7 +8,7 @@ class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ('title', 'start', 'end', 'photo', 'in_progress')
+        fields = ('title', 'start', 'end', 'photo', 'in_progress', 'streamable')
 
     def get_in_progress(self, obj):
         now = timezone.now()
