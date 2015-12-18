@@ -1,4 +1,6 @@
 from rest_framework import generics
+from rest_framework.renderers import TemplateHTMLRenderer
+from rest_framework.response import Response
 from smallslive.events.models import Event
 from django.utils import timezone
 import datetime
@@ -8,6 +10,12 @@ from .serializers import EventSerializer
 class TodayEventsView(generics.ListAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+    renderer_classes = (TemplateHTMLRenderer,)
+    template_name = 'events/events_api_list.html'
+
+    def get(self, request, *args, **kwargs):
+        res = super(TodayEventsView, self).get(request, *args, **kwargs)
+        return Response({'events': self.object_list})
 
     def get_queryset(self, *args, **kwargs):
         now = timezone.localtime(timezone.now())

@@ -1,0 +1,31 @@
+{% load static thumbor_tags %}
+{% for upcoming_event in events %}
+  <div class="mini-event" data-end-time="{{ upcoming_event.end.isoformat }}">
+    <div class="mini-event__image">
+      {% if upcoming_event.photo %}
+        <a href="{{ upcoming_event.get_absolute_url }}"><img
+                src="{% thumbor_url upcoming_event.photo.url|urlencode height=80 width=80 smart=True %}" alt=""/></a>
+      {% else %}
+        <a href="{{ upcoming_event.get_absolute_url }}"><img
+                src="http://placehold.it/80x80/232323/232323&text=Event%20image" alt=""/></a>
+      {% endif %}
+    </div>
+    <div class="mini-event-info" data-end-time="{{ current_event.end }}">
+      <p class="mini-event-info__date">{{ upcoming_event.start|date:"g:i A" }}
+        - {{ upcoming_event.end|date:"g:i A" }}</p>
+      <a href="{{ upcoming_event.get_absolute_url }}"><h2
+              class="mini-event-info__title">{{ upcoming_event.title }} {{ upcoming_event.subtitle }}</h2></a>
+      <p class="mini-event-info__sidemen">
+        {% for gig_info in upcoming_event.get_performers %}
+          {{ gig_info.artist.full_name }} <span
+                  class="mini-event-info__instrument">({{ gig_info.role }})</span>{% if not forloop.last %}  //
+        {% endif %}
+        {% endfor %}
+      </p>
+      <a class="mini-event-info__button" href="{{ upcoming_event.get_absolute_url }}">Go to event</a><span
+            class="arrow"></span>
+    </div>
+  </div>
+{% empty %}
+  <p class="coming-up__no-events">No upcoming events for today.</p>
+{% endfor %}
