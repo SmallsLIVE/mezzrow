@@ -7,13 +7,11 @@ https://docs.djangoproject.com/en/1.6/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
-from smallslive.smallslive.settings.base import *
-from oscar import get_core_apps
-from oscar import OSCAR_MAIN_TEMPLATE_DIR
-from smallslive import SMALLSLIVE_TEMPLATE_DIR, SMALLSLIVE_STATIC_DIR
 from django.utils.translation import ugettext_lazy as _
-
-
+from oscar import OSCAR_MAIN_TEMPLATE_DIR
+from oscar import get_core_apps
+from smallslive import SMALLSLIVE_TEMPLATE_DIR, SMALLSLIVE_STATIC_DIR
+from smallslive.smallslive.settings.base import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -57,6 +55,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.twitter',
     'compressor',
     'crispy_forms',
+    'corsheaders',
     'django_extensions',
     'django_thumbor',
     'floppyforms',
@@ -89,10 +88,17 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-
-MIDDLEWARE_CLASSES += (
-    'oscar.apps.basket.middleware.BasketMiddleware',
+MIDDLEWARE_CLASSES = (
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'oscar.apps.basket.middleware.BasketMiddleware'
 )
+
 
 AUTHENTICATION_BACKENDS = (
     'oscar.apps.customer.auth_backends.Emailbackend',

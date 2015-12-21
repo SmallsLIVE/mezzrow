@@ -1,8 +1,9 @@
+from django.views.decorators.cache import cache_page
+from django.utils import timezone
 from rest_framework import generics
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from smallslive.events.models import Event
-from django.utils import timezone
 import datetime
 from .serializers import EventSerializer
 
@@ -24,7 +25,7 @@ class TodayEventsView(generics.ListAPIView):
             date_range_end += datetime.timedelta(days=1)
         date_range_end = date_range_end.replace(hour=6)
         events = Event.objects.filter(state=Event.STATUS.Published).filter(
-            end__gte=date_range_start, end__lte=date_range_end)
+            end__gte=date_range_start, end__lte=date_range_end).order_by('start')
         return events
 
-todays_events = TodayEventsView.as_view()
+todays_events = cache_page(60*120)(TodayEventsView.as_view())
