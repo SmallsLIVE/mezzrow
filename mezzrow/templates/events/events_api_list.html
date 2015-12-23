@@ -14,7 +14,7 @@
       <p class="mini-event-info__date">{{ upcoming_event.start|date:"g:i A" }}
         - {{ upcoming_event.end|date:"g:i A" }}</p>
       <a href="{{ upcoming_event.get_absolute_url }}"><h2
-              class="mini-event-info__title">{{ upcoming_event.title }} {{ upcoming_event.subtitle }}</h2></a>
+              class="mini-event-info__title">{{ upcoming_event.title }} {{ upcoming_event.subtitle }} <span class=“stream-available”>STREAM</span></h2></a>
       <p class="mini-event-info__sidemen">
         {% for gig_info in upcoming_event.get_performers %}
           {{ gig_info.artist.full_name }} <span
