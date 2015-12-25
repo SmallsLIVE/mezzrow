@@ -6,7 +6,7 @@ django-oscar==0.7.2
 django-oscar-paypal==0.9.1
 django-postgrespool==0.3.0
 django-sslify>=0.2
-djangorestframework==2.4.8
+djangorestframework==2.3.14
 gevent==1.0.1
 gunicorn==19.1.1
 natsort==3.5.0

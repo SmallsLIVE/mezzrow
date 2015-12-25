@@ -28,4 +28,4 @@ class TodayEventsView(generics.ListAPIView):
             end__gte=date_range_start, end__lte=date_range_end).order_by('start')
         return events
 
-todays_events = TodayEventsView.as_view()
+todays_events = cache_page(60*120)(TodayEventsView.as_view())
