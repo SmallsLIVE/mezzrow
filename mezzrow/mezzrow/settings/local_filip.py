@@ -58,4 +58,11 @@ LOGGING = {
     }
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
+#CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+        'www.smallslive.com',
+)
+CORS_URLS_REGEX = r'^/api/.*$'
+CORS_EXPOSE_HEADERS = (
+    'Access-Control-Allow-Origin: *',
+)

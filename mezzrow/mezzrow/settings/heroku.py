@@ -153,6 +153,11 @@ PAYPAL_CALLBACK_HTTPS = True
 # Paypal PayFlow Pro
 PAYPAL_PAYFLOW_PRODUCTION_MODE = True
 
+# CORS
 CORS_ORIGIN_WHITELIST = (
-        'smallslive.com',
+        'www.smallslive.com',
+)
+CORS_URLS_REGEX = r'^/api/.*$'
+CORS_EXPOSE_HEADERS = (
+    'Access-Control-Allow-Origin: *',
 )
