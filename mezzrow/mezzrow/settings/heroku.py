@@ -51,11 +51,11 @@ CACHES = {
             'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
         }
     },
-    # 'staticfiles': {
-    #     'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-    #     'TIMEOUT': 60 * 60 * 24 * 365,
-    #     'LOCATION': 'staticfiles-filehashes'
-    # }
+    'staticfiles': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'TIMEOUT': 60 * 60 * 24 * 365,
+        'LOCATION': 'staticfiles-filehashes'
+    }
 }
 
 CACHE_MIDDLEWARE_SECONDS = 300
@@ -72,8 +72,8 @@ TEMPLATE_LOADERS = (
 # Static asset configuration
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = os.environ.get('STATIC_URL')
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-#STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
