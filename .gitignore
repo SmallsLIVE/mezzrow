@@ -69,3 +69,6 @@ smallslive/static/css/application.css
 smallslive/static/sass/application.css
 
 .python-version
+
+mezzrow/staticfiles/*
+!mezzrow/staticfiles/.gitkeep
