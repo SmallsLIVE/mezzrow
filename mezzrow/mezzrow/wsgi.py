@@ -11,7 +11,7 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mezzrow.settings")
 
 from django.core.wsgi import get_wsgi_application
-from whitenoise.django import DjangoWhiteNoise
+from dj_static import MediaCling
+from .wsgi_static import MezzrowCling
 
-
-application = DjangoWhiteNoise(get_wsgi_application())
+application = MezzrowCling(MediaCling(get_wsgi_application()))

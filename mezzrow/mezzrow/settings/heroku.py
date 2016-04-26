@@ -41,20 +41,25 @@ ALLOWED_HOSTS = [
 ]
 
 # Memcached
+# CACHES = {
+#     'default': {
+#         #'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+#         'BACKEND': 'django_bmemcached.memcached.BMemcached',
+#         'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
+#         'OPTIONS': {
+#             'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
+#             'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
+#         }
+#     },
+#     'staticfiles': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#         'TIMEOUT': 60 * 60 * 24 * 365,
+#         'LOCATION': 'staticfiles-filehashes'
+#     }
+# }
 CACHES = {
     'default': {
-        #'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-        'BACKEND': 'django_bmemcached.memcached.BMemcached',
-        'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
-        'OPTIONS': {
-            'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
-            'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
-        }
-    },
-    'staticfiles': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'TIMEOUT': 60 * 60 * 24 * 365,
-        'LOCATION': 'staticfiles-filehashes'
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
 
@@ -73,7 +78,7 @@ TEMPLATE_LOADERS = (
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = os.environ.get('STATIC_URL')
 #STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
+#STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
