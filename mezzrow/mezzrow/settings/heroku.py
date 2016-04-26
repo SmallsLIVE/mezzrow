@@ -138,6 +138,7 @@ INSTALLED_APPS += (
 )
 MANDRILL_API_KEY = os.environ.get("MANDRILL_API_KEY")
 EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
+DEFAULT_FROM_EMAIL = "mezzrowclub@mezzrow.com"
 
 
 # Security
