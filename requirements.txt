@@ -13,4 +13,4 @@ natsort==3.5.0
 newrelic==2.34.0.29
 python-binary-memcached==0.24.2
 raven==5.3.1
-whitenoise==3.0
+whitenoise==2.0.6
