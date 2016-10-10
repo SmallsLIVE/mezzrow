@@ -131,11 +131,12 @@ artist_view = vary_on_cookie(cache_page(1 * 60)(ArtistDetailView.as_view()))
 
 
 class GalleryView(TemplateView):
-    template_name = "gallery.html"
+    def get(self, request):
+        return HttpResponseRedirect('/')
 
 # cache for 60 * 60 = 4600s = 1 hour
-gallery_view = vary_on_cookie(cache_page(60 * 60)(GalleryView.as_view()))
-#gallery_view = GalleryView.as_view()
+# gallery_view = vary_on_cookie(cache_page(60 * 60)(GalleryView.as_view()))
+gallery_view = GalleryView.as_view()
 
 
 class EventAddView(views.SuperuserRequiredMixin, CoreEventAddView):
