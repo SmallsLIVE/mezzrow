@@ -72,3 +72,6 @@ smallslive/static/sass/application.css
 
 mezzrow/staticfiles/*
 !mezzrow/staticfiles/.gitkeep
+
+
+mezzrow/static/oscar/
