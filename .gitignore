@@ -75,3 +75,5 @@ mezzrow/staticfiles/*
 
 
 mezzrow/static/oscar/
+
+*.DS_Store
