@@ -32,14 +32,16 @@
                 <th class="hidden-phone hidden-tablet"></th>
                 <th class="">{% trans "Items to buy now" %}</th>
                 <th class="">{% trans "Quantity" %}</th>
-                <th class="">{% trans "Total" %}</th>
                 <th class="">{% trans "Price" %}</th>
+                <th class="">{% trans "Total" %}</th>
+                <th class="">{% trans "Remove" %}</th>
+                <th class="">{% trans "Update" %}</th>
     {% endblock %}
     </tr>
   </thead>
   <tbody>
     {% block basket_form_main %}
-        <form action="." method="post" class="basket_summary" id="basket_formset">
+        <form action="." method="post" class="basket_summary">
             {% csrf_token %}
             {{ formset.management_form }}
 
@@ -57,51 +59,45 @@
                                     {% endthumbnail %}
                                 {% endwith %}
                             </td>
-                            <td class="" data-title="Item">
+                            <td class="ticket-cell" data-title="Item">
                                 <h4><a href="{% url "event_detail" pk=product.event.id slug=product.event.title|slugify %}">{{ line.description }}</a></h4>
-                                <p class="availability {{ session.availability.code }}">{{ session.availability.message }}</p>
+                                <div class="availability {{ session.availability.code }}">{{ session.availability.message }}</div>
                             </td>
-                            <td class="" data-title="Quantity">
-                                <div class="checkout-quantity control-group {% if form.errors %}error{% endif %}">
-                                    {{ form.quantity }}
-                                    <button class="btn" type="submit">{% trans "Update" %}</button>
-                                    <p>
-                                        <a href="#" data-id="{{ forloop.counter0 }}" data-behaviours="remove" class="inline">{% trans "Remove" %}</a>
-                                        {% if request.user.is_authenticated %}
-                                            | <a href="#" data-id="{{ forloop.counter0 }}" data-behaviours="save" class="inline">{% trans "Save for later" %}</a>
-                                        {% endif %}
-                                        <div style="display:none">
-                                            {{ form.save_for_later }}
-                                            {{ form.DELETE }}
-                                        </div>
-                                        {% for field_errors in form.errors.values %}
-                                            {% for error in field_errors %}
-                                                <span class="error-block"><i class="icon-exclamation-sign"></i> {{ error }}</span>
-                                            {% endfor %}
-
-                                        {% endfor %}
-                                    </p>
-                                </div>
+                            <td class="ticket-cell" data-title="Quantity">
+                                 <div class="checkout-quantity {% if form.errors %}error{% endif %}" id="quantity">{{ form.quantity }}</div>
                             </td>
-                            <td class="" data-title="Total">
-                                <p class="price_color">
+                            <td class="ticket-cell" data-title="Price">
+                                <div class="price_color">
                                     {% if line.is_tax_known %}
                                         {{ line.unit_price_incl_tax|currency:line.price_currency }}
                                     {% else %}
                                         {{ line.unit_price_excl_tax|currency:line.price_currency }}
                                     {% endif %}
-                                </p>
+                                </div>
                             </td>
-                            <td class="" data-title="Price">
-                                <p class="price_color">
+                            <td class="ticket-cell" data-title="Total">
+                                <div class="price_color">
                                     {% if line.is_tax_known %}
                                         {{ line.line_price_incl_tax|currency:line.price_currency }}
                                     {% else %}
                                         {{ line.line_price_excl_tax|currency:line.price_currency }}
                                     {% endif %}
-                                </p>
+                                </div>
+                            </td>
+                            <td class="ticket-cell" data-title="Remove"><p id="remove-button">{{ form.DELETE }}</p></td>
+                            <td class="ticket-cell" data-title="Update">
+                                <button class="btn" type="submit">{% trans "Update" %}</button>
                             </td>
                     </tr>
+                    {% if form.errors.values %}
+                      {% for field_errors in form.errors.values %}
+                      <tr>
+                        {% for error in field_errors %}
+                            <span class="error-block"><i class="icon-exclamation-sign"></i> {{ error }}</span>
+                        {% endfor %}
+                      </tr>
+                      {% endfor %}
+                    {% endif %}
                 {% endwith %}
             {% endfor %}
         </form>
