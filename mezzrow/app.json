@@ -1,0 +1,97 @@
+{
+  "name": "Mezzrow",
+  "scripts": {},
+  "env": {
+    "AWS_ACCESS_KEY_ID": {
+      "required": true
+    },
+    "AWS_S3_CUSTOM_DOMAIN": {
+      "required": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "required": true
+    },
+    "AWS_STORAGE_BUCKET_NAME": {
+      "required": true
+    },
+    "DATABASE_URL": {
+      "required": true
+    },
+    "DEBUG": {
+      "required": true
+    },
+    "DJANGO_SETTINGS_MODULE": {
+      "required": true
+    },
+    "MANDRILL_API_KEY": {
+      "required": true
+    },
+    "MEMCACHEDCLOUD_PASSWORD": {
+      "required": true
+    },
+    "MEMCACHEDCLOUD_SERVERS": {
+      "required": true
+    },
+    "MEMCACHEDCLOUD_USERNAME": {
+      "required": true
+    },
+    "NEW_RELIC_APP_NAME": {
+      "required": true
+    },
+    "PAYPAL_API_PASSWORD": {
+      "required": true
+    },
+    "PAYPAL_API_SIGNATURE": {
+      "required": true
+    },
+    "PAYPAL_API_USERNAME": {
+      "required": true
+    },
+    "PAYPAL_PAYFLOW_PASSWORD": {
+      "required": true
+    },
+    "PAYPAL_PAYFLOW_USER": {
+      "required": true
+    },
+    "PAYPAL_PAYFLOW_VENDOR_ID": {
+      "required": true
+    },
+    "SECRET_KEY": {
+      "required": true
+    },
+    "SENTRY_DSN": {
+      "required": true
+    },
+    "STATIC_URL": {
+      "required": true
+    },
+    "THUMBOR_MEDIA_URL": {
+      "required": true
+    },
+    "THUMBOR_SECURITY_KEY": {
+      "required": true
+    },
+    "THUMBOR_SERVER": {
+      "required": true
+    },
+    "WEB_CONCURRENCY": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "memcachedcloud",
+    "newrelic",
+    "papertrail",
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
