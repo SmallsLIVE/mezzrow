@@ -32,8 +32,8 @@ DATABASES['default']['CONN_MAX_AGE'] = 300
 
 # Allow all host headers
 ALLOWED_HOSTS = [
-    '*.herokuapp.com',
-    '*.herokuapp.com.',
+    '.herokuapp.com',
+    '.herokuapp.com.',
 ]
 
 # Memcached
