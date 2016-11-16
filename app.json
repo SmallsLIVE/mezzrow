@@ -1,6 +1,8 @@
 {
   "name": "Mezzrow",
-  "scripts": {},
+  "scripts": {
+    "postdeploy": "pg_dump $STAGING_DATABASE_URL | psql $DATABASE_URL && python mezzrow/manage.py migrate"
+  },
   "env": {
     "AWS_ACCESS_KEY_ID": {
       "required": true
@@ -60,6 +62,9 @@
       "required": true
     },
     "SENTRY_DSN": {
+      "required": true
+    },
+    "STAGING_DATABASE_URL": {
       "required": true
     },
     "STATIC_URL": {
