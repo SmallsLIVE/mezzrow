@@ -16,7 +16,11 @@
     {% for day in regrouped_events %}
       <dt class="purple">{{ day.grouper|date:"D, F jS, Y" }}</dt>
       {% for event in day.list %}
+        {% if event.end == event.start|set_times_filter %}
+        <dd class="orange event-date">{{ event.start|date:"g:i A" }}</dd>
+        {% else %}
         <dd class="orange event-date">{{ event.start|date:"g:i A" }} and {{ event.start|set_times_filter|date:"g:i A"  }}</dd>
+        {% endif %}
         <dd class="event"><a href="{% url "event_detail" pk=event.id slug=event.title|slugify %}"
                              class="event-title">{{ event.title }}</a>
           {% if user.is_superuser %}<br/><span class="label {{ event.status_css_class }}">{{ event.state }}</span>
