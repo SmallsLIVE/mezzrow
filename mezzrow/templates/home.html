@@ -1,4 +1,5 @@
 {% extends "mezzrow_base_narrow.html" %}
+{% load sets_filters %}
 
 {% block section_title %}Schedule{% endblock section_title %}
 
@@ -15,7 +16,7 @@
     {% for day in regrouped_events %}
       <dt class="purple">{{ day.grouper|date:"D, F jS, Y" }}</dt>
       {% for event in day.list %}
-        <dd class="orange event-date">{{ event.start|date:"g:i A" }} to {{ event.end|date:"g:i A" }}</dd>
+        <dd class="orange event-date">{{ event.start|date:"g:i A" }} and {{ event.start|set_times_filter|date:"g:i A"  }}</dd>
         <dd class="event"><a href="{% url "event_detail" pk=event.id slug=event.title|slugify %}"
                              class="event-title">{{ event.title }}</a>
           {% if user.is_superuser %}<br/><span class="label {{ event.status_css_class }}">{{ event.state }}</span>
