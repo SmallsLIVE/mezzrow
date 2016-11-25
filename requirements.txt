@@ -1,12 +1,15 @@
 git+https://github.com/SmallsLIVE/smallslive.git@29f655197b5913da5c5c4597837e6085dd507819
+Django==1.6.11
 django-bmemcached==0.2.1
 django-cors-headers==1.1.0
+django-haystack==2.4.1
 django-loaderio==0.3.0
 django-oscar==0.7.2
 django-oscar-paypal==0.9.1
 django-postgrespool==0.3.0
 django-sslify>=0.2
 djangorestframework==2.3.14
+email-validator==1.0.1
 gevent==1.0.1
 gunicorn==19.1.1
 natsort==3.5.0

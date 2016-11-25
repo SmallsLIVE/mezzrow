@@ -1,5 +1,14 @@
 {% extends "checkout/layout.html" %}
 
+<!--
+
+ATTENTION!
+
+This file was modified in October 2016. The returning customer option was
+disabled, and the guest status was hard-coded and hidden into the template.
+
+-->
+
 {% load i18n %}
 
 {% block title %}
@@ -27,8 +36,8 @@
 
     <div class="control-group">
       <div class="controls">
-         <div class="radio">
-          {{ form.options.0 }}
+        <div class="radio">
+          <input type="hidden" name="options" type="radio" value="anonymous" />
           <div class="form-inline">
             {% include "partials/form_field.html" with field=form.first_name %}
             {% include "partials/form_field.html" with field=form.last_name %}
@@ -37,30 +46,6 @@
       </div>
     </div>
 
-
-    <div class="control-group {% if form.password.errors %}error{% endif %}">
-      {{ form.options.errors }}
-      <div class="controls">
-        <div class="radio">
-          {{ form.options.2 }}
-          <div class="form-inline">
-            {{ form.password }}
-            <small><a href="{% url 'password-reset' %}" tabindex="-1">{% trans "Get a password reminder" %}</a></small>
-            {% for error in form.password.errors %}
-              <span class="error-block">{{ error }}</span>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <div class="controls">
-        <div class="radio">
-          {{ form.options.1 }}
-        </div>
-      </div>
-    </div>
     <div class="form-actions">
       <div class="row-fluid">
         <div class="span3">
