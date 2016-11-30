@@ -26,8 +26,8 @@ class GatewayForm(CoreGatewayForm):
             if 'username' in self.cleaned_data:
                 email = normalise_email(self.cleaned_data['username'])
                 #
-                # Overriding Oscar's built in GatewayForm cleaning that looks for
-                # an existing account.
+                # Overriding Oscar's built in GatewayForm cleaning that looks
+                # for an existing account. This code is live by default in Oscar.
                 #
                 # if User._default_manager.filter(email__iexact=email).exists():
                 #     msg = _("A user with that email address already exists")
