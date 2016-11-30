@@ -3,6 +3,10 @@ from oscar.apps.checkout.forms import GatewayForm as CoreGatewayForm
 from oscar.apps.customer.utils import normalise_email
 from email_validator import validate_email, EmailNotValidError
 
+from django.utils.translation import ugettext_lazy as _
+from oscar.core.compat import get_user_model
+User = get_user_model()
+
 class GatewayForm(CoreGatewayForm):
     username = forms.EmailField(required=True)
     first_name = forms.CharField(max_length=150, required=True,
@@ -16,6 +20,19 @@ class GatewayForm(CoreGatewayForm):
                 del self.errors['first_name']
             if 'last_name' in self.errors:
                 del self.errors['last_name']
+        if self.is_guest_checkout() or self.is_new_account_checkout():
+            if 'password' in self.errors:
+                del self.errors['password']
+            if 'username' in self.cleaned_data:
+                email = normalise_email(self.cleaned_data['username'])
+                #
+                # Overriding Oscar's built in GatewayForm cleaning that looks for
+                # an existing account.
+                #
+                # if User._default_manager.filter(email__iexact=email).exists():
+                #     msg = _("A user with that email address already exists")
+                #     self._errors["username"] = self.error_class([msg])
+            return self.cleaned_data
         return super(GatewayForm, self).clean()
 
     def clean_username(self):
