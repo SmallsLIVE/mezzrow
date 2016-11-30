@@ -19,4 +19,8 @@ CACHES= {
     }
 }
 
+INSTALLED_APPS += [
+    'debug_toolbar',
+]
+
 from .yo import *
