@@ -21,11 +21,12 @@ class IndexView(views.IndexView):
             self.checkout_session.set_reservation_name(first_name, last_name)
 
             # Capture this email address if it's not already in the database
-            a = SmallsUser.objects.get_or_create(
-                first_name = first_name,
-                last_name = last_name,
-                email=form.cleaned_data['username']
-            )
+            email = form.cleaned_data['username']
+            try:
+                u = SmallsUser.objects.get(email=email)
+            except:
+                u = SmallsUser(email=email)
+                u.save()
         return super(IndexView, self).form_valid(form)
 
 
