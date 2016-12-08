@@ -10,6 +10,8 @@ from paypal.payflow import facade
 
 BankcardForm = get_class('payment.forms', 'BankcardForm')
 
+from smallslive.users.models import SmallsUser
+
 
 class IndexView(views.IndexView):
     def form_valid(self, form):
@@ -17,6 +19,14 @@ class IndexView(views.IndexView):
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             self.checkout_session.set_reservation_name(first_name, last_name)
+
+            # Capture this email address if it's not already in the database
+            email = form.cleaned_data['username']
+            try:
+                u = SmallsUser.objects.get(email=email)
+            except:
+                u = SmallsUser(email=email)
+                u.save()
         return super(IndexView, self).form_valid(form)
 
 
@@ -102,7 +112,7 @@ class PaymentDetailsView(ReservationNameMixin, views.PaymentDetailsView):
             label=bankcard.obfuscated_number)
         self.add_payment_source(source)
         self.add_payment_event('Sold', total.incl_tax)
-        
+
 
 class PaypalExpressSuccessResponseView(ReservationNameMixin, CoreSuccessResponseView):
     pass
