@@ -17,11 +17,11 @@
     <ul class="text-left">
       <li class="event-date">{{ event.listing_date|date:"l, F jS" }} {% if event.is_early_morning %}(
         {{ event.listing_date|date:"l" }} late night){% endif %} </li>
-      {% if event.end == event.start|set_times_filter %}
-      <li class="event-time">{{ event.start|date:"g:i A" }}</li>
-      {% else %}
-      <li class="event-time">{{ event.start|date:"g:i A" }} and {{ event.start|set_times_filter|date:"g:i A"  }}</li>
-      {% endif %}
+        {% if event.end == event.start|set_times_filter %}
+        <dd class="orange event-date">{{ event.start|date:"g:i A" }} and {{ event.start|set_times_filter|date:"g:i A"  }}</dd>
+        {% else %}
+        <dd class="orange event-date">{{ event.start|date:"g:i A" }}</dd>
+        {% endif %}
       <li><br/></li>
       {% if event.get_performers %}
         <li class="event-artists">Artists: {% for performer in event.get_performers %}
