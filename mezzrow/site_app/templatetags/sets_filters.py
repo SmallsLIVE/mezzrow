@@ -5,5 +5,5 @@ register = template.Library()
 
 @register.filter(name='set_times_filter')
 def set_times_filter(value):
-    a = value+timedelta(minutes = 90)
+    a = value+timedelta(minutes = 150)
     return a
