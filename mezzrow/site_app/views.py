@@ -46,7 +46,7 @@ class HomeView(ListView):
             date_range_end = date_range_start + timezone.timedelta(days=end_days)
             events = events.filter(start__gte=date_range_start, start__lte=date_range_end)
             # only admin sees draft and hidden events
-            # events = events.filter(Q(state=Event.STATUS.Published) | Q(state=Event.STATUS.Cancelled))
+            events = events.filter(Q(state=Event.STATUS.Published) | Q(state=Event.STATUS.Cancelled))
         else:
             events = events.filter(start__gte=timezone.localtime(timezone.now()).date())
         return events.reverse()
