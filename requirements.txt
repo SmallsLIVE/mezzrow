@@ -11,7 +11,7 @@ django-sslify>=0.2
 djangorestframework==2.3.14
 email-validator==1.0.1
 gevent==1.0.1
-gunicorn==19.1.1
+gunicorn==19.5.0
 natsort==3.5.0
 newrelic==2.34.0.29
 python-binary-memcached==0.24.2
