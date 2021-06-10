@@ -1,5 +1,5 @@
 git+https://github.com/SmallsLIVE/smallslive.git@29f655197b5913da5c5c4597837e6085dd507819
-Django==1.6.11
+Django==2.2.24
 django-bmemcached==0.2.1
 django-cors-headers==1.1.0
 django-haystack==2.4.1
